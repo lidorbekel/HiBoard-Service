@@ -1,9 +1,9 @@
 namespace HiBoard.Service;
 
-public class Constants
+public static class Constants
 {
     internal static class ResourceNames
     {
-        public const string User = "hi-board/users";
+        public const string User = "Users";
     }
 }

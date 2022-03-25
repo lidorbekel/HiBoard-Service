@@ -21,11 +21,12 @@ public class UsersResourceService : JsonApiResourceService<UserResource>
 
     public UsersResourceService(IResourceRepositoryAccessor repositoryAccessor,
         IQueryLayerComposer queryLayerComposer, IPaginationContext paginationContext, IJsonApiOptions options,
-        ILoggerFactory loggerFactory, IJsonApiRequest request,
+        ILoggerFactory loggerFactory, IJsonApiRequest request, IQueryLayerComposer layerComposer,
         IResourceChangeTracker<UserResource> resourceChangeTracker, IResourceHookExecutorFacade hookExecutor,
-        HiBoardDbContext db, IMapper mapper) :
-        base(repositoryAccessor, queryLayerComposer, paginationContext, options, loggerFactory, request,
-            resourceChangeTracker, hookExecutor)
+        HiBoardDbContext db, IMapper mapper, ILogger<UsersResourceService> logger
+    ) : base(
+        repositoryAccessor,
+        queryLayerComposer, paginationContext, options, loggerFactory, request, resourceChangeTracker, hookExecutor)
     {
         _db = db;
         _mapper = mapper;

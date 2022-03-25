@@ -1,6 +1,6 @@
 using HiBoard.Enums;
 
-namespace HiBoard;
+namespace HiBoard.Models;
 
 public class User : Entity<User, int>
 {
