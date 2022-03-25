@@ -14,15 +14,15 @@ using Microsoft.EntityFrameworkCore;
 namespace HiBoard.Service.ResourceServices;
 
 [UsedImplicitly]
-public class ContactsResourceService : JsonApiResourceService<ContactResource>
+public class UsersResourceService : JsonApiResourceService<UserResource>
 {
     private readonly HiBoardDbContext _db;
     private readonly IMapper _mapper;
 
-    public ContactsResourceService(IResourceRepositoryAccessor repositoryAccessor,
+    public UsersResourceService(IResourceRepositoryAccessor repositoryAccessor,
         IQueryLayerComposer queryLayerComposer, IPaginationContext paginationContext, IJsonApiOptions options,
         ILoggerFactory loggerFactory, IJsonApiRequest request,
-        IResourceChangeTracker<ContactResource> resourceChangeTracker, IResourceHookExecutorFacade hookExecutor,
+        IResourceChangeTracker<UserResource> resourceChangeTracker, IResourceHookExecutorFacade hookExecutor,
         HiBoardDbContext db, IMapper mapper) :
         base(repositoryAccessor, queryLayerComposer, paginationContext, options, loggerFactory, request,
             resourceChangeTracker, hookExecutor)
@@ -31,18 +31,18 @@ public class ContactsResourceService : JsonApiResourceService<ContactResource>
         _mapper = mapper;
     }
 
-    public override async Task<IReadOnlyCollection<ContactResource>> GetAsync(CancellationToken cancellationToken)
+    public override async Task<IReadOnlyCollection<UserResource>> GetAsync(CancellationToken cancellationToken)
     {
-        var allContacts = _db.Contacts.AsNoTracking();
-        var contactResources = await _mapper.ProjectTo<ContactResource>(allContacts).ToListAsync(cancellationToken);
+        var users = _db.Users.AsNoTracking();
+        var userResources = await _mapper.ProjectTo<UserResource>(users).ToListAsync(cancellationToken);
 
-        return contactResources;
+        return userResources;
     }
 
-    public override async Task<ContactResource> GetAsync(int id, CancellationToken cancellationToken)
+    public override async Task<UserResource> GetAsync(int id, CancellationToken cancellationToken)
     {
-        var contact = await _db.Contacts.FindAsync(id);
+        var user = await _db.Users.FindAsync(id, cancellationToken);
 
-        return _mapper.Map<ContactResource>(contact);
+        return _mapper.Map<UserResource>(user);
     }
 }

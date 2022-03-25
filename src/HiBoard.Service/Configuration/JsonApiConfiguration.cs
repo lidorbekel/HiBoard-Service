@@ -20,7 +20,7 @@ public static class JsonApiConfiguration
 
     public static void Discovery(ServiceDiscoveryFacade discovery)
     {
-        discovery.AddAssembly(typeof(ContactResource).Assembly);
+        discovery.AddAssembly(typeof(UserResource).Assembly);
     }
 
     public static void Resources(ResourceGraphBuilder resources)

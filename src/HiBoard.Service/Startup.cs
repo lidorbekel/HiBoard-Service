@@ -2,7 +2,9 @@ using HiBoard.Service.Configuration;
 using HiBoard.Service.Data;
 using HiBoard.Service.Mapping;
 using JsonApiDotNetCore.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HiBoard.Service;
 
@@ -19,14 +21,28 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        string mysqlConnectionString = _configuration.GetConnectionString("MySql");
+        services
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https://securetoken.google.com/hiboard-e147b";
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = "https://securetoken.google.com/hiboard-e147b",
+                    ValidateAudience = true,
+                    ValidAudience = "hiboard-e147b",
+                    ValidateLifetime = true,
+                };
+            });
 
-        var serverVersion = new MySqlServerVersion(new Version(5, 7));
-        services.AddDbContextPool<HiBoardDbContext>(options =>
-            options.UseMySql(mysqlConnectionString, serverVersion));
+        string mysqlConnectionString = _configuration.GetConnectionString("MySql");
+        services.AddDbContext<HiBoardDbContext>(options =>
+            options.UseMySql(mysqlConnectionString, ServerVersion.AutoDetect(mysqlConnectionString),
+                static dbContextOptions => dbContextOptions.EnableRetryOnFailure(3)));
 
         services
-            .AddAutoMapper(typeof(ContactsMapperProfile))
+            .AddAutoMapper(typeof(UsersMapperProfile))
             .AddJsonApi<HiBoardDbContext>(
                 options => JsonApiConfiguration.Options(options, _environment),
                 JsonApiConfiguration.Discovery,
