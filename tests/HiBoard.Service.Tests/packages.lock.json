@@ -2676,6 +2676,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.12",
           "Microsoft.Extensions.Configuration.AzureAppConfiguration": "4.5.1",
+          "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "MySql.Data.EntityFrameworkCore": "8.0.22",
           "NServiceBus": "7.5.0",
           "NServiceBus.Extensions.Hosting": "1.1.0",

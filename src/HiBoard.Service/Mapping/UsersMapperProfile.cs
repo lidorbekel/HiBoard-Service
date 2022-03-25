@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HiBoard.Models;
 using HiBoard.Service.Resources;
 
 namespace HiBoard.Service.Mapping;

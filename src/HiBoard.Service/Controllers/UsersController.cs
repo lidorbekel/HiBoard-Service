@@ -55,9 +55,9 @@ public class UsersController : JsonApiController<UserResource>
     [ProducesResponseType(typeof(ErrorDocument), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorDocument), StatusCodes.Status500InternalServerError)]
     [HttpPost]
-    public override async Task<IActionResult> PostAsync(UserResource activity,
+    public override async Task<IActionResult> PostAsync(UserResource user,
         CancellationToken cancellationToken) =>
-        await base.PostAsync(activity, cancellationToken);
+        await base.PostAsync(user, cancellationToken);
 
     [ApiExplorerSettings(GroupName = Constants.ResourceNames.User)]
     [SwaggerOperation("Update User")]
@@ -68,9 +68,9 @@ public class UsersController : JsonApiController<UserResource>
     [ProducesResponseType(typeof(ErrorDocument), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorDocument), StatusCodes.Status500InternalServerError)]
     [HttpPatch("{id}")]
-    public override async Task<IActionResult> PatchAsync(int id, UserResource activity,
+    public override async Task<IActionResult> PatchAsync(int id, UserResource user,
         CancellationToken cancellationToken) =>
-        await base.PatchAsync(id, activity, cancellationToken);
+        await base.PatchAsync(id, user, cancellationToken);
 
     [ApiExplorerSettings(GroupName = Constants.ResourceNames.User)]
     [SwaggerOperation("Delete User")]

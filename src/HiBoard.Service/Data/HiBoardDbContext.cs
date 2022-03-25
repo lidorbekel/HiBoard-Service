@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HiBoard.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HiBoard.Service.Data;
 
