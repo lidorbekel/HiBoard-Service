@@ -1,20 +1,26 @@
-using HiBoard.Service;
 using Serilog;
 
+namespace HiBoard.Service;
 
-try {
-    Log.Information("Starting up");
-    CreateHostBuilder(args).Build().Run();
-}
-catch (Exception ex) {
-    Log.Fatal(ex, "Application startup failed");
+public static class Program
+{
+    public static void Main(string[] args)
+    {
+        try {
+            Log.Information("Starting up");
+            CreateHostBuilder(args).Build().Run();
+        }
+        catch (Exception ex) {
+            Log.Fatal(ex, "Application startup failed");
 
-    throw;
-}
-finally {
-    Log.CloseAndFlush();
-}
+            throw;
+        }
+        finally {
+            Log.CloseAndFlush();
+        }
+    }
 
-static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(static webBuilder => webBuilder.UseStartup<Startup>());
+    private static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+}
