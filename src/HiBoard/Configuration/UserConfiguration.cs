@@ -27,10 +27,14 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired();
 
         builder
-            .Property(_ => _.Title)
-            .HasColumnName("title")
-            .HasMaxLength(50)
-            .IsRequired();
+            .Property(_ => _.FirstName)
+            .HasColumnName("first_name")
+            .HasMaxLength(50);
+
+        builder
+            .Property(_ => _.LastName)
+            .HasColumnName("last_name")
+            .HasMaxLength(50);
 
         builder
             .Property(_ => _.Role)
