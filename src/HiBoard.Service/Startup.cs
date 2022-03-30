@@ -1,6 +1,5 @@
 using HiBoard.Service.Configuration;
 using HiBoard.Service.Data;
-using HiBoard.Service.Mapping;
 using JsonApiDotNetCore.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -11,13 +10,8 @@ namespace HiBoard.Service;
 public class Startup
 {
     private readonly IConfiguration _configuration;
-    private readonly IHostEnvironment _environment;
 
-    public Startup(IConfiguration configuration, IHostEnvironment environment)
-    {
-        _configuration = configuration;
-        _environment = environment;
-    }
+    public Startup(IConfiguration configuration) => _configuration = configuration;
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -40,13 +34,6 @@ public class Startup
         services.AddDbContext<HiBoardDbContext>(options =>
             options.UseMySql(mysqlConnectionString, ServerVersion.AutoDetect(mysqlConnectionString),
                 static dbContextOptions => dbContextOptions.EnableRetryOnFailure(3)));
-
-        services
-            .AddAutoMapper(typeof(UsersMapperProfile))
-            .AddJsonApi<HiBoardDbContext>(
-                options => JsonApiConfiguration.Options(options, _environment),
-                JsonApiConfiguration.Discovery,
-                JsonApiConfiguration.Resources);
 
         services.AddControllers();
 
