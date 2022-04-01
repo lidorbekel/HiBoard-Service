@@ -41,11 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers" />
-    <Folder Include="Mapping" />
     <Folder Include="Options" />
-    <Folder Include="Resources" />
-    <Folder Include="ResourceServices" />
     <Folder Include="Services" />
   </ItemGroup>
 

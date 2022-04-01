@@ -1,6 +1,5 @@
 using HiBoard.Service.Configuration;
 using HiBoard.Service.Data;
-using JsonApiDotNetCore.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -50,9 +49,6 @@ public class Startup
         if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
         app.UseRouting();
-
-        app.UseJsonApi();
-
         app
             .UseAuthentication()
             .UseAuthorization();
