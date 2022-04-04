@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Options\**" />
+    <Compile Remove="Services\**" />
+    <Content Remove="Options\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Options\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Options\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HiBoard\HiBoard.csproj" />
   </ItemGroup>
 
@@ -15,7 +26,6 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Azure.Identity" Version="1.5.0" />
-    <PackageReference Include="Firebase.Auth" Version="1.0.0" />
     <PackageReference Include="JsonApiDotNetCore" Version="4.2.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.19.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
@@ -28,8 +38,6 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
     <PackageReference Include="NServiceBus" Version="7.5.0" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.1.0" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="6.1.1" />
     <PackageReference Include="NServiceBus.Serilog" Version="7.16.0" />
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="2.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.3" />
@@ -38,11 +46,6 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Options" />
-    <Folder Include="Services" />
   </ItemGroup>
 
 </Project>
