@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HiBoard.Persistence.Migrations
 {
     [DbContext(typeof(HiBoardDbContext))]
-    [Migration("20220408132040_add_users_table")]
-    partial class add_users_table
+    [Migration("20220408133331_Add_Users_Table")]
+    partial class Add_Users_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HiBoard.Persistence.Migrations
 {
-    public partial class add_users_table : Migration
+    public partial class Add_Users_Table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
