@@ -31,17 +31,9 @@ public class Startup
 
         string mysqlConnectionString = _configuration.GetConnectionString("MySql");
         services.AddDbContext<HiBoardDbContext>(options =>
-            options.UseMySql(mysqlConnectionString, ServerVersion.AutoDetect(mysqlConnectionString),
-                static dbContextOptions => dbContextOptions.EnableRetryOnFailure(3)));
-
+            options.UseSqlServer(mysqlConnectionString));
         services.AddControllers();
-
         services.AddSwaggerGen(SwaggerConfiguration.Configure);
-
-
-        services
-            .AddHealthChecks()
-            .AddMySql(mysqlConnectionString, "MySql hi_board");
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

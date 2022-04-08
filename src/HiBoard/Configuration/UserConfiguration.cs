@@ -54,6 +54,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(x => x.IsDeleted)
             .HasColumnName("is_deleted")
-            .HasColumnType("tinyint(1)");
+            .HasColumnType("tinyint");
     }
 }

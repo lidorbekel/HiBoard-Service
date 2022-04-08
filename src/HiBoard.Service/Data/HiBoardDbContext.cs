@@ -9,6 +9,7 @@ public class HiBoardDbContext : DbContext
 
     public DbSet<User> Users => Set<User>();
 
+    //create database
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
