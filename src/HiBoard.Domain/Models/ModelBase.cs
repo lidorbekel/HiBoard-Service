@@ -1,7 +1,7 @@
-﻿namespace HiBoard;
+﻿namespace HiBoard.Domain.Models;
 
-public abstract class Entity<TEntity, TId>
-    where TEntity : Entity<TEntity, TId>
+public abstract class ModelBase<TEntity, TId>
+    where TEntity : ModelBase<TEntity, TId>
 {
     private int? _mCachedHashCode;
 
@@ -49,7 +49,7 @@ public abstract class Entity<TEntity, TId>
 
     public virtual bool IsOfType<T>() => typeof(T).IsAssignableFrom(GetEntityType());
 
-    public static bool operator ==(Entity<TEntity, TId>? lh, Entity<TEntity, TId>? rh) => Equals(lh, rh);
+    public static bool operator ==(ModelBase<TEntity, TId>? lh, ModelBase<TEntity, TId>? rh) => Equals(lh, rh);
 
-    public static bool operator !=(Entity<TEntity, TId>? lh, Entity<TEntity, TId> rh) => !Equals(lh, rh);
+    public static bool operator !=(ModelBase<TEntity, TId>? lh, ModelBase<TEntity, TId> rh) => !Equals(lh, rh);
 }

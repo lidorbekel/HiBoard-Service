@@ -1,8 +1,8 @@
-using HiBoard.Enums;
+using HiBoard.Domain.Enums;
 
-namespace HiBoard.Models;
+namespace HiBoard.Domain.Models;
 
-public class User : Entity<User, int>
+public class User : ModelBase<User, int>
 {
     public override int Id { get; protected set; }
     public string UserName { get; set; }

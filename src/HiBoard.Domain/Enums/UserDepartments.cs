@@ -1,4 +1,4 @@
-namespace HiBoard.Enums;
+namespace HiBoard.Domain.Enums;
 
 public enum UserDepartments
 {

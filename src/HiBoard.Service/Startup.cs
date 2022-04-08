@@ -1,5 +1,5 @@
+using HiBoard.Persistence;
 using HiBoard.Service.Configuration;
-using HiBoard.Service.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

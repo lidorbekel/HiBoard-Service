@@ -1,7 +1,7 @@
-﻿using HiBoard.Models;
+﻿using HiBoard.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HiBoard.Service.Data;
+namespace HiBoard.Persistence;
 
 public class HiBoardDbContext : DbContext
 {

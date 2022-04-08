@@ -1,8 +1,8 @@
-﻿using HiBoard.Models;
+﻿using HiBoard.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace HiBoard.Configuration;
+namespace HiBoard.Domain.Configuration;
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {

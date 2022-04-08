@@ -6,6 +6,8 @@
     <IsPackable>false</IsPackable>
 
     <RootNamespace>HiBoard.Service.Tests</RootNamespace>
+
+    <BaseOutputPath></BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
