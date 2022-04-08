@@ -1306,7 +1306,9 @@
       },
       "HiBoard.Persistence/1.0.0": {
         "dependencies": {
-          "HiBoard.Domain": "1.0.0"
+          "HiBoard.Domain": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.3",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.3"
         },
         "runtime": {
           "HiBoard.Persistence.dll": {}
