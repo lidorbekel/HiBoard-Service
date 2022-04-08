@@ -2,17 +2,6 @@
   "version": 1,
   "dependencies": {
     "net6.0": {
-      "AspNetCore.HealthChecks.AzureServiceBus": {
-        "type": "Direct",
-        "requested": "[5.1.2, )",
-        "resolved": "5.1.2",
-        "contentHash": "nz/EwPOP+Qww2wsu/3ZyNRZ2uqNkpNuhjxLo5YoVoPO8XHEKYx72qD5c6nEegCVaq3GdFrcIl0W5UP8D5+GYpg==",
-        "dependencies": {
-          "Azure.Messaging.EventHubs": "5.3.1",
-          "Azure.Messaging.ServiceBus": "7.1.1",
-          "Microsoft.Extensions.Diagnostics.HealthChecks": "5.0.1"
-        }
-      },
       "AspNetCore.HealthChecks.MySql": {
         "type": "Direct",
         "requested": "[5.0.1, )",
@@ -64,20 +53,6 @@
         "requested": "[2021.3.0, )",
         "resolved": "2021.3.0",
         "contentHash": "Ddxjs5RRjf+c8m9m++WvhW1lz1bqNhsTjWvCLbQN9bvKbkJeR9MhtfNwKgBRRdG2yLHcXFr5Lf7fsvvkiPaDRg=="
-      },
-      "JsonApiDotNetCore": {
-        "type": "Direct",
-        "requested": "[4.2.0, )",
-        "resolved": "4.2.0",
-        "contentHash": "w1V5D8GGDQ+ZJBkt4/f3IXa7kAVFdiFrdUNDANU9k3Lr/FnmbqQPeAf0uOZxAh2Gd4dd/6d84Gm4zgaIJD7z+Q==",
-        "dependencies": {
-          "Ben.Demystifier": "0.4.1",
-          "Humanizer": "2.11.10",
-          "Microsoft.EntityFrameworkCore": "3.1.0",
-          "Microsoft.EntityFrameworkCore.Relational": "3.1.0",
-          "Newtonsoft.Json": "13.0.1",
-          "System.ValueTuple": "4.5.0"
-        }
       },
       "Microsoft.ApplicationInsights.AspNetCore": {
         "type": "Direct",
@@ -167,38 +142,6 @@
           "MySql.Data": "8.0.22"
         }
       },
-      "NServiceBus": {
-        "type": "Direct",
-        "requested": "[7.5.0, )",
-        "resolved": "7.5.0",
-        "contentHash": "0jxpgT7nGxyojjDjiZyntgCXH3YgIRag0PlwazKG3He9TjFhAr2+FvtHeUiylzvDpTaEbhtMY1RUbawGwHPMyA==",
-        "dependencies": {
-          "System.Reflection.Emit": "4.7.0",
-          "System.Reflection.Emit.Lightweight": "4.7.0",
-          "System.Reflection.Metadata": "1.8.1",
-          "System.Security.Cryptography.Xml": "4.7.0"
-        }
-      },
-      "NServiceBus.Serilog": {
-        "type": "Direct",
-        "requested": "[7.16.0, )",
-        "resolved": "7.16.0",
-        "contentHash": "mX8EFAaPp9l4FgFtn/qHNtEpLE/kA7UlqGAI/YrBzB3R0BAHBKBHVrNfEbe1xoc3Q+JVfsBUPvkQ7yo8L6AZ/g==",
-        "dependencies": {
-          "NServiceBus": "7.5.0",
-          "Serilog": "2.10.0"
-        }
-      },
-      "NServiceBus.Transport.AzureServiceBus": {
-        "type": "Direct",
-        "requested": "[2.0.1, )",
-        "resolved": "2.0.1",
-        "contentHash": "kYiiZjucufPr4JG4GlYhCS8+0me9vZ+I0xUFMT2gYKSxveSof3OwYYloG4b378Wx/D+mwQWmLwv4CnYIxnCiYg==",
-        "dependencies": {
-          "Azure.Messaging.ServiceBus": "[7.4.0, 8.0.0)",
-          "NServiceBus": "[7.0.1, 8.0.0)"
-        }
-      },
       "Pomelo.EntityFrameworkCore.MySql": {
         "type": "Direct",
         "requested": "[5.0.3, )",
@@ -281,14 +224,6 @@
           "System.Threading.Tasks.Extensions": "4.5.4"
         }
       },
-      "Azure.Core.Amqp": {
-        "type": "Transitive",
-        "resolved": "1.2.0",
-        "contentHash": "vrF4isvhwdZspzorLwYhukXz3DA8/ONSnZUIBAqBtOCzsDNUgAsuILbCzvtDrn2oDxyq7DZx5Nh81pe0BeWmDQ==",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        }
-      },
       "Azure.Data.AppConfiguration": {
         "type": "Transitive",
         "resolved": "1.0.0",
@@ -297,33 +232,6 @@
           "Azure.Core": "1.0.1",
           "Microsoft.Bcl.AsyncInterfaces": "1.0.0",
           "System.Text.Json": "4.6.0"
-        }
-      },
-      "Azure.Messaging.EventHubs": {
-        "type": "Transitive",
-        "resolved": "5.3.1",
-        "contentHash": "S8hJFaDJiiYLcjyfsDbeIiUTGUPitJNN4P1n75UAz7OBffNMXLKCzObSKJLck8tVsByVFWtg4eLltTzX5cP34A==",
-        "dependencies": {
-          "Azure.Core": "1.10.0",
-          "Microsoft.Azure.Amqp": "2.4.11",
-          "Microsoft.Bcl.AsyncInterfaces": "1.0.0",
-          "System.Diagnostics.DiagnosticSource": "4.6.0",
-          "System.Memory.Data": "1.0.1",
-          "System.Reflection.TypeExtensions": "4.5.1",
-          "System.Threading.Channels": "4.6.0",
-          "System.Threading.Tasks.Extensions": "4.5.2"
-        }
-      },
-      "Azure.Messaging.ServiceBus": {
-        "type": "Transitive",
-        "resolved": "7.4.0",
-        "contentHash": "bdYKM2cw+CjjY3bR4BGiTC2FGe3xXi1aVJe09z0uPCQ8VcnGZW486SCHDvySJUA+sHWtJJmkAuBTbS2X8o2fzw==",
-        "dependencies": {
-          "Azure.Core": "1.20.0",
-          "Azure.Core.Amqp": "1.2.0",
-          "Microsoft.Azure.Amqp": "2.5.6",
-          "Microsoft.Bcl.AsyncInterfaces": "1.0.0",
-          "System.Memory.Data": "1.0.2"
         }
       },
       "Azure.Security.KeyVault.Secrets": {
@@ -335,14 +243,6 @@
           "System.Memory": "4.5.3",
           "System.Text.Json": "4.6.0",
           "System.Threading.Tasks.Extensions": "4.5.2"
-        }
-      },
-      "Ben.Demystifier": {
-        "type": "Transitive",
-        "resolved": "0.4.1",
-        "contentHash": "axFeEMfmEORy3ipAzOXG/lE+KcNptRbei3F0C4kQCdeiQtW+qJW90K5iIovITGrdLt8AjhNCwk5qLSX9/rFpoA==",
-        "dependencies": {
-          "System.Reflection.Metadata": "5.0.0"
         }
       },
       "BouncyCastle.NetCore": {
@@ -375,440 +275,10 @@
           "System.Memory": "4.5.2"
         }
       },
-      "Humanizer": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "SMxYz3g1pxeA58Ejo9SLfGfcvpdbVdBRdYE9z2p76ddhYAF6lSLmcMu/Io8wpmHg41aEQ78qU8IXEyPSLDnIww==",
-        "dependencies": {
-          "Humanizer.Core.af": "2.11.10",
-          "Humanizer.Core.ar": "2.11.10",
-          "Humanizer.Core.az": "2.11.10",
-          "Humanizer.Core.bg": "2.11.10",
-          "Humanizer.Core.bn-BD": "2.11.10",
-          "Humanizer.Core.cs": "2.11.10",
-          "Humanizer.Core.da": "2.11.10",
-          "Humanizer.Core.de": "2.11.10",
-          "Humanizer.Core.el": "2.11.10",
-          "Humanizer.Core.es": "2.11.10",
-          "Humanizer.Core.fa": "2.11.10",
-          "Humanizer.Core.fi-FI": "2.11.10",
-          "Humanizer.Core.fr": "2.11.10",
-          "Humanizer.Core.fr-BE": "2.11.10",
-          "Humanizer.Core.he": "2.11.10",
-          "Humanizer.Core.hr": "2.11.10",
-          "Humanizer.Core.hu": "2.11.10",
-          "Humanizer.Core.hy": "2.11.10",
-          "Humanizer.Core.id": "2.11.10",
-          "Humanizer.Core.it": "2.11.10",
-          "Humanizer.Core.ja": "2.11.10",
-          "Humanizer.Core.ko-KR": "2.11.10",
-          "Humanizer.Core.ku": "2.11.10",
-          "Humanizer.Core.lv": "2.11.10",
-          "Humanizer.Core.ms-MY": "2.11.10",
-          "Humanizer.Core.mt": "2.11.10",
-          "Humanizer.Core.nb": "2.11.10",
-          "Humanizer.Core.nb-NO": "2.11.10",
-          "Humanizer.Core.nl": "2.11.10",
-          "Humanizer.Core.pl": "2.11.10",
-          "Humanizer.Core.pt": "2.11.10",
-          "Humanizer.Core.ro": "2.11.10",
-          "Humanizer.Core.ru": "2.11.10",
-          "Humanizer.Core.sk": "2.11.10",
-          "Humanizer.Core.sl": "2.11.10",
-          "Humanizer.Core.sr": "2.11.10",
-          "Humanizer.Core.sr-Latn": "2.11.10",
-          "Humanizer.Core.sv": "2.11.10",
-          "Humanizer.Core.th-TH": "2.11.10",
-          "Humanizer.Core.tr": "2.11.10",
-          "Humanizer.Core.uk": "2.11.10",
-          "Humanizer.Core.uz-Cyrl-UZ": "2.11.10",
-          "Humanizer.Core.uz-Latn-UZ": "2.11.10",
-          "Humanizer.Core.vi": "2.11.10",
-          "Humanizer.Core.zh-CN": "2.11.10",
-          "Humanizer.Core.zh-Hans": "2.11.10",
-          "Humanizer.Core.zh-Hant": "2.11.10"
-        }
-      },
       "Humanizer.Core": {
         "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "4TBsHSXPocdsEB5dewIHeKykTzIz5Ui7ouXw4JsUGI+ax4jjviVJVD7+gsPCNyA+b3de2EjYI+jcEq8I/1ZFSQ=="
-      },
-      "Humanizer.Core.af": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "+lqi/QkexkopvE9ZGzuWfmMnlb+qIXOM9Pm6PkKwtqU9CgwBTZLNlRv/lX/uhn5qVy+BVQOdshTpGSqlGydHPg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.ar": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "osvf8hBgG6gvORNxUEfeVA6sZGuBmhHUJTTK63rk4F0QvRE6OyjVlyJ22pcNBx2ccMCxkx3ltWCL8Xezqcl27A==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.az": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "GGArBYonL5TnC0dVlP9SD/kZVwiOzw9vJ0uNh4mkwzVCQ5gqx4zsz98VDpC8Ft+rEv39yF7lv+ExMottwtDajg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.bg": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "jAwKP2T/hgNPe3FGRbxWeioa5LO7vjoD5VyDXxbky9LZVlIG6+1wbV+0y7LSMxGRlN/+362cpg1kVy+W7n7+GQ==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.bn-BD": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "JyjB/VIHcvNpRW0SXmaPPffKCIQc3EZ6yPnEsoo1f7CqAoGQt/gnRc/nw0YezzFAFLwZp7erk0xwKIXgcAwh+w==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.cs": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "B1zxma7ey6Vx+gnD7z5h2wtIclKfIXM4PIndzzdoK301f2Vv9oFgAm2ZN/OG8kNbB8R52qFYiAFVVpyX8LObWg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.da": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "vX+1IvETFkxpJz9qwd0Ly3JIKMYuEG37K6iN0qEJMahxBCbyHMIFs71n6VV99PEWBpwuZG3RYLLGWi6y/zpNqA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.de": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "XRH9ZLUriicH6OdovgVfr2Iulx/jsJ29Mto2nY71bewrglj3Vx7i9aPRReEYh5Jogc4R+W6J777/quJKdKhbbQ==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.el": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "FEK6tC9vRjtnqIKojbWVnZq2IH2t8TDdGpI2zKZ3KoQ7yodnFCvIiwz6u0KhcwqGuw41Jfm2LuuwLrOb1INfRA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.es": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "lVfFyC1IbSjyB5ggVaidgGOlFNpeD67QQTn5fhkPbaUnFNIdzenaKuOvfyqBPE93N52+MCnPqGx8fkxqjyPTtQ==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.fa": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "65T62CCCG6XkcBdoD7YfJv4ykIvWBQGTmBXdQAthFVoYEh3pbqDtGfgLu9nEG+lkuC9ky9kFOzMoNu9mj2sHdw==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.fi-FI": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "VwqhxHkQ9pjxxbrr2/V+eaFtlFm7sWspQn+96zaKeLqk3af/u0JEh0SoqjR9t8r6e/THhc53cE9ckiFOnnNUSA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.fr": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "56FV4ZK9sh8wEGIAotEo2pWoMTUT+cBEfde0bQOTiu+P78ZPB1DuA2ljoOgRmRChPaVwRq/yAiNb8klmv7oDbw==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.fr-BE": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "V2o0VwCXGHpGo8ocV2FLVRX478J8c+Cs9GDdPV2lMCyaXJcxXsb9YQ3OJAhQ5OYWmKflNuoB861X9ji5u/uYkg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.he": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "Nwkd0P74P4x3RNnV8qqJetf5JJhURunNw0Pi9cEJpiOwni7OX2mZcyTLp7VgB76SViIt7Cb+FUO5X6QSaRIrZQ==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.hr": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "/z5adjfE4Kq2Uz89vlh7KUp4ClRnU5MMbR0rySYamfla8SalNu6/iEg8f37loxDfKLzV/mg/LDtNcr34J0AZ6Q==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.hu": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "0M5kmTp2hVlS2yzA6JTeMP0bU2XXjlWnGVkjGDrHsFCtrH6BgdX5Y9fT8D5bpndVhrNZnU07M13sxbpUTP0UNQ==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.hy": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "/RFblqLeVgqx+VFHVePq84kotP/QBtyuggJqhq+KvAgniGrbRRj2pzI3lStltnvZpPJpu3TKGpTQLllxmebJrQ==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.id": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "72ab7Jz1DX3GnDik4AFKqWM2AYVL3QRfaYHM77bxNLpxXC65FKbmTQZVQveOtCUpem/jzEafy0cvzx9fA72RDw==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.it": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "LynU8OkMVyxvCfwa4mv0vrP0Uv4BwQBPEJiqSdt/XTFcg1A+h/Ybj93TT3UjJk2MkZJhTxERxUxSaoXeQPkE/A==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.ja": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "QJcanMmSLCGkqPna33sPcxkbh9jSdeiXiGACK3KKuZwt6NTpWIzkHEu2BvcNzP3FaZm30AAqdroyJo9TB09qTg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.ko-KR": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "MX5/fi8tmp83RjLSA9Pkqa8RpUu6togSRgU34OggvvJkvqm3dx1JMIamqKvJKEYDscEjjbatnxoMv8q3qaFsFg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.ku": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "79DuXtHt+TwyZHMdf4h6nFCaFAs1QeR0fuAku8xnLvDgkJUN+ImeVXqmE3DZnn4K3BY7uUUhIKMgifBR7XKi5Q==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.lv": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "dSGDWfv3mheyCbS+uoth3ZljeNL+Mv/zmXVnW4dzuAHQ5ntDEESFLok6x0WNSb4cn325CuMPNNU5x5nHMx/MrA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.ms-MY": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "8IjQ0R5s+HbBGMVkaBJPSw9KoWsNfEPhUIrUsX7EVKh/fZ7ZrnxBh2tSZV3YO8QRgJAdTgqvvqlF4Fnr9BTpKg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.mt": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "SYg7e3wkavkohdS+ZtqznH7i7nhmbQ8G4Yyzny6r8bUt0ESspLe5wITApbfrNV/IIpsiNOLP6WlUa1f5eHxkIA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.nb": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "OBYwC++SC6zDJ7m3JfcRh9evUQA7n9Fi7H+h5ETSPvEio8K6JUB59zpf+dJ0bLzFKR7CeLhcbSCxLexX9ZZwUg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.nb-NO": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "sqZTfqnXlE2tPWDup7ZQbi8tb4xQRX2bMH5BUI6OTtJAa9ri4tCaT3AZlWICBB6J5mwnvq2CE8mdPzHnRQG4IQ==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.nl": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "u2mrAt/k1PJxK3pRgXsaKymP77YA7rvh+SRJ2eV4LsaDv77TAyigWk0YDfbpikkU6kEythgU1+j7WIRtXwCy5Q==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.pl": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "0aIMXEkrw3FByhoInV0mpFnmPT3gJf1FOpsy6HAxL74j2gIP+xOa2hjb/xKa3HhK/1b5V9DoxKUESrTBeA5dbg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.pt": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "lgHMX94bzHJrchpBvpCXMYV2YOn2QYEfdoKP1V2yBaKRzEOyuoYRxrfAFyw6AArzIeMhDNFPg2xrw0NCh7I41g==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.ro": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "Lf5b7saE8hD7HSjkyvFHxJ2qtNrDN5J4WpOQz7h3YxuVE6osgP62g9dHlmumMyoRVBLs0jARmjrl4OR6HHJNDA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.ru": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "ak65eFdYRzUg8JbgSrQGdlm87YzpXIqCA6OpPkkEgxu2inWlv4emilAWUpGjzJY0vWo3wwL+35tBcyFo4dHd0A==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.sk": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "CQBvNeMW9+MDOGuvl6plPXf/RJzRTqWZVu4/IiZAEHa9ZlEhkx1RElw1xwiCoc20eArPw3ezWcuP7kr+VyYJ+g==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.sl": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "WkAswtnKoR6277zOgTB+NaXfss3Y4Pxat5r+L5Z7VXm2IT/7t9slWEiID1KnnKzLE/RwG8kgEH2GoEqUlwo+tQ==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.sr": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "4OMNdiF9+gOGlIK4WZg+9XrBREtHla9JXSDC1SwB3XfvXjOADwDfRpmasN2+p/y0itXCFvXosxh8OZmWo5v3iw==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.sr-Latn": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "8Mb96AadWgCEGfdZExSPbKNYvu4V3TdL5agTEOw7wWriOvPwm+UNjeyjAmmhtOATIz3x8m/emPdS6DYwxVTJ9A==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.sv": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "KKDfUhBKWeQa9GAb3J/argRd6qQP4uMKW9sihEoscF7CdQyHMIgCmeg+la/u96SGT/wZIRN2L8Zekd/1NTMmeA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.th-TH": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "mCF1+ylOcRhQihCAP2RuSXfjGtd63sTjlu90uIUgIIYlbps6KgNikilsnGdQarT9wFgU33R0In1IoRQb6RsPQg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.tr": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "2khQ/8Kw8XEKrljKtxYFDlWd+IyuR+MUTs9tGPXS3Lx0Rh+LMStLubbv7kYNeZqoJxtFFC9wdBMMJZgCoAQm0w==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.uk": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "PoK5QmXp5B93jv7AboIU/nCYI/IRQJ+0Dw17t+C8lJzbrgtkfISrKzRIQ/ZYgk28SvLbAqRn40+woSNYBc3VPw==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.uz-Cyrl-UZ": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "F7K1B9l7lht5Rp28M2RvFomPUL8sFyS2NKoNcYCQDuDe3xYybHHT8qAlj78ncPyF9YXcCkgdKmtrJYWW+0G81g==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.uz-Latn-UZ": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "bBfZwgK5+snuE+v6lySvtzvaGqH1AsxuyhYozh7wjAqm93fElEanb9/mA4C31ofnDiKciI9CMqsaO9npr4+fCA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.vi": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "2JCv81kb+8utaN2qseedGTXFGx06z3n+z1LayVN/HAGVzPWj5DLVSFRzKzkGXKMIO9aI2w7LQ8KBLQBgIq3Zpw==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.zh-CN": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "FoJxFIEMN0D5lm4uM2WL3/YHbK1mmAWYSMEO5F4kO2OZvYgSIC41ugG1cpQtXwjtOf7aUtdZSYlN93Xvf62Vmg==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.zh-Hans": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "i08G1aOp37fjw+4ddG4GY2azBp6IhjWdyJOTt8432ln1j45VFtWoGMc/wgBaslh9JHZOQXaArMDvTWspgRzKNw==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
-      },
-      "Humanizer.Core.zh-Hant": {
-        "type": "Transitive",
-        "resolved": "2.11.10",
-        "contentHash": "z/ueYQZCf9SeZIObV2XrHGZIplMPdBmOJHzT13+rcGCOE209X7IoeKgXnWCJVMSHBxW8C5qYrWV/E7+YELnbyA==",
-        "dependencies": {
-          "Humanizer.Core": "[2.11.10]"
-        }
+        "resolved": "2.8.26",
+        "contentHash": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A=="
       },
       "K4os.Compression.LZ4": {
         "type": "Transitive",
@@ -978,15 +448,6 @@
         "dependencies": {
           "Microsoft.Net.Http.Headers": "2.1.1",
           "System.Text.Encodings.Web": "4.5.0"
-        }
-      },
-      "Microsoft.Azure.Amqp": {
-        "type": "Transitive",
-        "resolved": "2.5.6",
-        "contentHash": "Acq2MTI5FzGivQ5AxCRXFgRoS8WOkQruhHqO+58+sXfRLMDgMZfr2du4mHDsbPSu2UKf2DrRjW7PW4pPVCqNkg==",
-        "dependencies": {
-          "System.Net.WebSockets.Client": "4.0.2",
-          "System.Runtime.Serialization.Primitives": "4.1.1"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
@@ -1410,8 +871,8 @@
       },
       "Newtonsoft.Json": {
         "type": "Transitive",
-        "resolved": "13.0.1",
-        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
+        "resolved": "11.0.2",
+        "contentHash": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ=="
       },
       "runtime.native.System": {
         "type": "Transitive",
@@ -2038,53 +1499,6 @@
           "System.Threading.Tasks": "4.0.11"
         }
       },
-      "System.Net.WebHeaderCollection": {
-        "type": "Transitive",
-        "resolved": "4.0.1",
-        "contentHash": "XX2TIAN+wBSAIV51BU2FvvXMdstUa8b0FBSZmDWjZdwUMmggQSifpTOZ5fNH20z9ZCg2fkV1L5SsZnpO2RQDRQ==",
-        "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
-        }
-      },
-      "System.Net.WebSockets": {
-        "type": "Transitive",
-        "resolved": "4.0.0",
-        "contentHash": "2KJo8hir6Edi9jnMDAMhiJoI691xRBmKcbNpwjrvpIMOCTYOtBpSsSEGBxBDV7PKbasJNaFp1+PZz1D7xS41Hg==",
-        "dependencies": {
-          "Microsoft.Win32.Primitives": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading.Tasks": "4.0.11"
-        }
-      },
-      "System.Net.WebSockets.Client": {
-        "type": "Transitive",
-        "resolved": "4.0.2",
-        "contentHash": "NUCcDroX4lCQXgOrzlwIZ1u9YJ0krfyF0wk0ONnyLUmcQoEiYV2/OfUPRqUwQBbpH1BlGApkLgoQUwMqb5+c1g==",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.2",
-          "Microsoft.Win32.Primitives": "4.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Net.WebSockets": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Security.Cryptography.X509Certificates": "4.1.0",
-          "System.Text.Encoding": "4.0.11",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
-        }
-      },
       "System.Numerics.Vectors": {
         "type": "Transitive",
         "resolved": "4.5.0",
@@ -2131,8 +1545,14 @@
       },
       "System.Reflection.Emit.Lightweight": {
         "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "a4OLB4IITxAXJeV74MDx49Oq2+PsF6Sml54XAFv+2RyWwtDBcabzoxiiJRhdhx+gaohLh4hEGCLQyBozXoQPqA=="
+        "resolved": "4.0.1",
+        "contentHash": "sSzHHXueZ5Uh0OLpUQprhr+ZYJrLPA2Cmr4gn0wj9+FftNKXx8RIMKvO9qnjk2ebPYUjZ+F2ulGdPOsvj+MEjA==",
+        "dependencies": {
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Emit.ILGeneration": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Runtime": "4.1.0"
+        }
       },
       "System.Reflection.Extensions": {
         "type": "Transitive",
@@ -2147,8 +1567,8 @@
       },
       "System.Reflection.Metadata": {
         "type": "Transitive",
-        "resolved": "5.0.0",
-        "contentHash": "5NecZgXktdGg34rh1OenY1rFNDCI8xSjFr+Z4OU4cU06AQHUdRnIIEeWENu3Wl4YowbzkymAIMvi3WyK9U53pQ=="
+        "resolved": "1.6.0",
+        "contentHash": "COC1aiAJjCoA5GBF+QKL2uLqEBew4JsCkQmoHKbN3TlOZKa2fKLz5CpiRQKDz0RsAOEGsVKqOD5bomsXq/4STQ=="
       },
       "System.Reflection.Primitives": {
         "type": "Transitive",
@@ -2162,8 +1582,12 @@
       },
       "System.Reflection.TypeExtensions": {
         "type": "Transitive",
-        "resolved": "4.5.1",
-        "contentHash": "fO8GMEkgoKioJ7cglZbhcnBgkCWWn9poS3G2jevS+fuwW9xJXMx7/1kr7dkwOJfo0pWqxLFWVcxlOr+WeK5ipA=="
+        "resolved": "4.1.0",
+        "contentHash": "tsQ/ptQ3H5FYfON8lL4MxRk/8kFyE0A+tGPXmVP967cT/gzLHYxIejIYSxp4JmIeFHVP78g/F2FE1mUUTbDtrg==",
+        "dependencies": {
+          "System.Reflection": "4.1.0",
+          "System.Runtime": "4.1.0"
+        }
       },
       "System.Resources.ResourceManager": {
         "type": "Transitive",
@@ -2249,15 +1673,6 @@
           "System.Runtime.Extensions": "4.1.0"
         }
       },
-      "System.Runtime.Serialization.Primitives": {
-        "type": "Transitive",
-        "resolved": "4.1.1",
-        "contentHash": "HZ6Du5QrTG8MNJbf4e4qMO3JRAkIboGT5Fk804uZtg3Gq516S7hAqTm2UZKUHa7/6HUGdVy3AqMQKbns06G/cg==",
-        "dependencies": {
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0"
-        }
-      },
       "System.Security.AccessControl": {
         "type": "Transitive",
         "resolved": "4.7.0",
@@ -2289,8 +1704,8 @@
       },
       "System.Security.Cryptography.Cng": {
         "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "4WQjFuypWtxb/bl/YwEE7LYGn4fgpsikFfBU6xwEm4YBYiRAhXAEJ62lILBu2JJSFbClIAntFTGfDZafn8yZTg=="
+        "resolved": "4.5.0",
+        "contentHash": "WG3r7EyjUe9CMPFSs6bty5doUqT+q9pbI80hlNzo2SkPkZ4VTuZkGWjpp77JB8+uaL4DFPRdBsAY+DX3dBK92A=="
       },
       "System.Security.Cryptography.Csp": {
         "type": "Transitive",
@@ -2351,14 +1766,6 @@
           "runtime.native.System.Security.Cryptography": "4.0.0"
         }
       },
-      "System.Security.Cryptography.Pkcs": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "0Srzh6YlhjuMxaqMyeCCdZs22cucaUAG6SKDd3gNHBJmre0VZ71ekzWu9rvLD4YXPetyNdPvV6Qst+8C++9v3Q==",
-        "dependencies": {
-          "System.Security.Cryptography.Cng": "4.7.0"
-        }
-      },
       "System.Security.Cryptography.Primitives": {
         "type": "Transitive",
         "resolved": "4.0.0",
@@ -2408,15 +1815,6 @@
           "runtime.native.System": "4.0.0",
           "runtime.native.System.Net.Http": "4.0.1",
           "runtime.native.System.Security.Cryptography": "4.0.0"
-        }
-      },
-      "System.Security.Cryptography.Xml": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "B6pAyxMvXGbZemb+ER877KSr6OKis+qAdxhhKKK36I6sgj2js8mbcEVviZEHYV8XRTWjbKsAq8Z/zoaegA30dA==",
-        "dependencies": {
-          "System.Security.Cryptography.Pkcs": "4.7.0",
-          "System.Security.Permissions": "4.7.0"
         }
       },
       "System.Security.Permissions": {
@@ -2494,11 +1892,6 @@
           "System.Threading.Tasks": "4.0.11"
         }
       },
-      "System.Threading.Channels": {
-        "type": "Transitive",
-        "resolved": "4.6.0",
-        "contentHash": "xdCw/eEo1XwxQNuhTLD10gaXnVt5rkKZCPjttXE5vtqwEkheqdGrNBcbU0UP9zWdgIwZWD+4NEl4OS10jKrZtg=="
-      },
       "System.Threading.Tasks": {
         "type": "Transitive",
         "resolved": "4.3.0",
@@ -2540,11 +1933,6 @@
           "Microsoft.NETCore.Targets": "1.0.1",
           "System.Runtime": "4.1.0"
         }
-      },
-      "System.ValueTuple": {
-        "type": "Transitive",
-        "resolved": "4.5.0",
-        "contentHash": "okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ=="
       },
       "System.Windows.Extensions": {
         "type": "Transitive",
