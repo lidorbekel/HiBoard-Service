@@ -1,3 +1,5 @@
+using HiBoard.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace HiBoard.Service;
@@ -6,9 +8,27 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        try {
+        var host = CreateHostBuilder(args).Build();
+        try
+        {
             Log.Information("Starting up");
-            CreateHostBuilder(args).Build().Run();
+            using IServiceScope scope = host.Services.CreateScope();
+            IServiceProvider services = scope.ServiceProvider;
+
+            try
+            {
+                var context = services.GetRequiredService<HiBoardDbContext>();
+                //context.Database.Migrate();
+                var config = host.Services.GetRequiredService<IConfiguration>();
+                var seed = new Seed(context);
+                seed.SeedData().Wait();
+                host.Run();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
         catch (Exception ex) {
             Log.Fatal(ex, "Application startup failed");
