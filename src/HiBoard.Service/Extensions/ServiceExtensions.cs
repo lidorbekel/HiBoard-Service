@@ -14,16 +14,18 @@ public static class ServiceExtensions
     public static void AddMyServices(this IServiceCollection services)
     {
         services.AddScoped<UsersService>();
+        services.AddScoped<MissionsService>();
     }
 
     public static void AddMyRepositories(this IServiceCollection services)
     {
         services.AddScoped<UsersRepository>();
+        services.AddScoped<MissionsRepository>();
     }
 
     public static void AddMyDb(this IServiceCollection services, IConfiguration configuration)
     {
-        string mysqlConnectionString = configuration.GetConnectionString("MSSQL");
+        var mysqlConnectionString = configuration.GetConnectionString("MSSQL");
         services.AddDbContext<HiBoardDbContext>(options =>
             options.UseSqlServer(mysqlConnectionString));
     }
@@ -35,7 +37,7 @@ public static class ServiceExtensions
 
     public static void AddMyCors(this IServiceCollection services, IConfiguration configuration)
     {
-        string[]? cors = configuration?.GetSection("Cors")?.GetChildren()?.Select(cors => cors.Value).ToArray();
+        var cors = configuration?.GetSection("Cors")?.GetChildren()?.Select(cors => cors.Value).ToArray();
 
         services.AddCors(options =>
             options.AddPolicy("CorsPolicy", policy =>

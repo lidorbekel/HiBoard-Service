@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HiBoard.Application.CustomExceptions.MissionsException;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
 using HiBoard.Persistence;
@@ -17,13 +18,59 @@ namespace HiBoard.Application.Repositories
             _mapper = mapper;
         }
 
-        public async Task<MissionDto> GetByIdAsync(int missionId)
+        public async Task<IReadOnlyCollection<MissionDto>> GetListAsync(CancellationToken cancellationToken)
         {
-            var mission = (await _context.Missions.AsNoTracking().SingleOrDefaultAsync(mission => mission.Id == missionId))!;
+            var missions = await _context.Missions.AsNoTracking().ToListAsync(cancellationToken);
 
-            var result = _mapper.Map<MissionDto>(mission);
+            return _mapper.Map<List<MissionDto>>(missions);
+        }
 
-            return result;
+        public async Task<MissionDto> GetByIdAsync(int missionId, CancellationToken cancellationToken)
+        {
+            var mission = await _context.Missions.FindAsync(missionId, cancellationToken);
+            if (mission == null)
+            {
+                throw new MissionNotFoundException(missionId);
+            }
+
+            return _mapper.Map<MissionDto>(mission);
+        }
+
+        public async Task<MissionDto> CreateAsync(MissionDto missionDto, CancellationToken cancellationToken)
+        {
+            var mission = _mapper.Map<Mission>(missionDto);
+            await _context.Missions.AddAsync(mission, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return _mapper.Map<MissionDto>(mission);
+        }
+
+        public async Task<MissionDto> UpdateAsync(int missionId, MissionDto missionDto, CancellationToken cancellationToken)
+        {
+            var mission = await _context.Missions.FindAsync(missionId, cancellationToken);
+            if (mission == null)
+            {
+                throw new MissionNotFoundException(missionId);
+            }
+
+            mission = _mapper.Map<Mission>(missionDto);
+
+            _context.Missions.Update(mission);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return _mapper.Map<MissionDto>(mission);
+        }
+
+        public async Task DeleteAsync(int missionId, CancellationToken cancellationToken)
+        {
+            var mission = await _context.Missions.FindAsync(missionId, cancellationToken);
+            if (mission == null)
+            {
+                throw new MissionNotFoundException(missionId);
+            }
+
+            mission.IsDeleted = true;
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }
