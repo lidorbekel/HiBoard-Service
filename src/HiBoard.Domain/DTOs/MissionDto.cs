@@ -11,7 +11,7 @@ namespace HiBoard.Domain.DTOs;
 
         public string? Tag { get; set; }
 
-        public Status Status { get; set; }
+        public string Status { get; set; } = string.Empty;
 
         public int[]? DependencyIds { get; set; }
 
