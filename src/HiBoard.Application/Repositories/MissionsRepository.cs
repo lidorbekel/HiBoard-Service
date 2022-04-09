@@ -27,7 +27,7 @@ namespace HiBoard.Application.Repositories
 
         public async Task<MissionDto> GetByIdAsync(int missionId, CancellationToken cancellationToken)
         {
-            var mission = await _context.Missions.FindAsync(missionId, cancellationToken);
+            var mission = await _context.Missions.FindAsync(new object?[] { missionId }, cancellationToken);
             if (mission == null)
             {
                 throw new MissionNotFoundException(missionId);
@@ -39,6 +39,7 @@ namespace HiBoard.Application.Repositories
         public async Task<MissionDto> CreateAsync(MissionDto missionDto, CancellationToken cancellationToken)
         {
             var mission = _mapper.Map<Mission>(missionDto);
+            
             await _context.Missions.AddAsync(mission, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
@@ -47,7 +48,7 @@ namespace HiBoard.Application.Repositories
 
         public async Task<MissionDto> UpdateAsync(int missionId, MissionDto missionDto, CancellationToken cancellationToken)
         {
-            var mission = await _context.Missions.FindAsync(missionId, cancellationToken);
+            var mission = await _context.Missions.FindAsync(new object?[] { missionId }, cancellationToken);
             if (mission == null)
             {
                 throw new MissionNotFoundException(missionId);
@@ -63,7 +64,7 @@ namespace HiBoard.Application.Repositories
 
         public async Task DeleteAsync(int missionId, CancellationToken cancellationToken)
         {
-            var mission = await _context.Missions.FindAsync(missionId, cancellationToken);
+            var mission = await _context.Missions.FindAsync(new object?[] { missionId }, cancellationToken);
             if (mission == null)
             {
                 throw new MissionNotFoundException(missionId);
