@@ -18,7 +18,7 @@ public class User : ModelBase<User, int>
 
     public DateTime CreationDate { get; set; }
 
-    public DateTime UpdatedDate { get; set; }
+    public DateTime? UpdatedDate { get; set; }
 
     public ICollection<Mission>? Missions { get; set; }
 
