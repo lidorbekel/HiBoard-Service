@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace HiBoard.Application.CustomExceptions.UsersException;
+namespace HiBoard.Application.CustomExceptions.UsersExceptions;
 
 public class UserAlreadyExistsException : Exception
 {

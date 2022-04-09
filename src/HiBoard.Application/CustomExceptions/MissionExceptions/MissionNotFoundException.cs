@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace HiBoard.Application.CustomExceptions.MissionsException;
+namespace HiBoard.Application.CustomExceptions.MissionExceptions;
 
 public class MissionNotFoundException : Exception
 {
