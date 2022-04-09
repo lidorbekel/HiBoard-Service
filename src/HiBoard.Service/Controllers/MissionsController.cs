@@ -16,7 +16,7 @@ public class MissionsController : Controller
         _service = service;
     }
 
-    [HttpGet("{id}",Name = "GetMission")]
+    [HttpGet("{missionId}", Name = "GetMission")]
     public async Task<IActionResult> GetByIdAsync(int missionId)
     {
         var missionDto = await _service.GetByIdAsync(missionId);

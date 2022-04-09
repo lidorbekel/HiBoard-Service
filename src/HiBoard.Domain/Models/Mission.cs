@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace HiBoard.Domain.Models;
 
         public Status Status { get; set; }
 
+        [NotMapped]
         public int[]? DependencyIds { get; set; }
 
         public TimeSpan TimeEstimation { get; set; }
