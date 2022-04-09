@@ -13,6 +13,7 @@ public class Startup
         services.AddMyServices();
         services.AddMyRepositories();
         services.AddMySwagger();
+        services.AddMyMapper();
         services.AddMyDb(_configuration);
         services.AddMyAuthentication(_configuration);
         services.AddMyCors(_configuration);

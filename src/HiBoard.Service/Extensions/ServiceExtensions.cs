@@ -1,4 +1,5 @@
-﻿using HiBoard.Application.Repositories;
+﻿using HiBoard.Application.Mapping;
+using HiBoard.Application.Repositories;
 using HiBoard.Application.Services;
 using HiBoard.Persistence;
 using HiBoard.Service.Configuration;
@@ -61,5 +62,10 @@ public static class ServiceExtensions
                     ValidateLifetime = true,
                 };
             });
+    }
+
+    public static void AddMyMapper(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(GeneralProfile).Assembly);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HiBoard.Application.Repositories;
+using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
 
 namespace HiBoard.Application.Services
@@ -12,10 +13,9 @@ namespace HiBoard.Application.Services
             _repository = repository;
         }
 
-        public async Task<User> GetUserInfoAsync(int userId)
+        public async Task<UserDto> GetUserInfoAsync(int userId)
         {
-            var test = await _repository.GetByIdAsync(userId);
-            return test;
+            return await _repository.GetByIdAsync(userId);
         }
     }
 }
