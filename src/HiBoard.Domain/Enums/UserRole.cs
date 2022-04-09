@@ -1,6 +1,6 @@
 namespace HiBoard.Domain.Enums;
 
-public enum UserRoles
+public enum UserRole
 {
     Employee,
     Manager,
