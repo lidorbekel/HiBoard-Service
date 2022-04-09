@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HiBoard.Application.CustomExceptions.UsersException;
+using HiBoard.Application.CustomExceptions.UsersExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
 using HiBoard.Persistence;
