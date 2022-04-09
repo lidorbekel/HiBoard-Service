@@ -1,9 +1,4 @@
-using HiBoard.Persistence;
-using HiBoard.Service.Configuration;
 using HiBoard.Service.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace HiBoard.Service;
 

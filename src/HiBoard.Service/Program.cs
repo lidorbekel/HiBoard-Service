@@ -1,5 +1,4 @@
 using HiBoard.Persistence;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace HiBoard.Service;

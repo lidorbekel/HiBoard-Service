@@ -14,7 +14,8 @@ namespace HiBoard.Application.Services
 
         public async Task<User> GetUserInfoAsync(int userId)
         {
-            return await _repository.GetByIdAsync(userId);
+            var test = await _repository.GetByIdAsync(userId);
+            return test;
         }
     }
 }

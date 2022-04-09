@@ -5,7 +5,6 @@ using HiBoard.Service.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 
 namespace HiBoard.Service.Extensions;
 

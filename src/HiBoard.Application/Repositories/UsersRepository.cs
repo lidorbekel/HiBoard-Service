@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HiBoard.Domain.Models;
+﻿using HiBoard.Domain.Models;
 using HiBoard.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace HiBoard.Application.Repositories
 {
@@ -20,8 +15,7 @@ namespace HiBoard.Application.Repositories
 
         public async Task<User> GetByIdAsync(int userId)
         {
-            var user = await _context.Users.AsNoTracking().SingleOrDefaultAsync(user => user.Id == userId);
-            return user;
+            return (await _context.Users.AsNoTracking().SingleOrDefaultAsync(user => user.Id == userId))!;
         }
     }
 }
