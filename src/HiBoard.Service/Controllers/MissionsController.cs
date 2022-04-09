@@ -56,7 +56,7 @@ namespace HiBoard.Service.Controllers
         }
 
         [SwaggerOperation("Delete Mission")]
-        [HttpPatch("{missionId}")]
+        [HttpDelete("{missionId}")]
         public async Task<IActionResult> UpdateMission(int missionId, CancellationToken cancellationToken)
         {
             await _service.DeleteMissionAsync(missionId, cancellationToken);

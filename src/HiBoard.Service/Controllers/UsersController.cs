@@ -55,7 +55,7 @@ namespace HiBoard.Service.Controllers
         }
 
         [SwaggerOperation("Delete User")]
-        [HttpPatch("{userId}")]
+        [HttpDelete("{userId}")]
         public async Task<IActionResult> UpdateUser(int userId, CancellationToken cancellationToken)
         {
             await _service.DeleteUserAsync(userId, cancellationToken);
