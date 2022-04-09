@@ -12,11 +12,13 @@ public class User : ModelBase<User, int>
 
     public string LastName { get; set; } = string.Empty;
 
-    public UserRoles Role { get; set; }
+    public UserRole Role { get; set; }
 
     public UserDepartments Department { get; set; }
 
     public DateTime CreationDate { get; set; }
+
+    public ICollection<Mission>? Missions { get; set; }
 
     public bool IsDeleted { get; set; }
 

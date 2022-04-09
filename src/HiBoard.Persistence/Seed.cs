@@ -23,7 +23,7 @@ namespace HiBoard.Persistence
                         FirstName = "Israel",
                         LastName = "Israeli",
                         CreationDate = DateTime.Now,
-                        Role = UserRoles.Manager,
+                        Role = UserRole.Manager,
                         Department = UserDepartments.Developers,
                         IsDeleted = false
                     }

@@ -17,7 +17,7 @@ namespace HiBoard.Domain.DTOs;
 
         public string? LastName { get; set; }  
 
-        public UserRoles Role { get; set; }
+        public UserRole Role { get; set; }
 
         public UserDepartments Department { get; set; }
 }
