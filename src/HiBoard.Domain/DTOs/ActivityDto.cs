@@ -1,18 +1,18 @@
-﻿
-namespace HiBoard.Domain.DTOs;
-    public class ActivityDto
-    {
-        public int Id { get; protected set; }
+﻿namespace HiBoard.Domain.DTOs;
 
-        public string? Title { get; set; }
+public class ActivityDto
+{
+    public int Id { get; protected set; }
 
-        public string? Description { get; set; }
+    public string? Title { get; set; }
 
-        public string? Tag { get; set; }
+    public string? Description { get; set; }
 
-        public string Status { get; set; } = string.Empty;
+    public string? Tag { get; set; }
 
-        public int[]? DependencyIds { get; set; }
+    public string Status { get; set; } = string.Empty;
 
-        public TimeSpan TimeEstimation { get; set; }
+    public int[]? DependencyIds { get; set; }
+
+    public TimeSpan TimeEstimation { get; set; }
 }

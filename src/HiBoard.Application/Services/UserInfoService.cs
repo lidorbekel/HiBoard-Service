@@ -34,12 +34,12 @@ public class UserInfoService
             throw new Exception("Error while trying to get User Info");
         }
 
-        var fireBaseUserEmail = fireBase.Identities.Email.FirstOrDefault();
-        var user = _context.Users.FirstOrDefault(x => x.UserName == fireBaseUserEmail);
+        var fireBaseUserName = fireBase.Identities.Email.FirstOrDefault();
+        var user = _context.Users.FirstOrDefault(x => x.UserName == fireBaseUserName);
 
         if (user == null)
         {
-            throw new Exception($"User with email: {fireBaseUserEmail} not found");
+            throw new Exception($"UserInfo: User with email: {fireBaseUserName} not found");
         }
         
         //TODO should be removed after Initializing DataBase
