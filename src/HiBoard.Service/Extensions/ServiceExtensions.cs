@@ -14,13 +14,15 @@ public static class ServiceExtensions
     public static void AddMyServices(this IServiceCollection services)
     {
         services.AddScoped<UsersService>();
-        services.AddScoped<MissionsService>();
+        services.AddScoped<UserInfoService>();
+        services.AddScoped<ActivitiesService>();
     }
 
     public static void AddMyRepositories(this IServiceCollection services)
     {
+        services.AddHttpContextAccessor();
         services.AddScoped<UsersRepository>();
-        services.AddScoped<MissionsRepository>();
+        services.AddScoped<ActivitiesRepository>();
     }
 
     public static void AddMyDb(this IServiceCollection services, IConfiguration configuration)
@@ -61,7 +63,7 @@ public static class ServiceExtensions
                     ValidIssuer = "https://securetoken.google.com/hiboard-e147b",
                     ValidateAudience = true,
                     ValidAudience = "hiboard-e147b",
-                    ValidateLifetime = true,
+                    ValidateLifetime = true
                 };
             });
     }

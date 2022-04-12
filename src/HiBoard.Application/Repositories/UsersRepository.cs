@@ -61,7 +61,6 @@ namespace HiBoard.Application.Repositories
             }
 
             user = _mapper.Map<User>(userDto);
-            user.UpdatedDate = DateTime.Now;
             
             _context.Users.Update(user);
             await _context.SaveChangesAsync(cancellationToken);

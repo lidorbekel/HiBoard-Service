@@ -11,14 +11,12 @@ public static class Program
         try
         {
             Log.Information("Starting up");
-            using IServiceScope scope = host.Services.CreateScope();
-            IServiceProvider services = scope.ServiceProvider;
+            using var scope = host.Services.CreateScope();
+            var services = scope.ServiceProvider;
 
             try
             {
                 var context = services.GetRequiredService<HiBoardDbContext>();
-                //context.Database.Migrate();
-                var config = host.Services.GetRequiredService<IConfiguration>();
                 var seed = new Seed(context);
                 seed.SeedData().Wait();
                 host.Run();

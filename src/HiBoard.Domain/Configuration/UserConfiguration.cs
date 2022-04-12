@@ -49,12 +49,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .Property(_ => _.CreationDate)
             .HasColumnName("creation_date")
             .HasColumnType("DATETIME")
-            .IsRequired();   
-        
-        builder
-            .Property(_ => _.UpdatedDate)
-            .HasColumnName("updated_date")
-            .HasColumnType("DATETIME")
             .IsRequired();
 
         builder.Property(x => x.IsDeleted)

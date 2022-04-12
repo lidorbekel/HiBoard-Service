@@ -13,25 +13,35 @@ namespace HiBoard.Persistence
         }
 
         public async Task SeedData()
-        {
-            if (!_context.Users.Any())
+        {            
+
+            var users = new List<User>
             {
-                var users = new List<User>()
+                new("Israel@gmail.com")
                 {
-                    new User("Israel@gmail.com")
-                    {
-                        FirstName = "Israel",
-                        LastName = "Israeli",
-                        CreationDate = DateTime.Now,
-                        Role = UserRole.Manager,
-                        Department = UserDepartments.Developers,
-                        IsDeleted = false
-                    }
-                };
+                    FirstName = "Israel",
+                    LastName = "Israeli",
+                    CreationDate = DateTime.Now,
+                    Role = UserRole.Manager,
+                    Department = UserDepartments.Developers,
+                    IsDeleted = false
+                },
+                new("ido@lumigo.io")
+                {
+                    FirstName = "Ido",
+                    LastName = "Golan",
+                    CreationDate = DateTime.Now,
+                    Role = UserRole.Manager,
+                    Department = UserDepartments.Developers,
+                    IsDeleted = false
+                }
+            };
 
-                await _context.AddRangeAsync(users);
+            foreach (var user in users.Where(user => !_context.Users.Any(x=> x.UserName == user.UserName)))
+            {
+                await _context.Users.AddAsync(user);
             }
-
+            
             await _context.SaveChangesAsync();
         }
     }

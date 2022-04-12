@@ -1,4 +1,5 @@
 using HiBoard.Domain.Enums;
+using JetBrains.Annotations;
 
 namespace HiBoard.Domain.Models;
 
@@ -18,9 +19,8 @@ public class User : ModelBase<User, int>
 
     public DateTime CreationDate { get; set; }
 
-    public DateTime? UpdatedDate { get; set; }
-
-    public ICollection<Mission>? Missions { get; set; }
+    [UsedImplicitly]
+    public ICollection<Activity>? Activities { get; set; }
 
     public bool IsDeleted { get; set; }
 
