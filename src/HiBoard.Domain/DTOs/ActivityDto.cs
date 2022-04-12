@@ -1,7 +1,6 @@
-﻿using HiBoard.Domain.Enums;
-
+﻿
 namespace HiBoard.Domain.DTOs;
-    public class MissionDto
+    public class ActivityDto
     {
         public int Id { get; protected set; }
 

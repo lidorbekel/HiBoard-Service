@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HiBoard.Persistence.Migrations
 {
-    public partial class add_mission : Migration
+    public partial class Add_Activities_Table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Missions",
+                name: "activities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,29 +20,29 @@ namespace HiBoard.Persistence.Migrations
                     Tag = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     TimeEstimation = table.Column<TimeSpan>(type: "time", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "tinyint", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Missions", x => x.Id);
+                    table.PrimaryKey("PK_Activities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Missions_users_UserId",
+                        name: "FK_Activities_users_UserId",
                         column: x => x.UserId,
                         principalTable: "users",
                         principalColumn: "id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Missions_UserId",
-                table: "Missions",
+                name: "IX_Activities_UserId",
+                table: "activities",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Missions");
+                name: "activities");
         }
     }
 }

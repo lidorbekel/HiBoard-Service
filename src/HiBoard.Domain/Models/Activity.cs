@@ -2,7 +2,7 @@
 using HiBoard.Domain.Enums;
 
 namespace HiBoard.Domain.Models;
-    public class Mission : ModelBase<Mission,int>
+    public class Activity : ModelBase<Activity,int>
     {
         public override int Id { get; protected set; }
 

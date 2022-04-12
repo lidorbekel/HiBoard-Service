@@ -22,7 +22,7 @@ namespace HiBoard.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("HiBoard.Domain.Models.Mission", b =>
+            modelBuilder.Entity("HiBoard.Domain.Models.Activity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,32 +31,41 @@ namespace HiBoard.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("description");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint")
+                        .HasColumnName("is_deleted");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int")
+                        .HasColumnName("status");
+
 
                     b.Property<string>("Tag")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("tag");
+
 
                     b.Property<TimeSpan>("TimeEstimation")
-                        .HasColumnType("time");
+                        .HasColumnType("time")
+                        .HasColumnName("time_estimation");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("title");
+
 
                     b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Missions");
+                    b.ToTable("activities");
                 });
 
             modelBuilder.Entity("HiBoard.Domain.Models.User", b =>
@@ -96,11 +105,6 @@ namespace HiBoard.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("role");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .IsRequired()
-                        .HasColumnType("DATETIME")
-                        .HasColumnName("updated_date");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -112,16 +116,16 @@ namespace HiBoard.Persistence.Migrations
                     b.ToTable("users", (string)null);
                 });
 
-            modelBuilder.Entity("HiBoard.Domain.Models.Mission", b =>
+            modelBuilder.Entity("HiBoard.Domain.Models.Activities", b =>
                 {
                     b.HasOne("HiBoard.Domain.Models.User", null)
-                        .WithMany("Missions")
+                        .WithMany("Activities")
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("HiBoard.Domain.Models.User", b =>
                 {
-                    b.Navigation("Missions");
+                    b.Navigation("Activities");
                 });
 #pragma warning restore 612, 618
         }

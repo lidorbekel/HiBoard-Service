@@ -8,7 +8,7 @@ public class HiBoardDbContext : DbContext
     public HiBoardDbContext(DbContextOptions<HiBoardDbContext> options) : base(options) { }
 
     public DbSet<User> Users => Set<User>();
-    public DbSet<Mission> Missions => Set<Mission>();
+    public DbSet<Activity> Activities => Set<Activity>();
 
     //create database
     protected override void OnModelCreating(ModelBuilder modelBuilder)

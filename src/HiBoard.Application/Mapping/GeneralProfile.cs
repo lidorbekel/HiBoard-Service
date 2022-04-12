@@ -10,8 +10,8 @@ public class GeneralProfile : Profile
     {
         CreateMap<User, UserDto>();
         CreateMap<UserDto, User>();
-        
-        CreateMap<Mission, MissionDto>();
-        CreateMap<MissionDto, Mission>();
+
+        CreateMap<Activity, ActivityDto>();
+        CreateMap<Activity, ActivityDto>();
     }
 }

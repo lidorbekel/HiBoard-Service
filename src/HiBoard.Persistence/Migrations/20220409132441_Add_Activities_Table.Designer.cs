@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HiBoard.Persistence.Migrations
 {
     [DbContext(typeof(HiBoardDbContext))]
-    [Migration("20220409132441_add_mission")]
-    partial class add_mission
+    [Migration("20220409132441_Add_Activities_Table")]
+    partial class Add_Activities_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace HiBoard.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("HiBoard.Domain.Models.Mission", b =>
+            modelBuilder.Entity("HiBoard.Domain.Models.Activities", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +57,7 @@ namespace HiBoard.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Missions");
+                    b.ToTable("Activities");
                 });
 
             modelBuilder.Entity("HiBoard.Domain.Models.User", b =>
@@ -108,16 +108,16 @@ namespace HiBoard.Persistence.Migrations
                     b.ToTable("users", (string)null);
                 });
 
-            modelBuilder.Entity("HiBoard.Domain.Models.Mission", b =>
+            modelBuilder.Entity("HiBoard.Domain.Models.Activity", b =>
                 {
                     b.HasOne("HiBoard.Domain.Models.User", null)
-                        .WithMany("Missions")
+                        .WithMany("Activities")
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("HiBoard.Domain.Models.User", b =>
                 {
-                    b.Navigation("Missions");
+                    b.Navigation("Activities");
                 });
 #pragma warning restore 612, 618
         }
