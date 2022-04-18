@@ -10,6 +10,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddMyKestrel(_configuration);
         services.AddMyServices();
         services.AddMyRepositories();
         services.AddMySwagger();

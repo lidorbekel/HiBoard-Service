@@ -4,6 +4,7 @@ using HiBoard.Application.Services;
 using HiBoard.Persistence;
 using HiBoard.Service.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -27,7 +28,7 @@ public static class ServiceExtensions
 
     public static void AddMyDb(this IServiceCollection services, IConfiguration configuration)
     {
-        var mysqlConnectionString = configuration.GetConnectionString("MSSQL");
+        var mysqlConnectionString = configuration.GetConnectionString("Colman");
         services.AddDbContext<HiBoardDbContext>(options =>
             options.UseSqlServer(mysqlConnectionString));
     }
@@ -71,5 +72,17 @@ public static class ServiceExtensions
     public static void AddMyMapper(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(GeneralProfile).Assembly);
+    }
+
+    public static void AddMyKestrel(this IServiceCollection services, IConfiguration configuration)
+    {
+        var kestrel = configuration?.GetSection("Kestrel");
+        services.Configure<KestrelServerOptions>(options =>
+        {
+            if (kestrel != null)
+            {
+                options.Configure(kestrel);
+            }
+        });
     }
 }
