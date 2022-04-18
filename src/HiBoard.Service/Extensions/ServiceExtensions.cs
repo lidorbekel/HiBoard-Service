@@ -64,7 +64,7 @@ public static class ServiceExtensions
                     ValidIssuer = "https://securetoken.google.com/hiboard-e147b",
                     ValidateAudience = true,
                     ValidAudience = "hiboard-e147b",
-                    ValidateLifetime = true
+                    ValidateLifetime = false
                 };
             });
     }
