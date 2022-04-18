@@ -1,4 +1,5 @@
 ﻿using HiBoard.Application.Services;
+using HiBoard.Domain;
 using HiBoard.Domain.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +24,9 @@ namespace HiBoard.Service.Controllers
         public async Task<IActionResult> GetActivitiesAsync(CancellationToken cancellationToken)
         {
             var activities = await _service.GetActivitiesAsync(cancellationToken);
+            var response = new HiBoardResponse<IReadOnlyCollection<ActivityDto>>(activities);
 
-            return Ok(activities);
+            return Ok(response);
         }
 
         [SwaggerOperation("Get Activity")]
@@ -32,8 +34,9 @@ namespace HiBoard.Service.Controllers
         public async Task<IActionResult> GetActivityAsync(int activityId, CancellationToken cancellationToken)
         {
             var activity = await _service.GetActivityAsync(activityId, cancellationToken);
-
-            return Ok(activity);
+            var response = new HiBoardResponse<ActivityDto>(activity);
+            
+            return Ok(response);
         }
 
         [SwaggerOperation("Create Activity")]
@@ -42,8 +45,9 @@ namespace HiBoard.Service.Controllers
             CancellationToken cancellationToken)
         {
             var activity = await _service.CreateActivityAsync(activityDto, cancellationToken);
+            var response = new HiBoardResponse<ActivityDto>(activity);
 
-            return Ok(activity);
+            return Ok(response);
         }
 
         [SwaggerOperation("Update Activity")]
@@ -51,8 +55,9 @@ namespace HiBoard.Service.Controllers
         public async Task<IActionResult> UpdateActivity(int activityId, [FromBody] ActivityDto activityDto, CancellationToken cancellationToken)
         {
             var activity = await _service.UpdateActivityAsync(activityId, activityDto, cancellationToken);
-
-            return Ok(activity);
+            var response = new HiBoardResponse<ActivityDto>(activity);
+            
+            return Ok(response);
         }
 
         [SwaggerOperation("Delete Activity")]
