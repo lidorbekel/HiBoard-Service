@@ -20,7 +20,7 @@ public class User : ModelBase<User, int>
     public DateTime CreationDate { get; set; }
 
     [UsedImplicitly]
-    public ICollection<Activity>? Activities { get; set; }
+    public ICollection<UserActivity>? UserActivities { get; set; }
 
     public bool IsDeleted { get; set; }
 
