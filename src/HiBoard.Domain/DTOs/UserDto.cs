@@ -1,10 +1,15 @@
-﻿namespace HiBoard.Domain.DTOs;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HiBoard.Domain.DTOs;
 
 public class UserDto
 {
     public int Id { get; protected set; }
 
     public string UserName { get; set; } = string.Empty;
+
+    [NotMapped]
+    public string Password { get; set; } = string.Empty;
 
     public string? FirstName { get; set; }
 
