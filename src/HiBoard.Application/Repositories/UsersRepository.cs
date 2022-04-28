@@ -1,9 +1,12 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
 using HiBoard.Application.CustomExceptions.UsersExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
 using HiBoard.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
+using RestSharp;
 
 namespace HiBoard.Application.Repositories
 {
@@ -42,6 +45,23 @@ namespace HiBoard.Application.Repositories
             if (isUserExists)
             {
                 throw new UserAlreadyExistsException(userDto.UserName);
+            }
+
+            var api = "AIzaSyBD-MmZTd6BvQWX6NDBCVQimE9iib29PUA";
+            var httpClient = new RestClient($"https://identitytoolkit.googleapis.com");
+            var request = new RestRequest($"/v1/accounts:signUp?key={api}",Method.Post);
+            
+            request.AddJsonBody(new
+            {
+                email = userDto.UserName,
+                password = userDto.Password,
+                returnSecureToken = true
+            });
+            request.AddHeader("Content-Type", "application/json");
+            var response = await httpClient.ExecuteAsync(request);
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new HttpRequestException($"Failed to create user at Firebase, StatusCode: {response.StatusCode}, content: {response.Content}");
             }
 
             var user = _mapper.Map<User>(userDto);
