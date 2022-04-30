@@ -10,6 +10,7 @@ public class HiBoardDbContext : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Activity> Activities => Set<Activity>();
     public DbSet<Company> Companies => Set<Company>();
+    public DbSet<UserActivity> UserActivities => Set<UserActivity>();
 
     //create database
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -17,5 +18,7 @@ public class HiBoardDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(User).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(Company).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(Activity).Assembly);
     }
 }

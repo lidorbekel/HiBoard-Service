@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HiBoard.Domain.Models;
 
 namespace HiBoard.Domain.DTOs
 {
@@ -15,5 +16,7 @@ namespace HiBoard.Domain.DTOs
         public ICollection<string>? Departments { get; set; } = new List<string>();
 
         public string Description { get; set; } = string.Empty;
+
+        public ICollection<User>? Users { get; set; }
     }
 }

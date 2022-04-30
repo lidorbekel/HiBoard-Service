@@ -1,6 +1,8 @@
 ﻿using HiBoard.Application.Services;
 using HiBoard.Domain;
 using HiBoard.Domain.DTOs;
+using HiBoard.Domain.Requests;
+using HiBoard.Domain.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -64,7 +66,7 @@ namespace HiBoard.Service.Controllers
 
         [SwaggerOperation("Update User")]
         [HttpPatch("{userId}")]
-        public async Task<IActionResult> UpdateUser(int userId, [FromBody] UserDto userDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateUser(int userId, [FromBody] PatchUser userDto, CancellationToken cancellationToken)
         {
             var user = await _service.UpdateUserAsync(userId, userDto, cancellationToken);
             var response = new HiBoardResponse<UserDto>(user);

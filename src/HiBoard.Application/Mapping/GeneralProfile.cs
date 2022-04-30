@@ -13,5 +13,11 @@ public class GeneralProfile : Profile
 
         CreateMap<Activity, ActivityDto>();
         CreateMap<Activity, ActivityDto>();
+
+        CreateMap<Company, CompanyDto>();
+        CreateMap<CompanyDto, Company>();
+
+        CreateMap<UserActivity, UserActivityDto>();
+        CreateMap<UserActivityDto, UserActivity>();
     }
 }

@@ -8,6 +8,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
+        #region Table Configuration
 
         builder.ToTable("users");
 
@@ -18,7 +19,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("id");
 
         builder.HasKey(_ => _.Id);
-        
+
         builder
             .Property(_ => _.Email)
             .HasColumnName("email")
@@ -57,10 +58,28 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnType("DATETIME")
             .IsRequired();
 
-        
+        builder.Property(_ => _.CompanyId)
+            .HasColumnName("company_id");
+
+
         builder.Property(x => x.IsDeleted)
             .HasColumnName("is_deleted")
             .HasColumnType("tinyint");
-        
+
+        #endregion
+
+        #region Releationship Configuration
+
+        //builder
+        //    .HasOne(user => user.Company)
+        //    .WithMany(company => company!.Users)
+        //    .HasForeignKey(user => user.CompanyId)
+        //    .IsRequired();
+
+        builder.HasMany(user => user.UserActivities)
+            .WithOne(userActivity => userActivity.User!)
+            .HasForeignKey(x => x.UserId);
+
+        #endregion
     }
 }

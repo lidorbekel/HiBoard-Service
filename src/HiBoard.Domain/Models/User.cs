@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using HiBoard.Domain.Enums;
 using JetBrains.Annotations;
 
@@ -17,16 +19,18 @@ public class User : ModelBase<User, int>
 
     public string LastName { get; set; } = string.Empty;
 
-    public UserRole Role { get; set; }
+    public UserRole Role { get; set; } 
 
-    public UserDepartments Department { get; set; }
+    public string Department { get; set; } = string.Empty;
 
-    [UsedImplicitly]
     public ICollection<UserActivity>? UserActivities { get; set; }
 
     public bool IsDeleted { get; set; }
+    
+    public int CompanyId { get; set; }
 
-    public Company? CompanyId { get; set; }
+    [ForeignKey(nameof(CompanyId))]
+    public Company? Company { get; set; }
 
     public User(string email) => Email = email;
 }

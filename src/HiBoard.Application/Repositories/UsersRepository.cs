@@ -3,6 +3,7 @@ using AutoMapper;
 using HiBoard.Application.CustomExceptions.UsersExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
+using HiBoard.Domain.Requests;
 using HiBoard.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
@@ -85,15 +86,10 @@ namespace HiBoard.Application.Repositories
 
         public async Task<UserDto> UpdateAsync(int userId, UserDto userDto, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FindAsync(new object?[] { userId }, cancellationToken);
-            if (user == null)
-            {
-                throw new UserNotFoundException(userId);
-            }
-
-            user = _mapper.Map<User>(userDto);
+            User user = _mapper.Map<User>(userDto);
             
             _context.Users.Update(user);
+
             await _context.SaveChangesAsync(cancellationToken);
 
             return _mapper.Map<UserDto>(user);

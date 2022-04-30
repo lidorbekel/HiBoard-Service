@@ -22,9 +22,7 @@ public class Company : ModelBase<Company, int>
 
     public string Admin { get; set; } = string.Empty;
 
-    [NotMapped] //TODO NEED TO MAP THIS
     public ICollection<string>? Departments { get; set; }
-
 
     public string Description { get; set; } = string.Empty;
 

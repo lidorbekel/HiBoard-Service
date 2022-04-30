@@ -1,6 +1,8 @@
 ﻿using HiBoard.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Newtonsoft.Json;
+using JsonConverter = System.Text.Json.Serialization.JsonConverter;
 
 namespace HiBoard.Domain.Configuration;
 
@@ -8,6 +10,7 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
 {
     public void Configure(EntityTypeBuilder<Company> builder)
     {
+        #region Table Configuration
 
         builder.ToTable("companies");
 
@@ -40,10 +43,10 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
             .HasColumnName("departments")
             .IsRequired();
 
-        builder
-            .Property(_ => _.Users)
-            .HasColumnName("users")
-            .IsRequired();
+        //builder
+        //    .Property(_ => _.Users)
+        //    .HasColumnName("users")
+        //    .IsRequired();
 
         builder
             .Property(_ => _.CreatedAt)
@@ -60,5 +63,27 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
         builder.Property(x => x.IsDeleted)
             .HasColumnName("is_deleted")
             .HasColumnType("tinyint");
+
+        #endregion
+
+        #region Releationship Configuration
+
+        builder.HasMany(company => company.Users)
+            .WithOne(user => user.Company!)
+            .HasForeignKey(user => user.CompanyId)
+            .IsRequired();
+
+        #endregion
+
+        #region Convertion Configuration
+
+        builder.Property(company => company.Departments).HasConversion(
+            department => JsonConvert.SerializeObject(department),
+            departments => JsonConvert.DeserializeObject<string[]>(departments));
+
+        //builder.Property(company => company.Users).HasConversion(user => JsonConvert.SerializeObject(user),
+        //    user => JsonConvert.DeserializeObject<User[]>(user));
+
+        #endregion
     }
 }

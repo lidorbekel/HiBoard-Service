@@ -235,6 +235,11 @@
           "Microsoft.NETCore.Platforms": "3.1.0"
         }
       },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
+      },
       "runtime.native.System.Data.SqlClient.sni": {
         "type": "Transitive",
         "resolved": "4.7.0",
@@ -390,7 +395,8 @@
         "dependencies": {
           "EntityFramework": "6.4.4",
           "Microsoft.EntityFrameworkCore": "5.0.12",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.12"
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.12",
+          "Newtonsoft.Json": "13.0.1"
         }
       }
     }

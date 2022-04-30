@@ -31,7 +31,10 @@ public static class ServiceExtensions
 
     public static void AddMyDb(this IServiceCollection services, IConfiguration configuration)
     {
-        var mysqlConnectionString = configuration.GetConnectionString("Colman");
+        //var mysqlConnectionString = configuration.GetConnectionString("Colman");
+        //services.AddDbContext<HiBoardDbContext>(options =>
+        //    options.UseSqlServer(mysqlConnectionString));
+        var mysqlConnectionString = configuration.GetConnectionString("MSSQL");
         services.AddDbContext<HiBoardDbContext>(options =>
             options.UseSqlServer(mysqlConnectionString));
     }

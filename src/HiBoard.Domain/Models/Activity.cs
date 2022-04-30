@@ -20,6 +20,8 @@ public class Activity : ModelBase<Activity, int>
     [NotMapped] //TODO NEED TO MAP THIS
     public ICollection<int>? DependencyIds { get; set; }
 
+    public ICollection<UserActivity>? UserActivities { get; set; }
+
     public TimeSpan TimeEstimation { get; set; }
 
     public bool IsDeleted { get; set; }

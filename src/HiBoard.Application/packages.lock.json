@@ -472,7 +472,8 @@
         "dependencies": {
           "EntityFramework": "6.4.4",
           "Microsoft.EntityFrameworkCore": "5.0.12",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.12"
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.12",
+          "Newtonsoft.Json": "13.0.1"
         }
       },
       "hiboard.persistence": {

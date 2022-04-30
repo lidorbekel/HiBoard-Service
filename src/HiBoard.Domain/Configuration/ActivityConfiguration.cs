@@ -8,6 +8,7 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
 {
     public void Configure(EntityTypeBuilder<Activity> builder)
     {
+        #region Table Configuration
 
         builder.ToTable("activities");
 
@@ -63,5 +64,19 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
         builder.Property(x => x.IsDeleted)
             .HasColumnName("is_deleted")
             .HasColumnType("tinyint");
+
+        #endregion
+
+        #region Relationship Configuration
+
+        #endregion
+
+        #region Convertion Configuration
+
+        builder.Property(activity => activity.TimeEstimation).HasConversion(
+            time => time.TotalSeconds,
+            time => TimeSpan.FromSeconds(time));
+
+        #endregion
     }
 }
