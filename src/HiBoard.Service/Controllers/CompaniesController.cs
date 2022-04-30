@@ -39,5 +39,16 @@ public class CompaniesController : ControllerBase
         
         return Ok(response);
     }
+
+    [SwaggerOperation("Edit Company")]
+    [HttpPatch("{companyId}")]
+    public async Task<IActionResult> UpdateCompanyAsync(int companyId, CompanyDto companyDto,
+        CancellationToken cancellationToken)
+    {
+        var company = await _service.UpdateCompanyAsync(companyId, companyDto, cancellationToken);
+        var response = new HiBoardResponse<CompanyDto>(company);
+
+        return Ok(response);
+    }
 }
 

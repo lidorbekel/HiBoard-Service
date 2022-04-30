@@ -40,5 +40,21 @@ namespace HiBoard.Application.Repositories
 
             return _mapper.Map<CompanyDto>(company);
         }
+
+        public async Task<CompanyDto> UpdateCompanyAsync(int companyId, CompanyDto companyDto, CancellationToken cancellationToken)
+        {
+            var company = await _context.Companies.FindAsync(new object?[] { companyId }, cancellationToken);
+            if (company == null)
+            {
+                throw new CompanyNotFoundException(companyId);
+            }
+
+            _mapper.Map(companyDto, company);
+
+            _context.Update(company);
+            await _context.SaveChangesAsync(cancellationToken);
+            
+            return _mapper.Map<CompanyDto>(company);
+        }
     }
 }

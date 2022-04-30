@@ -6,9 +6,9 @@ public class UserDto
 {
     public int Id { get; protected set; }
 
-    public string UserName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
 
-    [NotMapped]
+    [NotMapped] //TODO NO NEED TO MAP, IT JUST FOR CREATING NEW USERS
     public string Password { get; set; } = string.Empty;
 
     public string? FirstName { get; set; }

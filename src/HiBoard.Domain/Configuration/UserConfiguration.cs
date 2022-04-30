@@ -20,7 +20,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(_ => _.Id);
 
         builder
-            .Property(_ => _.UserName)
+            .Property(_ => _.Email)
             .HasColumnName("user_name")
             .HasMaxLength(50)
             .IsRequired();

@@ -7,7 +7,7 @@ public class User : ModelBase<User, int>
 {
     public override int Id { get; protected set; }
 
-    public string UserName { get; set; }
+    public string Email { get; set; }
 
     public string FirstName { get; set; } = string.Empty;
 
@@ -24,5 +24,7 @@ public class User : ModelBase<User, int>
 
     public bool IsDeleted { get; set; }
 
-    public User(string userName) => UserName = userName;
+    public Company? CompanyId { get; set; }
+
+    public User(string email) => Email = email;
 }

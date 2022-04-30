@@ -12,12 +12,17 @@ public class Company : ModelBase<Company, int>
 {
     public override int Id { get; protected set; }
 
+    public string? Name { get; set; }
+
+    public ICollection<User>? Users { get; set; }
+
     public string Admin { get; set; } = string.Empty;
 
-    [NotMapped]
+    [NotMapped] //TODO NEED TO MAP THIS
     public ICollection<string>? Departments { get; set; }
 
-    public string? Name { get; set; }
+
+    public string Description { get; set; } = string.Empty;
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

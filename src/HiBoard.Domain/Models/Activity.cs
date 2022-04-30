@@ -14,7 +14,7 @@ namespace HiBoard.Domain.Models;
 
         public Status Status { get; set; }
 
-        [NotMapped]
+        [NotMapped] //TODO NEED TO MAP THIS
         public int[]? DependencyIds { get; set; }
 
         public TimeSpan TimeEstimation { get; set; }

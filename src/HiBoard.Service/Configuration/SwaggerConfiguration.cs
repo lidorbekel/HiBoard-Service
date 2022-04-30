@@ -49,5 +49,7 @@ public static class SwaggerConfiguration
                 Array.Empty<string>()
             },
         });
+
+        //options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
     }
 }

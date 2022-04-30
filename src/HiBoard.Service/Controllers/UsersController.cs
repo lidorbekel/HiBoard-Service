@@ -9,7 +9,7 @@ namespace HiBoard.Service.Controllers
 {
     [ApiController]
     [AllowAnonymous]
-    [Route("api/users")]
+    [Route("api/user")]
     public class UsersController : ControllerBase
     {
         private readonly UsersService _service;
@@ -19,18 +19,31 @@ namespace HiBoard.Service.Controllers
             _service = service;
         }
 
-        [SwaggerOperation("Get Users List")]
+        //[SwaggerOperation("Get Users List")]
+        //[HttpGet]
+
+        //public async Task<IActionResult> GetUsersAsync(CancellationToken cancellationToken)
+        //{
+        //    var users = await _service.GetUsersAsync(cancellationToken);
+        //    var response = new HiBoardResponse<IReadOnlyCollection<UserDto>>(users);
+
+        //    return Ok(response);
+        //}
+
+        [SwaggerOperation("Get User By JWT Token")]
         [HttpGet]
-        public async Task<IActionResult> GetUsersAsync(CancellationToken cancellationToken)
+        [Route("")]
+        public async Task<IActionResult> GetUserInfoAsync(CancellationToken cancellationToken)
         {
-            var users = await _service.GetUsersAsync(cancellationToken);
-            var response = new HiBoardResponse<IReadOnlyCollection<UserDto>>(users);
+            var result = await _service.GetUserInfo(cancellationToken);
+            var response = new HiBoardResponse<UserDto?>(result);
 
             return Ok(response);
         }
 
         [SwaggerOperation("Get User")]
-        [HttpGet("{userId}")]
+        [HttpGet]
+        [Route("{userId}")]
         public async Task<IActionResult> GetUserAsync(int userId, CancellationToken cancellationToken)
         {
             var user = await _service.GetUserAsync(userId, cancellationToken);

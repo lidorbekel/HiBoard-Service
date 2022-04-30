@@ -37,7 +37,7 @@ namespace HiBoard.Persistence
                 }
             };
 
-            foreach (var user in users.Where(user => !_context.Users.Any(x=> x.UserName == user.UserName)))
+            foreach (var user in users.Where(user => !_context.Users.Any(x=> x.Email == user.Email)))
             {
                 await _context.Users.AddAsync(user);
             }

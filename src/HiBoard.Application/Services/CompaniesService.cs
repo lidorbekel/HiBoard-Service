@@ -30,5 +30,10 @@ namespace HiBoard.Application.Services
         {
             return await _repository.GetCompanyByIdAsync(companyId, cancellationToken);
         }
+
+        public async Task<CompanyDto> UpdateCompanyAsync(int companyId, CompanyDto companyDto, CancellationToken cancellationToken)
+        {
+            return await _repository.UpdateCompanyAsync(companyId, companyDto, cancellationToken);
+        }
     }
 }

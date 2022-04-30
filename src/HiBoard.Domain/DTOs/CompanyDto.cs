@@ -8,8 +8,12 @@ namespace HiBoard.Domain.DTOs
 {
     public  class CompanyDto
     {
+        public int Id { get; set; }
+        
         public string Name { get; set; } = string.Empty;
 
-        public string Admin { get; set; } = string.Empty;
+        public ICollection<string>? Departments { get; set; } = new List<string>();
+
+        public string Description { get; set; } = string.Empty;
     }
 }

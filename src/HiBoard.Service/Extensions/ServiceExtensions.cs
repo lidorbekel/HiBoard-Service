@@ -15,8 +15,9 @@ public static class ServiceExtensions
     public static void AddMyServices(this IServiceCollection services)
     {
         services.AddScoped<UsersService>();
-        services.AddScoped<UserInfoService>();
         services.AddScoped<ActivitiesService>();
+        services.AddScoped<CompaniesService>();
+        services.AddScoped<UserActivitiesService>();
     }
 
     public static void AddMyRepositories(this IServiceCollection services)
@@ -24,6 +25,8 @@ public static class ServiceExtensions
         services.AddHttpContextAccessor();
         services.AddScoped<UsersRepository>();
         services.AddScoped<ActivitiesRepository>();
+        services.AddScoped<CompaniesRepository>();
+        services.AddScoped<UserActivitiesRepository>();
     }
 
     public static void AddMyDb(this IServiceCollection services, IConfiguration configuration)
