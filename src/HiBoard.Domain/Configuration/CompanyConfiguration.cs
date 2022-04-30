@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HiBoard.Domain.Configuration;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class CompanyConfiguration : IEntityTypeConfiguration<Company>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<Company> builder)
     {
 
-        builder.ToTable("users");
+        builder.ToTable("companies");
 
         builder.HasQueryFilter(x => !x.IsDeleted);
 
@@ -18,31 +18,31 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("id");
 
         builder.HasKey(_ => _.Id);
-        
+
         builder
-            .Property(_ => _.Email)
-            .HasColumnName("email")
-            .HasMaxLength(50)
+            .Property(_ => _.Name)
+            .HasColumnName("name")
+            .HasMaxLength(150)
             .IsRequired();
 
         builder
-            .Property(_ => _.FirstName)
-            .HasColumnName("first_name")
+            .Property(_ => _.Description)
+            .HasColumnName("description")
+            .HasMaxLength(4000);
+
+        builder
+            .Property(_ => _.Admin)
+            .HasColumnName("admin")
             .HasMaxLength(50);
 
         builder
-            .Property(_ => _.LastName)
-            .HasColumnName("last_name")
-            .HasMaxLength(50);
-
-        builder
-            .Property(_ => _.Role)
-            .HasColumnName("role")
+            .Property(_ => _.Departments)
+            .HasColumnName("departments")
             .IsRequired();
 
         builder
-            .Property(_ => _.Department)
-            .HasColumnName("department")
+            .Property(_ => _.Users)
+            .HasColumnName("users")
             .IsRequired();
 
         builder
@@ -57,10 +57,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnType("DATETIME")
             .IsRequired();
 
-        
         builder.Property(x => x.IsDeleted)
             .HasColumnName("is_deleted")
             .HasColumnType("tinyint");
-        
     }
 }

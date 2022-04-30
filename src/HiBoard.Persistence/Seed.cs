@@ -21,7 +21,6 @@ namespace HiBoard.Persistence
                 {
                     FirstName = "Israel",
                     LastName = "Israeli",
-                    CreationDate = DateTime.Now,
                     Role = UserRole.Manager,
                     Department = UserDepartments.Developers,
                     IsDeleted = false
@@ -30,7 +29,7 @@ namespace HiBoard.Persistence
                 {
                     FirstName = "Ido",
                     LastName = "Golan",
-                    CreationDate = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
                     Role = UserRole.Manager,
                     Department = UserDepartments.Developers,
                     IsDeleted = false

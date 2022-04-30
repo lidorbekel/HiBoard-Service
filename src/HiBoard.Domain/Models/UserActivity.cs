@@ -1,3 +1,5 @@
+using HiBoard.Domain.Enums;
+
 namespace HiBoard.Domain.Models;
 
 public class UserActivity : ModelBase<UserActivity,int>
@@ -8,11 +10,13 @@ public class UserActivity : ModelBase<UserActivity,int>
 
     public Activity? Activity { get; set; }
 
+    public Status Status { get; set; }
+
     public string Title { get; set; } = string.Empty;
 
     public string Description { get; set; } = string.Empty;
 
-    public DateTime? CreatedAt { get; set; } 
+    public override DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
 
-    public DateTime? UpdatedAt { get; set; }
+    public override DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }

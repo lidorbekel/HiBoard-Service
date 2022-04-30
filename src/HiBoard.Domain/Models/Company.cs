@@ -12,6 +12,10 @@ public class Company : ModelBase<Company, int>
 {
     public override int Id { get; protected set; }
 
+    public override DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
+    
+    public override DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
     public string? Name { get; set; }
 
     public ICollection<User>? Users { get; set; }
@@ -24,5 +28,5 @@ public class Company : ModelBase<Company, int>
 
     public string Description { get; set; } = string.Empty;
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public bool IsDeleted { get; set; }
 }

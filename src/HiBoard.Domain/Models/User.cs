@@ -7,6 +7,10 @@ public class User : ModelBase<User, int>
 {
     public override int Id { get; protected set; }
 
+    public override DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
+    
+    public override DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
     public string Email { get; set; }
 
     public string FirstName { get; set; } = string.Empty;
@@ -16,8 +20,6 @@ public class User : ModelBase<User, int>
     public UserRole Role { get; set; }
 
     public UserDepartments Department { get; set; }
-
-    public DateTime CreationDate { get; set; }
 
     [UsedImplicitly]
     public ICollection<UserActivity>? UserActivities { get; set; }

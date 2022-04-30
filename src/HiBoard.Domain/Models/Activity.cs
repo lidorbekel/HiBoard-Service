@@ -2,22 +2,25 @@
 using HiBoard.Domain.Enums;
 
 namespace HiBoard.Domain.Models;
-    public class Activity : ModelBase<Activity,int>
-    {
-        public override int Id { get; protected set; }
 
-        public string? Title { get; set; }
+public class Activity : ModelBase<Activity, int>
+{
+    public override int Id { get; protected set; }
 
-        public string? Description { get; set; }
+    public override DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
+    
+    public override DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-        public string? Tag { get; set; }
+    public string? Title { get; set; }
 
-        public Status Status { get; set; }
+    public string? Description { get; set; }
 
-        [NotMapped] //TODO NEED TO MAP THIS
-        public int[]? DependencyIds { get; set; }
+    public string? Tag { get; set; }
 
-        public TimeSpan TimeEstimation { get; set; }
+    [NotMapped] //TODO NEED TO MAP THIS
+    public ICollection<int>? DependencyIds { get; set; }
 
-        public bool IsDeleted { get; set; }
-    }
+    public TimeSpan TimeEstimation { get; set; }
+
+    public bool IsDeleted { get; set; }
+}
