@@ -1,4 +1,4 @@
-namespace HiBoard.Domain;
+namespace HiBoard.Domain.Responses;
 
 [Serializable]
 public class HiBoardResponse<T>

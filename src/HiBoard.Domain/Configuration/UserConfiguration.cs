@@ -8,6 +8,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
+        #region Table Configuration
 
         builder.ToTable("users");
 
@@ -20,8 +21,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(_ => _.Id);
 
         builder
-            .Property(_ => _.UserName)
-            .HasColumnName("user_name")
+            .Property(_ => _.Email)
+            .HasColumnName("email")
             .HasMaxLength(50)
             .IsRequired();
 
@@ -46,13 +47,39 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired();
 
         builder
-            .Property(_ => _.CreationDate)
-            .HasColumnName("creation_date")
+            .Property(_ => _.CreatedAt)
+            .HasColumnName("creation_at")
             .HasColumnType("DATETIME")
             .IsRequired();
+
+        builder
+            .Property(_ => _.UpdatedAt)
+            .HasColumnName("updated_at")
+            .HasColumnType("DATETIME")
+            .IsRequired();
+
+        builder.Property(_ => _.CompanyId)
+            .HasColumnName("company_id");
+
 
         builder.Property(x => x.IsDeleted)
             .HasColumnName("is_deleted")
             .HasColumnType("tinyint");
+
+        #endregion
+
+        #region Releationship Configuration
+
+        //builder
+        //    .HasOne(user => user.Company)
+        //    .WithMany(company => company!.Users)
+        //    .HasForeignKey(user => user.CompanyId)
+        //    .IsRequired();
+
+        builder.HasMany(user => user.UserActivities)
+            .WithOne(userActivity => userActivity.User!)
+            .HasForeignKey(x => x.UserId);
+
+        #endregion
     }
 }

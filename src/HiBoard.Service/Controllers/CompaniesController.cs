@@ -1,6 +1,7 @@
 ﻿using HiBoard.Application.Services;
 using HiBoard.Domain;
 using HiBoard.Domain.DTOs;
+using HiBoard.Domain.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -37,6 +38,17 @@ public class CompaniesController : ControllerBase
         var company = await _service.GetCompanyByIdAsync(companyId, cancellationToken);
         var response = new HiBoardResponse<CompanyDto>(company);
         
+        return Ok(response);
+    }
+
+    [SwaggerOperation("Edit Company")]
+    [HttpPatch("{companyId}")]
+    public async Task<IActionResult> UpdateCompanyAsync(int companyId, CompanyDto companyDto,
+        CancellationToken cancellationToken)
+    {
+        var company = await _service.UpdateCompanyAsync(companyId, companyDto, cancellationToken);
+        var response = new HiBoardResponse<CompanyDto>(company);
+
         return Ok(response);
     }
 }

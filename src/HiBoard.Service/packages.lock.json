@@ -533,6 +533,11 @@
         "resolved": "13.0.1",
         "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
       },
+      "RestSharp": {
+        "type": "Transitive",
+        "resolved": "107.3.0",
+        "contentHash": "qu+A+VAnVLX3OeWVNm11UJz0aVErqSfYqIiOUbJM9x98uLymCOoL/oXRAjMb6XHra27WXxHmzy9EKEOKXWR6Pw=="
+      },
       "runtime.native.System": {
         "type": "Transitive",
         "resolved": "4.0.0",
@@ -1158,7 +1163,8 @@
           "HiBoard.Domain": "1.0.0",
           "HiBoard.Persistence": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
-          "Newtonsoft.Json": "13.0.1"
+          "Newtonsoft.Json": "13.0.1",
+          "RestSharp": "107.3.0"
         }
       },
       "hiboard.domain": {
@@ -1166,7 +1172,8 @@
         "dependencies": {
           "EntityFramework": "6.4.4",
           "Microsoft.EntityFrameworkCore": "5.0.12",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.12"
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.12",
+          "Newtonsoft.Json": "13.0.1"
         }
       },
       "hiboard.persistence": {
