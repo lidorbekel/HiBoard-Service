@@ -11,6 +11,8 @@ public class UserDto
     [NotMapped] //TODO NO NEED TO MAP, IT JUST FOR CREATING NEW USERS
     public string Password { get; set; } = string.Empty;
 
+    public int CompanyId { get; set; }
+    
     public string? FirstName { get; set; }
 
     public string? LastName { get; set; }
