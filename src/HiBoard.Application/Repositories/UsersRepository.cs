@@ -67,10 +67,11 @@ namespace HiBoard.Application.Repositories
             {
                 email = userDto.Email,
                 password = userDto.Password,
-                returnSecureToken = true
+                returnSecureToken = true,
             });
+            
             request.AddHeader("Content-Type", "application/json");
-            var response = await httpClient.ExecuteAsync(request);
+            var response = await httpClient.ExecuteAsync(request, cancellationToken);
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 throw new HttpRequestException($"Failed to create user at Firebase, StatusCode: {response.StatusCode}, content: {response.Content}");
@@ -86,10 +87,14 @@ namespace HiBoard.Application.Repositories
 
         public async Task<UserDto> UpdateAsync(int userId, UserDto userDto, CancellationToken cancellationToken)
         {
-            User user = _mapper.Map<User>(userDto);
+            var user = await _context.Users.FindAsync(new object?[] { userId }, cancellationToken);
+            if (user == null)
+            {
+                throw new UserNotFoundException(userId);
+            }
             
+            user = _mapper.Map<User>(userDto);
             _context.Users.Update(user);
-
             await _context.SaveChangesAsync(cancellationToken);
 
             return _mapper.Map<UserDto>(user);
