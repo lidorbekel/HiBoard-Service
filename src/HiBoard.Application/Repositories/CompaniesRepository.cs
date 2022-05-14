@@ -25,8 +25,10 @@ namespace HiBoard.Application.Repositories
         public async Task<CompanyDto> CreateCompanyAsync(CompanyDto companyDto,CancellationToken cancellationToken)
         {
             var company = _mapper.Map<Company>(companyDto);
+            
             await _context.Companies.AddAsync(company, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
+            
             return _mapper.Map<CompanyDto>(company);
         }
 
@@ -49,9 +51,8 @@ namespace HiBoard.Application.Repositories
                 throw new CompanyNotFoundException(companyId);
             }
 
-            _mapper.Map(companyDto, company);
-
-            _context.Update(company);
+            company = _mapper.Map<Company>(companyDto);
+            _context.Companies.Update(company);
             await _context.SaveChangesAsync(cancellationToken);
             
             return _mapper.Map<CompanyDto>(company);
