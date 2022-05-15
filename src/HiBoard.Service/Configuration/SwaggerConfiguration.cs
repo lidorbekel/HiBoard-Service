@@ -50,6 +50,5 @@ public static class SwaggerConfiguration
             },
         });
 
-        //options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
     }
 }

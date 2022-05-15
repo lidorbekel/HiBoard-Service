@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using HiBoard.Domain.Models;
 
 namespace HiBoard.Domain.DTOs
 {
     public  class CompanyDto
     {
+        [NotMapped]
         public int Id { get; protected set; }
         
         public string Name { get; set; } = string.Empty;
 
-        public ICollection<string>? Departments { get; set; } = new List<string>();
+        public List<string>? Departments { get; set; } = new();
 
         public string Description { get; set; } = string.Empty;
 

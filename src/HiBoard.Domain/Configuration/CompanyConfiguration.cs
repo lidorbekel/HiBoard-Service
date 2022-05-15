@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Newtonsoft.Json;
-using JsonConverter = System.Text.Json.Serialization.JsonConverter;
 
 namespace HiBoard.Domain.Configuration;
 
@@ -79,10 +78,7 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
 
         builder.Property(company => company.Departments).HasConversion(
             department => JsonConvert.SerializeObject(department),
-            departments => JsonConvert.DeserializeObject<string[]>(departments));
-
-        //builder.Property(company => company.Users).HasConversion(user => JsonConvert.SerializeObject(user),
-        //    user => JsonConvert.DeserializeObject<User[]>(user));
+            departments => JsonConvert.DeserializeObject<List<string>>(departments)!);
 
         #endregion
     }

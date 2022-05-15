@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HiBoard.Application.CustomExceptions.CompanyExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
@@ -51,8 +46,10 @@ namespace HiBoard.Application.Repositories
                 throw new CompanyNotFoundException(companyId);
             }
 
-            company = _mapper.Map<Company>(companyDto);
-            _context.Companies.Update(company);
+            company.Name = companyDto.Name;
+            company.Departments.AddRange(company.Departments);
+            company.Description = companyDto.Description;
+            
             await _context.SaveChangesAsync(cancellationToken);
             
             return _mapper.Map<CompanyDto>(company);

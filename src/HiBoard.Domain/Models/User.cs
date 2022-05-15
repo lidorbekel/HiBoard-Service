@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
 using HiBoard.Domain.Enums;
-using JetBrains.Annotations;
 
 namespace HiBoard.Domain.Models;
 
@@ -15,9 +13,9 @@ public class User : ModelBase<User, int>
 
     public string Email { get; set; }
 
-    public string FirstName { get; set; } = string.Empty;
+    public string? FirstName { get; set; } = string.Empty;
 
-    public string LastName { get; set; } = string.Empty;
+    public string? LastName { get; set; } = string.Empty;
 
     public UserRole Role { get; set; } 
 

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
-
-namespace HiBoard.Domain.Models;
+﻿namespace HiBoard.Domain.Models;
 
 public class Company : ModelBase<Company, int>
 {
@@ -22,7 +14,7 @@ public class Company : ModelBase<Company, int>
 
     public string Admin { get; set; } = string.Empty;
 
-    public ICollection<string>? Departments { get; set; }
+    public List<string> Departments { get; set; } = new();
 
     public string Description { get; set; } = string.Empty;
 

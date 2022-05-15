@@ -1,7 +1,10 @@
-﻿namespace HiBoard.Domain.DTOs;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HiBoard.Domain.DTOs;
 
 public class ActivityDto
 {
+    [NotMapped]
     public int Id { get; protected set; }
 
     public string? Title { get; set; }

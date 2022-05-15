@@ -3,10 +3,8 @@ using AutoMapper;
 using HiBoard.Application.CustomExceptions.UsersExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
-using HiBoard.Domain.Requests;
 using HiBoard.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace HiBoard.Application.Repositories
@@ -93,10 +91,12 @@ namespace HiBoard.Application.Repositories
                 throw new UserNotFoundException(userId);
             }
             
-            user = _mapper.Map<User>(userDto);
-            _context.Users.Update(user);
+            user.Email = userDto.Email;
+            user.FirstName = userDto.FirstName;
+            user.LastName = userDto.LastName;
+            
             await _context.SaveChangesAsync(cancellationToken);
-
+            
             return _mapper.Map<UserDto>(user);
         }
 
@@ -111,5 +111,6 @@ namespace HiBoard.Application.Repositories
             user.IsDeleted = true;
             await _context.SaveChangesAsync(cancellationToken);
         }
+
     }
 }
