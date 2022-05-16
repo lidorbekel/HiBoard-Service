@@ -6,7 +6,6 @@ using HiBoard.Domain.DTOs;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using RestSharp;
 
 namespace HiBoard.Application.Services
 {
@@ -23,11 +22,6 @@ namespace HiBoard.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IReadOnlyCollection<UserDto>> GetUsersAsync(CancellationToken cancellationToken)
-        {
-            return await _repository.GetListAsync(cancellationToken);
-        }
-
         public async Task<UserDto> GetUserAsync(int userId, CancellationToken cancellationToken)
         {
             return await _repository.GetByIdAsync(userId, cancellationToken);
@@ -40,29 +34,6 @@ namespace HiBoard.Application.Services
 
         public async Task<UserDto> UpdateUserAsync(int userId, UserDto userDto, CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrWhiteSpace(userDto.NewPassword))
-            {
-                const string apiKey = "AIzaSyBD-MmZTd6BvQWX6NDBCVQimE9iib29PUA";
-                var httpClient = new RestClient($"https://identitytoolkit.googleapis.com");
-                var request = new RestRequest($"/v1/accounts:update?key={apiKey}", Method.Post);
-                
-                request.AddJsonBody(new
-                {
-                    idToken = _httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString().Split(" ")[1],
-                    password = userDto.NewPassword,
-                    returnSecureToken = false
-                });
-                
-                request.AddHeader("Content-Type", "application/json");
-                
-                var response = await httpClient.ExecuteAsync(request, cancellationToken);
-                
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    throw new HttpRequestException($"Failed to update user at Firebase, StatusCode: {response.StatusCode}, content: {response.Content}");
-                }
-            }
-            
             return await _repository.UpdateAsync(userId, userDto, cancellationToken);
         }
 
@@ -87,6 +58,12 @@ namespace HiBoard.Application.Services
 
             return _mapper.Map<UserDto>(user);
         }
+        
+        public async Task<IReadOnlyCollection<UserDto>> GetUserEmployees(int userId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetUserEmployeesAsync(userId, cancellationToken);
+        }
+        
     }
 
     public class Identities

@@ -47,7 +47,7 @@ namespace HiBoard.Application.Repositories
             }
 
             company.Name = companyDto.Name;
-            company.Departments.AddRange(company.Departments);
+            company.Departments = companyDto.Departments;
             company.Description = companyDto.Description;
             
             await _context.SaveChangesAsync(cancellationToken);

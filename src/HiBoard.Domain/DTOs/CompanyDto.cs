@@ -10,7 +10,7 @@ namespace HiBoard.Domain.DTOs
         
         public string Name { get; set; } = string.Empty;
 
-        public List<string>? Departments { get; set; } = new();
+        public List<string> Departments { get; set; } = new();
 
         public string Description { get; set; } = string.Empty;
 

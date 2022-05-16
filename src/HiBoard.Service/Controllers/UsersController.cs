@@ -1,8 +1,5 @@
 ﻿using HiBoard.Application.Services;
-using HiBoard.Domain;
 using HiBoard.Domain.DTOs;
-using HiBoard.Domain.Models;
-using HiBoard.Domain.Requests;
 using HiBoard.Domain.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,28 +19,27 @@ namespace HiBoard.Service.Controllers
             _service = service;
         }
 
-        //[SwaggerOperation("Get Users List")]
-        //[HttpGet]
-
-        //public async Task<IActionResult> GetUsersAsync(CancellationToken cancellationToken)
-        //{
-        //    var users = await _service.GetUsersAsync(cancellationToken);
-        //    var response = new HiBoardResponse<IReadOnlyCollection<UserDto>>(users);
-
-        //    return Ok(response);
-        //}
-
         [SwaggerOperation("Get User By JWT Token")]
         [HttpGet]
-        [Route("")]
         public async Task<IActionResult> GetUserInfoAsync(CancellationToken cancellationToken)
         {
             var result = await _service.GetUserInfo(cancellationToken);
-            var response = new HiBoardResponse<UserDto?>(result);
+            var response = new HiBoardResponse<UserDto>(result);
 
             return Ok(response);
         }
 
+        [SwaggerOperation("Get User (Manager) employees")]
+        [HttpGet]
+        [Route("{userId}/employees")]
+        public async Task<IActionResult> GetUserEmployeesAsync(int userId, CancellationToken cancellationToken)
+        {
+            var users = await _service.GetUserEmployees(userId, cancellationToken);
+            var response = new HiBoardResponse<IReadOnlyCollection<UserDto>>(users);
+            
+            return Ok(response);
+        }
+        
         [SwaggerOperation("Get User")]
         [HttpGet]
         [Route("{userId}")]
@@ -77,7 +73,7 @@ namespace HiBoard.Service.Controllers
 
         [SwaggerOperation("Delete User")]
         [HttpDelete("{userId}")]
-        public async Task<IActionResult> UpdateUser(int userId, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteUser(int userId, CancellationToken cancellationToken)
         {
             await _service.DeleteUserAsync(userId, cancellationToken);
             
