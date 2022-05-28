@@ -1,8 +1,9 @@
 using AutoMapper;
-using HiBoard.Application.CustomExceptions.CompanyExceptions;
+using HiBoard.Application.CustomExceptions.ActivityExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
 using HiBoard.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace HiBoard.Application.Repositories
 {
@@ -17,40 +18,40 @@ namespace HiBoard.Application.Repositories
             _mapper = mapper;
         }
 
-        public async Task<CompanyDto> CreateCompanyAsync(CompanyDto companyDto,CancellationToken cancellationToken)
+        public async Task<IReadOnlyCollection<UserActivityDto>> GetListAsync(int userId, CancellationToken cancellationToken)
         {
-            var company = _mapper.Map<Company>(companyDto);
-            
-            await _context.Companies.AddAsync(company, cancellationToken);
-            await _context.SaveChangesAsync(cancellationToken);
-            
-            return _mapper.Map<CompanyDto>(company);
-        }
+            var activities = await _context.UserActivities.Where(x => x.UserId == userId).AsNoTracking()
+                .ToListAsync(cancellationToken);
 
-        public async Task<CompanyDto> GetCompanyByIdAsync(int companyId, CancellationToken cancellationToken)
+            return _mapper.Map<List<UserActivityDto>>(activities);
+        }
+        
+        public async Task<UserActivityDto> GetByIdAsync(int activityId, CancellationToken cancellationToken)
         {
-            var company = await _context.Companies.FindAsync(new object?[] { companyId }, cancellationToken);
-            if (company == null)
+            var userActivity = await _context.UserActivities.FindAsync(new object?[] { activityId }, cancellationToken);
+            if (userActivity == null)
             {
-                throw new CompanyNotFoundException(companyId);
+                throw new ActivityNotFoundException(activityId);
             }
 
-            return _mapper.Map<CompanyDto>(company);
+            return _mapper.Map<UserActivityDto>(userActivity);
         }
-
-        public async Task<CompanyDto> UpdateCompanyAsync(int companyId, CompanyDto companyDto, CancellationToken cancellationToken)
+        
+        public async Task<UserActivityDto> UpdateAsync(int activityId, UserActivityDto activityDto, CancellationToken cancellationToken)
         {
-            var company = await _context.Companies.FindAsync(new object?[] { companyId }, cancellationToken);
-            if (company == null)
+            var activity = await _context.UserActivities.FindAsync(new object?[] { activityId }, cancellationToken);
+            if (activity == null)
             {
-                throw new CompanyNotFoundException(companyId);
+                throw new ActivityNotFoundException(activityId);
             }
 
-            company = _mapper.Map<Company>(companyDto);
-            _context.Companies.Update(company);
+            activity = _mapper.Map<UserActivity>(activityDto);
+
+            _context.UserActivities.Update(activity);
             await _context.SaveChangesAsync(cancellationToken);
-            
-            return _mapper.Map<CompanyDto>(company);
+
+            return _mapper.Map<UserActivityDto>(activity);
         }
+
     }
 }
