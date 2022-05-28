@@ -48,4 +48,24 @@ public class UserActivitiesController : ControllerBase
             
         return Ok(response);
     }
+    
+    
+    [SwaggerOperation("Create User Activity")]
+    [HttpPost]
+    public async Task<IActionResult> CreateActivity([FromBody] UserActivityDto activityDto, CancellationToken cancellationToken)
+    {
+        var activity = await _service.CreateUserActivityAsync(activityDto, cancellationToken);
+        var response = new HiBoardResponse<UserActivityDto>(activity);
+
+        return Ok(response);
+    }
+    
+    [SwaggerOperation("Delete User Activity")]
+    [HttpDelete("{activityId}")]
+    public async Task<IActionResult> UpdateActivity(int activityId, CancellationToken cancellationToken)
+    {
+        await _service.DeleteUserActivityAsync(activityId, cancellationToken);
+
+        return NoContent();
+    }
 }
