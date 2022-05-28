@@ -25,8 +25,7 @@ namespace HiBoard.Application.Repositories
 
         public async Task<IReadOnlyCollection<UserDto>> GetUserEmployeesAsync(int userId, CancellationToken cancellationToken)
         {
-            var users = await _context.Users.AsNoTracking().ToListAsync(cancellationToken);
-            // TODO 
+            var users = await _context.Users.Where(x => x.ManagerId == userId).AsNoTracking().ToListAsync(cancellationToken);
             
             return _mapper.Map<List<UserDto>>(users);
         }
