@@ -36,7 +36,7 @@ namespace HiBoard.Application.Repositories
 
             return _mapper.Map<UserActivityDto>(userActivity);
         }
-        
+
         public async Task<UserActivityDto> UpdateAsync(int activityId, UserActivityDto activityDto, CancellationToken cancellationToken)
         {
             var activity = await _context.UserActivities.FindAsync(new object?[] { activityId }, cancellationToken);
@@ -52,6 +52,27 @@ namespace HiBoard.Application.Repositories
 
             return _mapper.Map<UserActivityDto>(activity);
         }
+        
+        public async Task<UserActivityDto> CreateAsync(UserActivityDto activityDto, CancellationToken cancellationToken)
+        {
+            var activity = _mapper.Map<UserActivity>(activityDto);
+            
+            await _context.UserActivities.AddAsync(activity, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
+            return _mapper.Map<UserActivityDto>(activity);
+        }
+        
+        public async Task DeleteAsync(int activityId, CancellationToken cancellationToken)
+        {
+            var activity = await _context.UserActivities.FindAsync(new object?[] { activityId }, cancellationToken);
+            if (activity == null)
+            {
+                throw new ActivityNotFoundException(activityId);
+            }
+
+            activity.IsDeleted = true;
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }

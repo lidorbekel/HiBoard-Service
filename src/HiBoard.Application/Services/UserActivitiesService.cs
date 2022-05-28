@@ -26,4 +26,14 @@ public class UserActivitiesService
     {
         return await _repository.UpdateAsync(activityId, activityDto, cancellationToken);
     }
+    
+    public async Task<UserActivityDto> CreateUserActivityAsync(UserActivityDto activityDto, CancellationToken cancellationToken)
+    {
+        return await _repository.CreateAsync(activityDto, cancellationToken);
+    }
+    
+    public async Task DeleteUserActivityAsync(int activityId, CancellationToken cancellationToken)
+    {
+        await _repository.DeleteAsync(activityId, cancellationToken);
+    }
 }
