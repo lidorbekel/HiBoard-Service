@@ -29,6 +29,8 @@ public class User : ModelBase<User, int>
 
     [ForeignKey(nameof(CompanyId))]
     public Company? Company { get; set; }
+    
+    public int ManagerId { get; set; }
 
     public User(string email) => Email = email;
 }

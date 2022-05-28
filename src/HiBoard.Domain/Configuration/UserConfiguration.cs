@@ -27,6 +27,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired();
 
         builder
+            .Property(_ => _.ManagerId)
+            .HasColumnName("manager_id");
+        
+        builder
             .Property(_ => _.FirstName)
             .HasColumnName("first_name")
             .HasMaxLength(50);
