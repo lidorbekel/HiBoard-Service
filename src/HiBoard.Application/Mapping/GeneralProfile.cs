@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
-using HiBoard.Domain.Requests;
 
 namespace HiBoard.Application.Mapping;
 
@@ -20,8 +19,5 @@ public class GeneralProfile : Profile
 
         CreateMap<UserActivity, UserActivityDto>();
         CreateMap<UserActivityDto, UserActivity>();
-
-        CreateMap<PatchUser, UserDto>();
-        CreateMap<UserDto, PatchUser>();
     }
 }
