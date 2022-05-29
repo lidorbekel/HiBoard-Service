@@ -27,9 +27,9 @@ namespace HiBoard.Application.Services
             return await _repository.GetByIdAsync(userId, cancellationToken);
         }
 
-        public async Task<UserDto> CreateUserAsync(UserDto userDto, CancellationToken cancellationToken)
+        public async Task<UserDto> CreateUserAsync(UserDto userDto,int managerId, CancellationToken cancellationToken)
         {
-            return await _repository.CreateAsync(userDto, cancellationToken);
+            return await _repository.CreateAsync(userDto,managerId, cancellationToken);
         }
 
         public async Task<UserDto> UpdateUserAsync(int userId, UserDto userDto, CancellationToken cancellationToken)

@@ -53,9 +53,9 @@ namespace HiBoard.Service.Controllers
 
         [SwaggerOperation("Create User")]
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] UserDto userDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateUser([FromBody] UserDto userDto,[FromQuery] int managerId, CancellationToken cancellationToken)
         {
-            var user = await _service.CreateUserAsync(userDto, cancellationToken);
+            var user = await _service.CreateUserAsync(userDto,managerId, cancellationToken);
             var response = new HiBoardResponse<UserDto>(user);
             
             return Ok(response);

@@ -52,7 +52,7 @@ namespace HiBoard.Application.Repositories
             return _mapper.Map<UserDto>(user);
         }
 
-        public async Task<UserDto> CreateAsync(UserDto userDto, CancellationToken cancellationToken)
+        public async Task<UserDto> CreateAsync(UserDto userDto,int managerId, CancellationToken cancellationToken)
         {
             var isUserExists = await _context.Users.AnyAsync(x => x.Email == userDto.Email, cancellationToken);
             if (isUserExists)
@@ -79,6 +79,7 @@ namespace HiBoard.Application.Repositories
                     $"Failed to create user at Firebase, StatusCode: {response.StatusCode}, content: {response.Content}");
             }
 
+            userDto.ManagerId = managerId;
             var user = _mapper.Map<User>(userDto);
 
             await _context.Users.AddAsync(user, cancellationToken);
