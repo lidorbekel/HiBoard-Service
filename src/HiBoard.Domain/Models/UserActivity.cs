@@ -6,7 +6,7 @@ namespace HiBoard.Domain.Models;
 public class UserActivity : ModelBase<UserActivity,int>
 {
     
-    public override int Id { get; protected set; }
+    public  override int Id { get; protected set; }
 
     public override DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
 

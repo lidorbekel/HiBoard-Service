@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using HiBoard.Domain.Enums;
 
 namespace HiBoard.Domain.Models;
 
@@ -17,10 +16,9 @@ public class Activity : ModelBase<Activity, int>
 
     public string? Tag { get; set; }
 
-    [NotMapped] //TODO NEED TO MAP THIS
-    public ICollection<int>? DependencyIds { get; set; }
+    [NotMapped] public List<int> DependencyIds { get; set; } = new();
 
-    public ICollection<UserActivity>? UserActivities { get; set; }
+    public List<UserActivity>? UserActivities { get; set; }
 
     public List<Template>? Templates { get; set; }
 

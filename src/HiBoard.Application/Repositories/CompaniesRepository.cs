@@ -3,6 +3,7 @@ using HiBoard.Application.CustomExceptions.CompanyExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Models;
 using HiBoard.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace HiBoard.Application.Repositories;
 
@@ -29,7 +30,9 @@ public class CompaniesRepository
 
     public async Task<CompanyDto> GetCompanyByIdAsync(int companyId, CancellationToken cancellationToken)
     {
-        var company = await _context.Companies.FindAsync(new object?[] { companyId }, cancellationToken);
+        var company = await _context.Companies.Include(x => x.Departments)
+            .FirstOrDefaultAsync(company => company.Id == companyId, cancellationToken);
+        
         if (company == null)
         {
             throw new CompanyNotFoundException(companyId);

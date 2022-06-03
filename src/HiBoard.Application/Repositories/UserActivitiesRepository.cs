@@ -47,7 +47,7 @@ public class UserActivitiesRepository
             throw new ActivityNotFoundException(activityId);
         }
 
-        activity = _mapper.Map<UserActivity>(activityDto);
+        activity = _mapper.Map(activityDto, activity);
 
         _context.UserActivities.Update(activity);
         await _context.SaveChangesAsync(cancellationToken);

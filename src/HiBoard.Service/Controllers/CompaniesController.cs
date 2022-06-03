@@ -1,5 +1,4 @@
 ﻿using HiBoard.Application.Services;
-using HiBoard.Domain;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -22,8 +21,7 @@ public class CompaniesController : ControllerBase
 
     [SwaggerOperation("Create Company")]
     [HttpPost]
-    public async Task<IActionResult> CreateCompanyAsync([FromBody] CompanyDto companyDto,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateCompanyAsync([FromBody] CompanyDto companyDto, CancellationToken cancellationToken)
     {
         var company = await _service.CreateCompanyAsync(companyDto, cancellationToken);
         var response = new HiBoardResponse<CompanyDto>(company);

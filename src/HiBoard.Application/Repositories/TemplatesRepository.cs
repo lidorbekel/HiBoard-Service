@@ -36,9 +36,11 @@ public class TemplatesRepository
         return _mapper.Map<TemplateDto>(template);
     }
 
-    public async Task<TemplateDto> CreateTemplate(TemplateDto templateDto, CancellationToken cancellationToken)
+    public async Task<TemplateDto> CreateTemplate(int companyId, string department, TemplateDto templateDto, CancellationToken cancellationToken)
     {
         var templateEntity = _mapper.Map<Template>(templateDto);
+        templateEntity.CompanyId = companyId;
+        templateEntity.Department = department;
         
         await _context.Templates.AddAsync(templateEntity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
@@ -56,7 +58,7 @@ public class TemplatesRepository
             throw new TemplateNotFoundException(templateId);
         }
         
-        template = _mapper.Map<Template>(templateDto);
+        template = _mapper.Map(templateDto, template);
 
         _context.Templates.Update(template);
         await _context.SaveChangesAsync(cancellationToken);

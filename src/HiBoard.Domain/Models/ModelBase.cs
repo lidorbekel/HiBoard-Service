@@ -7,7 +7,7 @@ public abstract class ModelBase<TEntity, TId>
 
     public abstract TId Id { get; protected set; }
 
-    public abstract DateTime CreatedAt { get; protected set; } 
+    public abstract DateTime CreatedAt { get; protected set; }
     public abstract DateTime UpdatedAt { get; set; }
 
 

@@ -1,5 +1,4 @@
 ﻿using HiBoard.Application.Services;
-using HiBoard.Domain;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Responses;
 using Microsoft.AspNetCore.Authorization;
