@@ -18,6 +18,7 @@ public static class ServiceExtensions
         services.AddScoped<ActivitiesService>();
         services.AddScoped<CompaniesService>();
         services.AddScoped<UserActivitiesService>();
+        services.AddScoped<TemplatesService>();
     }
 
     public static void AddMyRepositories(this IServiceCollection services)
@@ -27,6 +28,7 @@ public static class ServiceExtensions
         services.AddScoped<ActivitiesRepository>();
         services.AddScoped<CompaniesRepository>();
         services.AddScoped<UserActivitiesRepository>();
+        services.AddScoped<TemplatesRepository>();
     }
 
     public static void AddMyDb(this IServiceCollection services, IConfiguration configuration)

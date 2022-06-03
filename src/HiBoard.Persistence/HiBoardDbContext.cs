@@ -12,6 +12,8 @@ public class HiBoardDbContext : DbContext
     public DbSet<Company> Companies => Set<Company>();
     public DbSet<UserActivity> UserActivities => Set<UserActivity>();
 
+    public DbSet<Template> Templates => Set<Template>();
+
     //create database
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

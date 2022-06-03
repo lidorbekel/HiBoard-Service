@@ -22,6 +22,8 @@ public class Activity : ModelBase<Activity, int>
 
     public ICollection<UserActivity>? UserActivities { get; set; }
 
+    public List<Template>? Templates { get; set; }
+
     public TimeSpan TimeEstimation { get; set; }
 
     public bool IsDeleted { get; set; }
