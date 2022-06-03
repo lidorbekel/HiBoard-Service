@@ -4,18 +4,15 @@ namespace HiBoard.Domain.DTOs;
 
 public class ActivityDto
 {
-    [NotMapped]
-    public int Id { get; protected set; }
+    [NotMapped] public int Id { get; protected set; }
 
-    public string? Title { get; set; }
+    public string Title { get; set; } = string.Empty;
 
-    public string? Description { get; set; }
+    public string Description { get; set; } = string.Empty;
 
-    public string? Tag { get; set; }
+    public string Tag { get; set; } = string.Empty;
 
-    public string Status { get; set; } = string.Empty;
-
-    public int[]? DependencyIds { get; set; }
+    [NotMapped] public List<int> DependencyIds { get; set; } = new();
 
     public TimeSpan TimeEstimation { get; set; }
 }

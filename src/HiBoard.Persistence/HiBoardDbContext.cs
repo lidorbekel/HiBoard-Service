@@ -22,5 +22,7 @@ public class HiBoardDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(User).Assembly);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(Company).Assembly);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(Activity).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(Template).Assembly);
+
     }
 }

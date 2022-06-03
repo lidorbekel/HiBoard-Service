@@ -41,17 +41,17 @@ public class TemplatesController : ControllerBase
 
     [SwaggerOperation("Create Template")]
     [HttpPost]
-    public async Task<IActionResult> CreateTemplate([FromBody] TemplateDto template, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateTemplate(int companyId, string department, [FromBody] TemplateDto template, CancellationToken cancellationToken)
     {
-        var createdTemplate = await _service.CreateTemplate(template, cancellationToken);
+        var createdTemplate = await _service.CreateTemplate(companyId, department, template, cancellationToken);
         var response = new HiBoardResponse<TemplateDto>(createdTemplate);
         
         return Ok(response);
     }
     
-    [SwaggerOperation("Create Template")]
+    [SwaggerOperation("Update Template")]
     [HttpPatch("{templateId}")]
-    public async Task<IActionResult> CreateTemplate(int templateId, [FromBody] TemplateDto template, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateTemplate(int templateId, [FromBody] TemplateDto template, CancellationToken cancellationToken)
     {
         var createdTemplate = await _service.UpdateTemplate(templateId, template, cancellationToken);
         var response = new HiBoardResponse<TemplateDto>(createdTemplate);
@@ -65,7 +65,7 @@ public class TemplatesController : ControllerBase
     {
         await _service.DeleteTemplate(templateId, cancellationToken);
         
-        return Ok();
+        return NoContent();
     }
 
 

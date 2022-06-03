@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HiBoard.Application.Repositories;
 using HiBoard.Domain.DTOs;
 
@@ -34,9 +29,9 @@ public class TemplatesService
         return template;
     }
 
-    public async Task<TemplateDto?> CreateTemplate(TemplateDto templateDto, CancellationToken cancellationToken)
+    public async Task<TemplateDto?> CreateTemplate(int companyId, string department,  TemplateDto templateDto, CancellationToken cancellationToken)
     {
-        return await _repository.CreateTemplate(templateDto, cancellationToken);
+        return await _repository.CreateTemplate(companyId, department, templateDto, cancellationToken);
     }
 
     public async Task<TemplateDto?> UpdateTemplate(int templateId, TemplateDto templateDto, CancellationToken cancellationToken)

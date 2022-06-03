@@ -4,6 +4,7 @@ using HiBoard.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HiBoard.Persistence.Migrations
 {
     [DbContext(typeof(HiBoardDbContext))]
-    partial class HiBoardDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220603142609_Add_Template")]
+    partial class Add_Template
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -294,11 +296,13 @@ namespace HiBoard.Persistence.Migrations
 
             modelBuilder.Entity("HiBoard.Domain.Models.Template", b =>
                 {
-                    b.HasOne("HiBoard.Domain.Models.Company", null)
+                    b.HasOne("HiBoard.Domain.Models.Company", "Company")
                         .WithMany("Templates")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("HiBoard.Domain.Models.User", b =>
