@@ -19,4 +19,7 @@ public class Company : ModelBase<Company, int>
     public string Description { get; set; } = string.Empty;
 
     public bool IsDeleted { get; set; }
+
+    public List<Template> Templates { get; set; } = new();
+
 }
