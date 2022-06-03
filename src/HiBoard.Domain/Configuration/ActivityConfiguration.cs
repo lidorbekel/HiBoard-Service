@@ -68,7 +68,11 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
         #endregion
 
         #region Relationship Configuration
-
+        
+        builder.HasMany(activity => activity.Templates)
+            .WithMany(template => template.Activities)
+            .UsingEntity(t => t.ToTable("templates"));
+        
         #endregion
 
         #region Convertion Configuration
