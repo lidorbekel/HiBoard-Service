@@ -19,5 +19,8 @@ public class GeneralProfile : Profile
 
         CreateMap<UserActivity, UserActivityDto>();
         CreateMap<UserActivityDto, UserActivity>();
+        
+        CreateMap<Template, TemplateDto>();
+        CreateMap<TemplateDto, Template>();
     }
 }

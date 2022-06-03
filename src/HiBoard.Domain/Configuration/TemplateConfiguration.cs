@@ -61,7 +61,7 @@ public class TemplateConfiguration : IEntityTypeConfiguration<Template>
         #region Releationship Configuration
 
         builder.HasMany(template => template.Activities)
-            .WithMany(Activity => Activity.Templates!)
+            .WithMany(activity => activity.Templates!)
             .UsingEntity(t => t.ToTable("template_activities"));
 
         #endregion

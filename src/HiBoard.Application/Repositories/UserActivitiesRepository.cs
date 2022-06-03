@@ -20,7 +20,9 @@ public class UserActivitiesRepository
 
     public async Task<IReadOnlyCollection<UserActivityDto>> GetListAsync(int userId, CancellationToken cancellationToken)
     {
-        var activities = await _context.UserActivities.Where(x => x.UserId == userId).AsNoTracking()
+        var activities = await _context.UserActivities
+            .Include(x=> x.Activity)
+            .Where(x => x.UserId == userId).AsNoTracking()
             .ToListAsync(cancellationToken);
 
         return _mapper.Map<List<UserActivityDto>>(activities);
