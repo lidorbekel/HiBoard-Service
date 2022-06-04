@@ -19,6 +19,7 @@ public class Startup
         services.AddMyAuthentication(_configuration);
         services.AddMyCors(_configuration);
         services.AddControllers();
+        services.AddMySerializerSettings();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
