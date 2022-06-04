@@ -5,7 +5,6 @@ namespace HiBoard.Domain.DTOs;
 
 public  class CompanyDto
 {
-    [NotMapped]
     public int Id { get; protected set; }
         
     public string Name { get; set; } = string.Empty;

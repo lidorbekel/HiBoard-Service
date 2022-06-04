@@ -9,7 +9,7 @@ public class TemplateDto
 
     public string Name { get; set; } = string.Empty;
     
-    public List<Activity> Activities { get; set; } = new();
+    public List<ActivityDto> Activities { get; set; } = new();
     
     public int CompanyId { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using HiBoard.Application.Services;
 using HiBoard.Domain.DTOs;
+using HiBoard.Domain.Requests;
 using HiBoard.Domain.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -65,6 +66,15 @@ public class TemplatesController : ControllerBase
     {
         await _service.DeleteTemplate(templateId, cancellationToken);
         
+        return NoContent();
+    }
+
+    [SwaggerOperation("Add activities to templates")]
+    [HttpPatch]
+    public async Task<IActionResult> AddActivitiesToTemplate([FromBody] AddActivityToTemplates request, CancellationToken cancellationToken)
+    {
+        await _service.AddActivityToTemplates(request, cancellationToken);
+
         return NoContent();
     }
 

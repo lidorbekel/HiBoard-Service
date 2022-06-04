@@ -4,7 +4,6 @@ namespace HiBoard.Domain.DTOs;
 
 public class UserDto
 {
-    [NotMapped]
     public int Id { get; protected set; }
     public string Email { get; set; } = string.Empty;
 

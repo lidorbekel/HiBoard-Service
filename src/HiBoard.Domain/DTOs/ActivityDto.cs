@@ -4,7 +4,7 @@ namespace HiBoard.Domain.DTOs;
 
 public class ActivityDto
 {
-    [NotMapped] public int Id { get; protected set; }
+    public int Id { get; set; }
 
     public string Title { get; set; } = string.Empty;
 
