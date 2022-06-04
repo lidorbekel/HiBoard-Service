@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace HiBoard.Service.Extensions;
 
@@ -90,5 +91,11 @@ public static class ServiceExtensions
                 options.Configure(kestrel);
             }
         });
+    }
+
+    public static void AddMySerializerSettings(this IServiceCollection services)
+    {
+        services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
     }
 }
