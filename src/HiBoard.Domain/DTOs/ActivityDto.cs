@@ -12,7 +12,7 @@ public class ActivityDto
 
     public string Tag { get; set; } = string.Empty;
 
-    [NotMapped] public List<int> DependencyIds { get; set; } = new();
+    public int Week { get; set; }
 
     public TimeSpan TimeEstimation { get; set; }
 }

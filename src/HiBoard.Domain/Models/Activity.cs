@@ -16,7 +16,7 @@ public class Activity : ModelBase<Activity, int>
 
     public string? Tag { get; set; }
 
-    [NotMapped] public List<int> DependencyIds { get; set; } = new();
+    public int Week { get; set; }
 
     public List<UserActivity>? UserActivities { get; set; }
 

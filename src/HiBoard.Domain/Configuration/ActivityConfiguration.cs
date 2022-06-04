@@ -24,7 +24,7 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
             .Property(_ => _.Title)
             .HasColumnName("title")
             .HasMaxLength(50);
-        
+
         builder
             .Property(_ => _.Description)
             .HasColumnName("description")
@@ -36,18 +36,16 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
             .HasColumnName("tag")
             .HasMaxLength(50);
 
+        builder.Property(_ => _.Week)
+            .HasColumnName("week")
+            .HasColumnType("int")
+            .IsRequired();
+
         builder
             .Property(_ => _.TimeEstimation)
             .HasColumnName("time_estimation_in_seconds")
             .HasColumnType("int")
             .IsRequired();
-        
-        builder.Ignore(activity => activity.DependencyIds);
-
-        //builder
-        //    .Property(_ => _.DependencyIds)
-        //    .HasColumnName("department")
-        //    .IsRequired();
 
         builder
             .Property(_ => _.CreatedAt)
@@ -68,11 +66,11 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
         #endregion
 
         #region Relationship Configuration
-        
+
         builder.HasMany(activity => activity.Templates)
             .WithMany(template => template.Activities)
             .UsingEntity(t => t.ToTable("templates"));
-        
+
         #endregion
 
         #region Convertion Configuration
