@@ -9,16 +9,16 @@ public class GeneralProfile : Profile
     public GeneralProfile()
     {
         CreateMap<User, UserDto>();
-        CreateMap<UserDto, User>().ForMember(x => x.Id, opt => opt.Ignore());
+        CreateMap<UserDto, User>();
 
         CreateMap<Activity, ActivityDto>();
-        CreateMap<ActivityDto, Activity>().ForMember(x => x.Id, opt => opt.Ignore());
+        CreateMap<ActivityDto, Activity>();
 
         CreateMap<Company, CompanyDto>();
-        CreateMap<CompanyDto, Company>().ForMember(x => x.Id, opt => opt.Ignore());
+        CreateMap<CompanyDto, Company>();
 
         CreateMap<UserActivity, UserActivityDto>();
-        CreateMap<UserActivityDto, UserActivity>().ForMember(x => x.Id, opt => opt.Ignore());
+        CreateMap<UserActivityDto, UserActivity>();
 
         CreateMap<Template, TemplateDto>();
         CreateMap<TemplateDto, Template>()
