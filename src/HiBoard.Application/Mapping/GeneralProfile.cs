@@ -26,5 +26,6 @@ public class GeneralProfile : Profile
             .ForMember(x => x.CompanyId, opt => opt.Ignore())
             .ForMember(x => x.Department, opt => opt.Ignore());
 
+        
     }
 }

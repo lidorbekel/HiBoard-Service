@@ -52,9 +52,9 @@ public class UserActivitiesController : ControllerBase
     
     [SwaggerOperation("Create User Activity")]
     [HttpPost]
-    public async Task<IActionResult> CreateActivity([FromBody] UserActivityDto activityDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateActivity(int userId,[FromBody] UserActivityDto activityDto, CancellationToken cancellationToken)
     {
-        var activity = await _service.CreateUserActivityAsync(activityDto, cancellationToken);
+        var activity = await _service.CreateUserActivityAsync(userId, activityDto, cancellationToken);
         var response = new HiBoardResponse<UserActivityDto>(activity);
 
         return Ok(response);

@@ -9,5 +9,7 @@ public class UserActivityDto
 
     public ActivityDto? Activity { get; set; }
 
+    public int ActivityId { get; set; }
+
     public Status Status { get; set; }
 }

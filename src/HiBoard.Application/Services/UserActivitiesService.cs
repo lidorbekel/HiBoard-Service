@@ -22,14 +22,14 @@ public class UserActivitiesService
         return await _repository.GetByIdAsync(activityId, cancellationToken);
     }
     
-    public async Task<UserActivityDto> UpdateUserActivityAsync(int activityId, UserActivityDto activityDto, CancellationToken cancellationToken)
+    public async Task<UserActivityDto> UpdateUserActivityAsync(int activityId, UserActivityDto userActivityDto, CancellationToken cancellationToken)
     {
-        return await _repository.UpdateAsync(activityId, activityDto, cancellationToken);
+        return await _repository.UpdateAsync(activityId, userActivityDto, cancellationToken);
     }
     
-    public async Task<UserActivityDto> CreateUserActivityAsync(UserActivityDto activityDto, CancellationToken cancellationToken)
+    public async Task<UserActivityDto> CreateUserActivityAsync(int userId,UserActivityDto userActivityDto, CancellationToken cancellationToken)
     {
-        return await _repository.CreateAsync(activityDto, cancellationToken);
+        return await _repository.CreateAsync(userId,userActivityDto, cancellationToken);
     }
     
     public async Task DeleteUserActivityAsync(int activityId, CancellationToken cancellationToken)

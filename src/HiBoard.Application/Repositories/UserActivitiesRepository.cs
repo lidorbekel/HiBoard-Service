@@ -39,7 +39,7 @@ public class UserActivitiesRepository
         return _mapper.Map<UserActivityDto>(userActivity);
     }
 
-    public async Task<UserActivityDto> UpdateAsync(int activityId, UserActivityDto activityDto, CancellationToken cancellationToken)
+    public async Task<UserActivityDto> UpdateAsync(int activityId, UserActivityDto userActivityDto, CancellationToken cancellationToken)
     {
         var activity = await _context.UserActivities.FindAsync(new object?[] { activityId }, cancellationToken);
         if (activity == null)
@@ -47,7 +47,7 @@ public class UserActivitiesRepository
             throw new ActivityNotFoundException(activityId);
         }
 
-        activity = _mapper.Map(activityDto, activity);
+        activity = _mapper.Map(userActivityDto, activity);
 
         _context.UserActivities.Update(activity);
         await _context.SaveChangesAsync(cancellationToken);
@@ -55,14 +55,14 @@ public class UserActivitiesRepository
         return _mapper.Map<UserActivityDto>(activity);
     }
         
-    public async Task<UserActivityDto> CreateAsync(UserActivityDto activityDto, CancellationToken cancellationToken)
+    public async Task<UserActivityDto> CreateAsync(int userId,UserActivityDto userActivityDto, CancellationToken cancellationToken)
     {
-        var activity = _mapper.Map<UserActivity>(activityDto);
-            
-        await _context.UserActivities.AddAsync(activity, cancellationToken);
+        var userActivity = _mapper.Map<UserActivity>(userActivityDto);
+        userActivity.UserId = userId;
+        await _context.UserActivities.AddAsync(userActivity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return _mapper.Map<UserActivityDto>(activity);
+        return _mapper.Map<UserActivityDto>(userActivity);
     }
         
     public async Task DeleteAsync(int activityId, CancellationToken cancellationToken)
