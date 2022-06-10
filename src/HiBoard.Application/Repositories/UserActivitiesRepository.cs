@@ -20,19 +20,20 @@ public class UserActivitiesRepository
         _mapper = mapper;
     }
 
-    public async Task<IReadOnlyCollection<UserActivityDto>> GetListAsync(int userId, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<UserActivityDto>> GetListAsync(int userId,
+        CancellationToken cancellationToken)
     {
         var activities = await _context.UserActivities
-            .Include(x=> x.Activity)
+            .Include(x => x.Activity)
             .Where(x => x.UserId == userId).AsNoTracking()
             .ToListAsync(cancellationToken);
 
         return _mapper.Map<List<UserActivityDto>>(activities);
     }
-        
+
     public async Task<UserActivityDto> GetByIdAsync(int userActivityId, CancellationToken cancellationToken)
     {
-        var userActivity = await _context.UserActivities.FindAsync(new object?[] { userActivityId }, cancellationToken);
+        var userActivity = await _context.UserActivities.FindAsync(new object?[] {userActivityId}, cancellationToken);
         if (userActivity == null)
         {
             throw new ActivityNotFoundException(userActivityId);
@@ -41,9 +42,11 @@ public class UserActivitiesRepository
         return _mapper.Map<UserActivityDto>(userActivity);
     }
 
-    public async Task<UserActivityDto> UpdateAsync(int userActivityId, UserActivityDto userActivityDto, CancellationToken cancellationToken)
+    public async Task<UserActivityDto> UpdateAsync(int userActivityId, UserActivityDto userActivityDto,
+        CancellationToken cancellationToken)
     {
-        var activity = await _context.UserActivities.FindAsync(new object?[] { userActivityId }, cancellationToken);
+        var activity = await _context.UserActivities.Include(x => x.Activity)
+            .FirstOrDefaultAsync(userActivity => userActivity.Id == userActivityId, cancellationToken);
 
         if (activity == null)
         {
@@ -56,8 +59,9 @@ public class UserActivitiesRepository
 
         return _mapper.Map<UserActivityDto>(activity);
     }
-        
-    public async Task<UserActivityDto> CreateAsync(int userId,UserActivityDto userActivityDto, CancellationToken cancellationToken)
+
+    public async Task<UserActivityDto> CreateAsync(int userId, UserActivityDto userActivityDto,
+        CancellationToken cancellationToken)
     {
         var userActivity = _mapper.Map<UserActivity>(userActivityDto);
         userActivity.UserId = userId;
@@ -66,10 +70,10 @@ public class UserActivitiesRepository
 
         return _mapper.Map<UserActivityDto>(userActivity);
     }
-        
+
     public async Task DeleteAsync(int userActivityId, CancellationToken cancellationToken)
     {
-        var activity = await _context.UserActivities.FindAsync(new object?[] { userActivityId }, cancellationToken);
+        var activity = await _context.UserActivities.FindAsync(new object?[] {userActivityId}, cancellationToken);
         if (activity == null)
         {
             throw new ActivityNotFoundException(userActivityId);
@@ -79,7 +83,8 @@ public class UserActivitiesRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task CreateUserActivityByActivityAsync(int userId, Activity activity, CancellationToken cancellationToken)
+    public async Task CreateUserActivityByActivityAsync(int userId, Activity activity,
+        CancellationToken cancellationToken)
     {
         var userActivity = new UserActivity
         {
