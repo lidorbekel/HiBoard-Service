@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace HiBoard.Service.Extensions;
 
@@ -41,7 +42,6 @@ public static class ServiceExtensions
             options.UseSqlServer(mysqlConnectionString);
             options.EnableSensitiveDataLogging();
         });
-
     }
 
     public static void AddMySwagger(this IServiceCollection services)
@@ -100,6 +100,9 @@ public static class ServiceExtensions
     public static void AddMySerializerSettings(this IServiceCollection services)
     {
         services.AddControllers().AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+        {
+            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            options.SerializerSettings.Converters.Add(new StringEnumConverter());
+        });
     }
 }
