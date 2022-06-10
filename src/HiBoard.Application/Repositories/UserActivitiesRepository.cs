@@ -3,6 +3,7 @@ using HiBoard.Application.CustomExceptions.ActivityExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Enums;
 using HiBoard.Domain.Models;
+using HiBoard.Domain.Requests;
 using HiBoard.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,27 +30,27 @@ public class UserActivitiesRepository
         return _mapper.Map<List<UserActivityDto>>(activities);
     }
         
-    public async Task<UserActivityDto> GetByIdAsync(int activityId, CancellationToken cancellationToken)
+    public async Task<UserActivityDto> GetByIdAsync(int userActivityId, CancellationToken cancellationToken)
     {
-        var userActivity = await _context.UserActivities.FindAsync(new object?[] { activityId }, cancellationToken);
+        var userActivity = await _context.UserActivities.FindAsync(new object?[] { userActivityId }, cancellationToken);
         if (userActivity == null)
         {
-            throw new ActivityNotFoundException(activityId);
+            throw new ActivityNotFoundException(userActivityId);
         }
 
         return _mapper.Map<UserActivityDto>(userActivity);
     }
 
-    public async Task<UserActivityDto> UpdateAsync(int activityId, UserActivityDto userActivityDto, CancellationToken cancellationToken)
+    public async Task<UserActivityDto> UpdateAsync(int userActivityId, UserActivityDto userActivityDto, CancellationToken cancellationToken)
     {
-        var activity = await _context.UserActivities.FindAsync(new object?[] { activityId }, cancellationToken);
+        var activity = await _context.UserActivities.FindAsync(new object?[] { userActivityId }, cancellationToken);
+
         if (activity == null)
         {
-            throw new ActivityNotFoundException(activityId);
+            throw new ActivityNotFoundException(userActivityId);
         }
 
-        activity = _mapper.Map(userActivityDto, activity);
-
+        activity.Status = userActivityDto.Status;
         _context.UserActivities.Update(activity);
         await _context.SaveChangesAsync(cancellationToken);
 
@@ -66,19 +67,19 @@ public class UserActivitiesRepository
         return _mapper.Map<UserActivityDto>(userActivity);
     }
         
-    public async Task DeleteAsync(int activityId, CancellationToken cancellationToken)
+    public async Task DeleteAsync(int userActivityId, CancellationToken cancellationToken)
     {
-        var activity = await _context.UserActivities.FindAsync(new object?[] { activityId }, cancellationToken);
+        var activity = await _context.UserActivities.FindAsync(new object?[] { userActivityId }, cancellationToken);
         if (activity == null)
         {
-            throw new ActivityNotFoundException(activityId);
+            throw new ActivityNotFoundException(userActivityId);
         }
 
         activity.IsDeleted = true;
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task CreateUserActivityByActivityAsync(int userId,Activity activity, CancellationToken cancellationToken)
+    public async Task CreateUserActivityByActivityAsync(int userId, Activity activity, CancellationToken cancellationToken)
     {
         var userActivity = new UserActivity
         {

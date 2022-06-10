@@ -1,5 +1,7 @@
 using HiBoard.Application.Services;
 using HiBoard.Domain.DTOs;
+using HiBoard.Domain.Enums;
+using HiBoard.Domain.Requests;
 using HiBoard.Domain.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,21 +32,21 @@ public class UserActivitiesController : ControllerBase
     }
     
     [SwaggerOperation("Get User Activity")]
-    [HttpGet("{activityId}")]
-    public async Task<IActionResult> GetUserActivityAsync(int activityId, CancellationToken cancellationToken)
+    [HttpGet("{userActivityId}")]
+    public async Task<IActionResult> GetUserActivityAsync(int userActivityId, CancellationToken cancellationToken)
     {
-        var userActivity = await _service.GetUserActivityAsync(activityId, cancellationToken);
+        var userActivity = await _service.GetUserActivityAsync(userActivityId, cancellationToken);
         var response = new HiBoardResponse<UserActivityDto>(userActivity);
             
         return Ok(response);
     }
     
     [SwaggerOperation("Update User Activity")]
-    [HttpPatch("{activityId}")]
-    public async Task<IActionResult> UpdateActivity(int activityId, [FromBody] UserActivityDto activityDto, CancellationToken cancellationToken)
+    [HttpPatch("{userActivityId}")]
+    public async Task<IActionResult> UpdateActivity(int userActivityId, [FromBody] UserActivityDto userActivityDto, CancellationToken cancellationToken)
     {
-        var activity = await _service.UpdateUserActivityAsync(activityId, activityDto, cancellationToken);
-        var response = new HiBoardResponse<UserActivityDto>(activity);
+        var userActivity = await _service.UpdateUserActivityAsync(userActivityId, userActivityDto, cancellationToken);
+        var response = new HiBoardResponse<UserActivityDto>(userActivity);
             
         return Ok(response);
     }
@@ -52,19 +54,19 @@ public class UserActivitiesController : ControllerBase
     
     [SwaggerOperation("Create User Activity")]
     [HttpPost]
-    public async Task<IActionResult> CreateActivity(int userId,[FromBody] UserActivityDto activityDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateActivity(int userId,[FromBody] UserActivityDto userActivityDto, CancellationToken cancellationToken)
     {
-        var activity = await _service.CreateUserActivityAsync(userId, activityDto, cancellationToken);
-        var response = new HiBoardResponse<UserActivityDto>(activity);
+        var userActivity = await _service.CreateUserActivityAsync(userId, userActivityDto, cancellationToken);
+        var response = new HiBoardResponse<UserActivityDto>(userActivity);
 
         return Ok(response);
     }
     
     [SwaggerOperation("Delete User Activity")]
-    [HttpDelete("{activityId}")]
-    public async Task<IActionResult> UpdateActivity(int activityId, CancellationToken cancellationToken)
+    [HttpDelete("{userActivityId}")]
+    public async Task<IActionResult> UpdateActivity(int userActivityId, CancellationToken cancellationToken)
     {
-        await _service.DeleteUserActivityAsync(activityId, cancellationToken);
+        await _service.DeleteUserActivityAsync(userActivityId, cancellationToken);
 
         return NoContent();
     }
