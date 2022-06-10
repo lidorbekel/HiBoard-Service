@@ -1,6 +1,7 @@
 using AutoMapper;
 using HiBoard.Application.CustomExceptions.ActivityExceptions;
 using HiBoard.Domain.DTOs;
+using HiBoard.Domain.Enums;
 using HiBoard.Domain.Models;
 using HiBoard.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -74,6 +75,20 @@ public class UserActivitiesRepository
         }
 
         activity.IsDeleted = true;
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task CreateUserActivityByActivityAsync(int userId,Activity activity, CancellationToken cancellationToken)
+    {
+        var userActivity = new UserActivity
+        {
+            ActivityId = activity.Id,
+            UserId = userId,
+            IsDeleted = false,
+            Status = Status.Backlog
+        };
+
+        await _context.UserActivities.AddAsync(userActivity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
 }

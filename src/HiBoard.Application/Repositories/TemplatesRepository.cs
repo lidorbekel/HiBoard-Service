@@ -31,7 +31,7 @@ public class TemplatesRepository
 
     public async Task<TemplateDto> GetTemplateDtoById(int templateId, CancellationToken cancellationToken)
     {
-        var template = await _context.Templates.Include(x=> x.Activities)
+        var template = await _context.Templates.AsNoTracking().Include(x=> x.Activities)
             .FirstOrDefaultAsync(template => template.Id == templateId, cancellationToken: cancellationToken);
         
         return _mapper.Map<TemplateDto>(template);
@@ -49,7 +49,6 @@ public class TemplatesRepository
         
         return template;
     }
-
 
     public async Task<TemplateDto> CreateTemplate(int companyId, string department, TemplateDto templateDto, CancellationToken cancellationToken)
     {
