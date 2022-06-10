@@ -1,15 +1,22 @@
+using AutoMapper;
 using HiBoard.Application.Repositories;
 using HiBoard.Domain.DTOs;
+using HiBoard.Domain.Models;
 
 namespace HiBoard.Application.Services;
 
 public class UserActivitiesService
 {
     private readonly UserActivitiesRepository _repository;
+    private readonly IMapper _mapper;
+    private readonly TemplatesService _templatesService;
 
-    public UserActivitiesService(UserActivitiesRepository repository)
+
+    public UserActivitiesService(UserActivitiesRepository repository, IMapper mapper, TemplatesService templatesService)
     {
         _repository = repository;
+        _mapper = mapper;
+        _templatesService = templatesService;
     }
 
     public async Task<IReadOnlyCollection<UserActivityDto>> GetActivitiesAsync(int userId, CancellationToken cancellationToken)
@@ -35,5 +42,24 @@ public class UserActivitiesService
     public async Task DeleteUserActivityAsync(int activityId, CancellationToken cancellationToken)
     {
         await _repository.DeleteAsync(activityId, cancellationToken);
+    }
+
+    public async Task CreateUserActivityByActivityAsync(int userId, Activity activity, CancellationToken cancellationToken)
+    {
+        await _repository.CreateUserActivityByActivityAsync(userId,activity, cancellationToken);
+        
+    }
+
+    public async Task AssignTemplateToUser(int userId, int templateId, CancellationToken cancellationToken)
+    {
+        Template template = _mapper.Map<Template>(await _templatesService.GetTemplateById(templateId, cancellationToken));
+
+        if (template is not null)
+        {
+            foreach (var activity in template.Activities)
+            {
+                await CreateUserActivityByActivityAsync(userId, activity, cancellationToken);
+            }
+        }
     }
 }

@@ -68,4 +68,14 @@ public class UserActivitiesController : ControllerBase
 
         return NoContent();
     }
+
+    [SwaggerOperation("Assign Template to user")]
+    [HttpPost("assign/{templateId}")]
+    
+    public async Task<IActionResult> AssignTemplateToUser(int userId,int templateId, CancellationToken cancellationToken)
+    {
+        await _service.AssignTemplateToUser(userId,templateId, cancellationToken);
+
+        return NoContent();
+    }
 }

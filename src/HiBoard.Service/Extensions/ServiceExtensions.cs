@@ -37,7 +37,11 @@ public static class ServiceExtensions
         var mysqlConnectionString = configuration.GetConnectionString("Colman");
         //var mysqlConnectionString = configuration.GetConnectionString("MSSQL");
         services.AddDbContext<HiBoardDbContext>(options =>
-            options.UseSqlServer(mysqlConnectionString));
+        {
+            options.UseSqlServer(mysqlConnectionString);
+            options.EnableSensitiveDataLogging();
+        });
+
     }
 
     public static void AddMySwagger(this IServiceCollection services)
