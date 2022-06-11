@@ -8,7 +8,6 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace HiBoard.Service.Controllers;
 
 [ApiController]
-[AllowAnonymous]
 [Route("api/inventory/activities")]
 public class ActivitiesController : Controller
 {
@@ -65,7 +64,7 @@ public class ActivitiesController : Controller
     public async Task<IActionResult> UpdateActivity(int activityId, CancellationToken cancellationToken)
     {
         await _service.DeleteActivityAsync(activityId, cancellationToken);
-
+        
         return NoContent();
     }
 }

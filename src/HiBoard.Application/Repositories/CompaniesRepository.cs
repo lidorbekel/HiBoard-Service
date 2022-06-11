@@ -53,6 +53,7 @@ public class CompaniesRepository
         company.Name = companyDto.Name;
         company.Departments = companyDto.Departments;
         company.Description = companyDto.Description;
+        company.UpdatedAt = DateTime.UtcNow;
 
         await _context.SaveChangesAsync(cancellationToken);
 

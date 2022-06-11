@@ -8,7 +8,6 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace HiBoard.Service.Controllers;
 
 [ApiController]
-[AllowAnonymous]
 [Route("api/user")]
 public class UsersController : ControllerBase
 {
@@ -19,6 +18,7 @@ public class UsersController : ControllerBase
         _service = service;
     }
 
+    [AllowAnonymous]
     [SwaggerOperation("Get User By JWT Token")]
     [HttpGet]
     public async Task<IActionResult> GetUserInfoAsync(CancellationToken cancellationToken)

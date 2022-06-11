@@ -9,7 +9,6 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace HiBoard.Service.Controllers;
 
 [ApiController]
-[AllowAnonymous]
 [Route("api/companies/{companyId}/department/{department}/templates")]
 public class TemplatesController : ControllerBase
 {

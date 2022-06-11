@@ -24,6 +24,8 @@ public class UserActivity : ModelBase<UserActivity,int>
     public Activity? Activity { get; set; }
 
     public Status Status { get; set; }
+    
+    public DateTime? StartedWorkedOn { get; set; }
 
     public bool IsDeleted { get; set; }
 

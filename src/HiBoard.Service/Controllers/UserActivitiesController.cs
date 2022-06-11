@@ -10,8 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace HiBoard.Service.Controllers;
 
 [ApiController]
-[AllowAnonymous]
-[Route("api/{userId}/activities")]
+[Route("api/user/{userId}/activities")]
 public class UserActivitiesController : ControllerBase
 {
     private readonly UserActivitiesService _service;

@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using AutoMapper;
 using HiBoard.Application.Repositories;
 using HiBoard.Domain.DTOs;

@@ -64,15 +64,21 @@ public class TemplatesRepository
 
     public async Task<TemplateDto> UpdateTemplate(int templateId, TemplateDto templateDto, CancellationToken cancellationToken)
     {
-        var template = await _context.Templates.Include(x=> x.Activities)
-            .FirstOrDefaultAsync(template => template.Id == templateId, cancellationToken: cancellationToken);
+        var template = await GetTemplateById(templateId, cancellationToken);
 
         if (template == null)
         {
             throw new TemplateNotFoundException(templateId);
         }
-        
-        template = _mapper.Map(templateDto, template);
+
+        template.Name = templateDto.Name;
+        template.UpdatedAt = DateTime.UtcNow;
+        var templateDtoAsTemplateObject = _mapper.Map<Template>(templateDto);
+        var activitiesToRemove = template.Activities.Except(templateDtoAsTemplateObject.Activities).ToList();
+        foreach (var activity in activitiesToRemove)
+        {
+            template.Activities.Remove(activity);
+        }
 
         _context.Templates.Update(template);
         await _context.SaveChangesAsync(cancellationToken);

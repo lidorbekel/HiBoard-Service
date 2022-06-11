@@ -35,6 +35,11 @@ public class UserActivitiesConfiguration : IEntityTypeConfiguration<UserActivity
             .HasColumnType("DATETIME")
             .IsRequired();
 
+        builder
+            .Property(_ => _.StartedWorkedOn)
+            .HasColumnName("started_worked_on")
+            .HasColumnType("DATETIME");
+
         builder.Property(x => x.IsDeleted)
             .HasColumnName("is_deleted")
             .HasColumnType("tinyint");
@@ -67,9 +72,7 @@ public class UserActivitiesConfiguration : IEntityTypeConfiguration<UserActivity
         #endregion
 
         #region Convertion Configuration
-
-
-
+        
         #endregion
     }
 }
