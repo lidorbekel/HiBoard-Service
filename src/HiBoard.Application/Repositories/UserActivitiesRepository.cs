@@ -28,11 +28,11 @@ public class UserActivitiesRepository
 
         var userActivitiesDto = _mapper.Map<List<UserActivityDto>>(activities);
         
-        foreach (var userActivity in userActivitiesDto.Where(x=> x.Status is Status.InProgress or Status.Done))
+        foreach (var userActivity in userActivitiesDto.Where(x=> x.Status is Status.InProgress))
         {
-            var dataTimeNow = DateTime.Now;
+            var dateTimeNow = DateTime.Now;
             var activity = activities.Find(x => x.Id == userActivity.Id);
-            userActivity.IsOnTime = dataTimeNow < activity!.StartedWorkedOn + activity.Activity!.TimeEstimation;
+            userActivity.IsOnTime = dateTimeNow < activity!.StartedWorkedOn + activity.Activity!.TimeEstimation;
         }
 
         return userActivitiesDto;
@@ -63,6 +63,12 @@ public class UserActivitiesRepository
         if (userActivity.Status == Status.Backlog && userActivityDto.Status == Status.InProgress)
         {
             userActivity.StartedWorkedOn = DateTime.Now;
+        }
+        
+        if (userActivity.Status == Status.InProgress && userActivityDto.Status == Status.Done)
+        {
+            var dateTimeNow = DateTime.Now;
+            userActivityDto.IsOnTime = dateTimeNow < userActivity.StartedWorkedOn + userActivity.Activity!.TimeEstimation;
         }
 
         userActivity.Status = userActivityDto.Status;
