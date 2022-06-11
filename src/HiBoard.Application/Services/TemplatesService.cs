@@ -1,22 +1,18 @@
 ﻿using AutoMapper;
 using HiBoard.Application.Repositories;
 using HiBoard.Domain.DTOs;
-using HiBoard.Domain.Models;
 using HiBoard.Domain.Requests;
 
 namespace HiBoard.Application.Services;
 
 public class TemplatesService
 {
-    private readonly IMapper _mapper;
     private readonly TemplatesRepository _repository;
 
     public TemplatesService(IMapper mapper, TemplatesRepository repository)
     {
-        _mapper = mapper;
         _repository = repository;
     }
-
 
     public async Task<IReadOnlyCollection<TemplateDto>> GetAllTemplates(int companyId, string department,
         CancellationToken cancellationToken)

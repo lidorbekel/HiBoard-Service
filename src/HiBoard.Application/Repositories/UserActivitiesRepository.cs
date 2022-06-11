@@ -52,7 +52,18 @@ public class UserActivitiesRepository
         {
             throw new ActivityNotFoundException(userActivityId);
         }
+        
+        if (userActivity.Status == Status.Backlog && userActivityDto.Status == Status.InProgress)
+        {
+            userActivity.StartedWorkedOn = DateTime.Now;
+        }
 
+        if (userActivity.Status == Status.InProgress && (userActivity.StartedWorkedOn != null || userActivityDto.Status == Status.Done))
+        {
+            var dateEstimation = userActivity.StartedWorkedOn + userActivity.Activity!.TimeEstimation;
+            userActivityDto.IsOnTime = dateEstimation < DateTime.Now;
+        }
+        
         userActivity.Status = userActivityDto.Status;
         userActivity.UpdatedAt = DateTime.UtcNow;
 

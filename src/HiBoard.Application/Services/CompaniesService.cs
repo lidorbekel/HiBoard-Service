@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using HiBoard.Application.Repositories;
+﻿using HiBoard.Application.Repositories;
 using HiBoard.Domain.DTOs;
-using HiBoard.Persistence;
-using Microsoft.AspNetCore.Http;
 
 namespace HiBoard.Application.Services;
 

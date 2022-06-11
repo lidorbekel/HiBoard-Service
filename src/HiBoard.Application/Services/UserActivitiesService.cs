@@ -1,9 +1,7 @@
 using AutoMapper;
 using HiBoard.Application.Repositories;
 using HiBoard.Domain.DTOs;
-using HiBoard.Domain.Enums;
 using HiBoard.Domain.Models;
-using HiBoard.Domain.Requests;
 
 namespace HiBoard.Application.Services;
 
