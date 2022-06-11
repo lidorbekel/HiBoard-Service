@@ -24,5 +24,9 @@ public class Activity : ModelBase<Activity, int>
 
     public TimeSpan TimeEstimation { get; set; }
 
+    public TimeSpan UserAverageTime { get; set; }
+
+    public int UserCompletedCount { get; set; }
+
     public bool IsDeleted { get; set; }
 }

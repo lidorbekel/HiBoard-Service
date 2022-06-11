@@ -27,6 +27,8 @@ public class UserActivity : ModelBase<UserActivity,int>
     
     public DateTime? StartedWorkedOn { get; set; }
 
+    public TimeSpan TimeTookToComplete { get; set; }
+
     public bool IsDeleted { get; set; }
 
     public UserActivity()
