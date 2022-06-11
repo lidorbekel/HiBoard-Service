@@ -64,7 +64,7 @@ public class ActivitiesController : Controller
     public async Task<IActionResult> UpdateActivity(int activityId, CancellationToken cancellationToken)
     {
         await _service.DeleteActivityAsync(activityId, cancellationToken);
-
+        
         return NoContent();
     }
 }
