@@ -2,6 +2,7 @@
 using AutoMapper;
 using HiBoard.Application.CustomExceptions.UsersExceptions;
 using HiBoard.Domain.DTOs;
+using HiBoard.Domain.Enums;
 using HiBoard.Domain.Models;
 using HiBoard.Persistence;
 using Microsoft.AspNetCore.Http;
@@ -49,7 +50,17 @@ public class UsersRepository
             throw new UserNotFoundException(email);
         }
 
-        return _mapper.Map<UserDto>(user);
+        var userDto = _mapper.Map<UserDto>(user);
+        
+        userDto.TotalActivities = await _context.UserActivities
+            .Where(x => x.UserId == user.Id)
+            .CountAsync(cancellationToken);
+        
+        userDto.CompletedActivities = await _context.UserActivities
+            .Where(x => x.UserId == user.Id && x.Status == Status.Done)
+            .CountAsync(cancellationToken);
+        
+        return userDto;
     }
 
     public async Task<UserDto> CreateAsync(UserDto userDto,int managerId, CancellationToken cancellationToken)

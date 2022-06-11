@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace HiBoard.Domain.DTOs;
+﻿namespace HiBoard.Domain.DTOs;
 
 public class UserDto
 {
@@ -22,5 +20,9 @@ public class UserDto
 
     public string Department { get; set; } = string.Empty;
     
+    public int TotalActivities { get; set; }
+    
+    public int CompletedActivities { get; set; }
+
     public int ManagerId { get; set; }
 }
