@@ -3,7 +3,6 @@ using HiBoard.Application.CustomExceptions.ActivityExceptions;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Enums;
 using HiBoard.Domain.Models;
-using HiBoard.Domain.Requests;
 using HiBoard.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,15 +19,23 @@ public class UserActivitiesRepository
         _mapper = mapper;
     }
 
-    public async Task<IReadOnlyCollection<UserActivityDto>> GetListAsync(int userId,
-        CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<UserActivityDto>> GetListAsync(int userId, CancellationToken cancellationToken)
     {
         var activities = await _context.UserActivities
             .Include(x => x.Activity)
             .Where(x => x.UserId == userId).AsNoTracking()
             .ToListAsync(cancellationToken);
 
-        return _mapper.Map<List<UserActivityDto>>(activities);
+        var userActivitiesDto = _mapper.Map<List<UserActivityDto>>(activities);
+        
+        foreach (var userActivity in userActivitiesDto.Where(x=> x.Status is Status.InProgress or Status.Done))
+        {
+            var dataTimeNow = DateTime.Now;
+            var activity = activities.Find(x => x.Id == userActivity.Id);
+            userActivity.IsOnTime = dataTimeNow < activity!.StartedWorkedOn + activity.Activity!.TimeEstimation;
+        }
+
+        return userActivitiesDto;
     }
 
     public async Task<UserActivityDto> GetByIdAsync(int userActivityId, CancellationToken cancellationToken)
@@ -52,18 +59,12 @@ public class UserActivitiesRepository
         {
             throw new ActivityNotFoundException(userActivityId);
         }
-        
+
         if (userActivity.Status == Status.Backlog && userActivityDto.Status == Status.InProgress)
         {
             userActivity.StartedWorkedOn = DateTime.Now;
         }
 
-        if (userActivity.Status == Status.InProgress && (userActivity.StartedWorkedOn != null || userActivityDto.Status == Status.Done))
-        {
-            var dateEstimation = userActivity.StartedWorkedOn + userActivity.Activity!.TimeEstimation;
-            userActivityDto.IsOnTime = dateEstimation < DateTime.Now;
-        }
-        
         userActivity.Status = userActivityDto.Status;
         userActivity.UpdatedAt = DateTime.UtcNow;
 
