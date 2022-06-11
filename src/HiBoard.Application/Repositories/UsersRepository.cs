@@ -24,16 +24,18 @@ public class UsersRepository
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<IReadOnlyCollection<UserDto>> GetUserEmployeesAsync(int userId, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<UserDto>> GetUserEmployeesAsync(int userId,
+        CancellationToken cancellationToken)
     {
-        var users = await _context.Users.Where(x => x.ManagerId == userId).AsNoTracking().ToListAsync(cancellationToken);
-            
+        var users = await _context.Users.Where(x => x.ManagerId == userId).AsNoTracking()
+            .ToListAsync(cancellationToken);
+
         return _mapper.Map<List<UserDto>>(users);
     }
 
     public async Task<UserDto> GetByIdAsync(int userId, CancellationToken cancellationToken)
     {
-        var user = await _context.Users.FindAsync(new object?[] { userId }, cancellationToken);
+        var user = await _context.Users.FindAsync(new object?[] {userId}, cancellationToken);
         if (user == null)
         {
             throw new UserNotFoundException(userId);
@@ -51,19 +53,19 @@ public class UsersRepository
         }
 
         var userDto = _mapper.Map<UserDto>(user);
-        
+
         userDto.TotalActivities = await _context.UserActivities
             .Where(x => x.UserId == user.Id)
             .CountAsync(cancellationToken);
-        
+
         userDto.CompletedActivities = await _context.UserActivities
             .Where(x => x.UserId == user.Id && x.Status == Status.Done)
             .CountAsync(cancellationToken);
-        
+
         return userDto;
     }
 
-    public async Task<UserDto> CreateAsync(UserDto userDto,int managerId, CancellationToken cancellationToken)
+    public async Task<UserDto> CreateAsync(UserDto userDto, int managerId, CancellationToken cancellationToken)
     {
         var isUserExists = await _context.Users.AnyAsync(x => x.Email == userDto.Email, cancellationToken);
         if (isUserExists)
@@ -101,7 +103,7 @@ public class UsersRepository
 
     public async Task<UserDto> UpdateAsync(int userId, UserDto userDto, CancellationToken cancellationToken)
     {
-        var user = await _context.Users.FindAsync(new object?[] { userId }, cancellationToken);
+        var user = await _context.Users.FindAsync(new object?[] {userId}, cancellationToken);
         if (user == null)
         {
             throw new UserNotFoundException(userId);
@@ -121,6 +123,7 @@ public class UsersRepository
         user.Email = userDto.Email;
         user.FirstName = userDto.FirstName;
         user.LastName = userDto.LastName;
+        user.UpdatedAt = DateTime.UtcNow;
 
         await _context.SaveChangesAsync(cancellationToken);
 
@@ -129,7 +132,7 @@ public class UsersRepository
 
     public async Task DeleteAsync(int userId, CancellationToken cancellationToken)
     {
-        var user = await _context.Users.FindAsync(new object?[] { userId }, cancellationToken);
+        var user = await _context.Users.FindAsync(new object?[] {userId}, cancellationToken);
         if (user == null)
         {
             throw new UserNotFoundException(userId);
@@ -138,8 +141,9 @@ public class UsersRepository
         user.IsDeleted = true;
         await _context.SaveChangesAsync(cancellationToken);
     }
-        
-    private async Task UpdateUserEmailInFireBase(string newEmail, string userIdToken, CancellationToken cancellationToken)
+
+    private async Task UpdateUserEmailInFireBase(string newEmail, string userIdToken,
+        CancellationToken cancellationToken)
     {
         const string apiKey = "AIzaSyBD-MmZTd6BvQWX6NDBCVQimE9iib29PUA";
         var httpClient = new RestClient($"https://identitytoolkit.googleapis.com");
@@ -158,11 +162,13 @@ public class UsersRepository
 
         if (response.StatusCode != HttpStatusCode.OK)
         {
-            throw new HttpRequestException($"Failed to update user at Firebase, StatusCode: {response.StatusCode}, content: {response.Content}");
+            throw new HttpRequestException(
+                $"Failed to update user at Firebase, StatusCode: {response.StatusCode}, content: {response.Content}");
         }
     }
 
-    private async Task UpdateUserPasswordInFireBase(string newPassword, string userIdToken, CancellationToken cancellationToken)
+    private async Task UpdateUserPasswordInFireBase(string newPassword, string userIdToken,
+        CancellationToken cancellationToken)
     {
         const string apiKey = "AIzaSyBD-MmZTd6BvQWX6NDBCVQimE9iib29PUA";
         var httpClient = new RestClient($"https://identitytoolkit.googleapis.com");
@@ -181,7 +187,8 @@ public class UsersRepository
 
         if (response.StatusCode != HttpStatusCode.OK)
         {
-            throw new HttpRequestException($"Failed to update user at Firebase, StatusCode: {response.StatusCode}, content: {response.Content}");
+            throw new HttpRequestException(
+                $"Failed to update user at Firebase, StatusCode: {response.StatusCode}, content: {response.Content}");
         }
     }
 }

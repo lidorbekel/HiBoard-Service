@@ -27,7 +27,7 @@ public class ActivitiesRepository
 
     public async Task<ActivityDto> GetByIdAsync(int activityId, CancellationToken cancellationToken)
     {
-        var activity = await _context.Activities.FindAsync(new object?[] { activityId }, cancellationToken);
+        var activity = await _context.Activities.FindAsync(new object?[] {activityId}, cancellationToken);
         if (activity == null)
         {
             throw new ActivityNotFoundException(activityId);
@@ -39,22 +39,24 @@ public class ActivitiesRepository
     public async Task<ActivityDto> CreateAsync(ActivityDto activityDto, CancellationToken cancellationToken)
     {
         var activity = _mapper.Map<Activity>(activityDto);
-            
+
         await _context.Activities.AddAsync(activity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
         return _mapper.Map<ActivityDto>(activity);
     }
 
-    public async Task<ActivityDto> UpdateAsync(int activityId, ActivityDto activityDto, CancellationToken cancellationToken)
+    public async Task<ActivityDto> UpdateAsync(int activityId, ActivityDto activityDto,
+        CancellationToken cancellationToken)
     {
-        var activity = await _context.Activities.FindAsync(new object?[] { activityId }, cancellationToken);
+        var activity = await _context.Activities.FindAsync(new object?[] {activityId}, cancellationToken);
         if (activity == null)
         {
             throw new ActivityNotFoundException(activityId);
         }
 
         activity = _mapper.Map(activityDto, activity);
+        activity.UpdatedAt = DateTime.UtcNow;
 
         _context.Activities.Update(activity);
         await _context.SaveChangesAsync(cancellationToken);
@@ -64,7 +66,7 @@ public class ActivitiesRepository
 
     public async Task DeleteAsync(int activityId, CancellationToken cancellationToken)
     {
-        var activity = await _context.Activities.FindAsync(new object?[] { activityId }, cancellationToken);
+        var activity = await _context.Activities.FindAsync(new object?[] {activityId}, cancellationToken);
         if (activity == null)
         {
             throw new ActivityNotFoundException(activityId);

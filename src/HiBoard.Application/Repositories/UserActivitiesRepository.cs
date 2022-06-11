@@ -45,19 +45,21 @@ public class UserActivitiesRepository
     public async Task<UserActivityDto> UpdateAsync(int userActivityId, UserActivityDto userActivityDto,
         CancellationToken cancellationToken)
     {
-        var activity = await _context.UserActivities.Include(x => x.Activity)
+        var userActivity = await _context.UserActivities.Include(x => x.Activity)
             .FirstOrDefaultAsync(userActivity => userActivity.Id == userActivityId, cancellationToken);
 
-        if (activity == null)
+        if (userActivity == null)
         {
             throw new ActivityNotFoundException(userActivityId);
         }
 
-        activity.Status = userActivityDto.Status;
-        _context.UserActivities.Update(activity);
+        userActivity.Status = userActivityDto.Status;
+        userActivity.UpdatedAt = DateTime.UtcNow;
+
+        _context.UserActivities.Update(userActivity);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return _mapper.Map<UserActivityDto>(activity);
+        return _mapper.Map<UserActivityDto>(userActivity);
     }
 
     public async Task<UserActivityDto> CreateAsync(int userId, UserActivityDto userActivityDto,
