@@ -31,4 +31,8 @@
     <ProjectReference Include="..\HiBoard.Application\HiBoard.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
+
 </Project>

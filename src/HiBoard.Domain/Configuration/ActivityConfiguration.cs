@@ -43,8 +43,8 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
 
         builder
             .Property(_ => _.TimeEstimation)
-            .HasColumnName("time_estimation_in_seconds")
-            .HasColumnType("int")
+            .HasColumnName("time_estimation_in_ticks")
+            .HasColumnType("long")
             .IsRequired();
 
         builder
@@ -76,8 +76,8 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
         #region Convertion Configuration
 
         builder.Property(activity => activity.TimeEstimation).HasConversion(
-            time => time.TotalSeconds,
-            time => TimeSpan.FromSeconds(time));
+            time => time.Ticks,
+            time => TimeSpan.FromTicks(time));
 
         #endregion
     }

@@ -1,8 +1,10 @@
-﻿using HiBoard.Application.Mapping;
+﻿using System.Text.Json.Serialization;
+using HiBoard.Application.Mapping;
 using HiBoard.Application.Repositories;
 using HiBoard.Application.Services;
 using HiBoard.Persistence;
 using HiBoard.Service.Configuration;
+using HiBoard.Service.Converters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
@@ -103,6 +105,7 @@ public static class ServiceExtensions
         {
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            options.SerializerSettings.Converters.Add(new JsonTimeSpanConverter());
         });
     }
 }
