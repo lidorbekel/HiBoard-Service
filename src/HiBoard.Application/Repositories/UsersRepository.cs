@@ -41,7 +41,7 @@ public class UsersRepository
                 .CountAsync(cancellationToken);
         }
 
-        return _mapper.Map<List<UserDto>>(users);
+        return usersDto;
     }
 
     public async Task<UserDto> GetByIdAsync(int userId, CancellationToken cancellationToken)
