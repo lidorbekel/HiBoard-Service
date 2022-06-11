@@ -44,7 +44,7 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
         builder
             .Property(_ => _.TimeEstimation)
             .HasColumnName("time_estimation_in_ticks")
-            .HasColumnType("long")
+            .HasColumnType("bigint")
             .IsRequired();
 
         builder
