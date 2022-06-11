@@ -63,6 +63,15 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
             .HasColumnName("is_deleted")
             .HasColumnType("tinyint");
 
+        builder
+            .Property(_ => _.UserAverageTime)
+            .HasColumnName("user_average_time_in_ticks")
+            .HasColumnType("bigint");
+
+        builder.Property(_ => _.UserCompletedCount)
+            .HasColumnName("user_completed_count")
+            .HasColumnType("int");
+
         #endregion
 
         #region Relationship Configuration
@@ -76,6 +85,10 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
         #region Convertion Configuration
 
         builder.Property(activity => activity.TimeEstimation).HasConversion(
+            time => time.Ticks,
+            time => TimeSpan.FromTicks(time));
+
+        builder.Property(activity => activity.UserAverageTime).HasConversion(
             time => time.Ticks,
             time => TimeSpan.FromTicks(time));
 

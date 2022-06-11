@@ -10,6 +10,8 @@ public class UserActivityDto
     public Status Status { get; set; }
     
     public bool? IsOnTime { get; set; }
+
+    public TimeSpan TimeTookToComplete { get; set; }
     
     public ActivityDto? Activity { get; set; }
 }

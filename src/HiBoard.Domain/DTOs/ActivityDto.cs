@@ -15,4 +15,8 @@ public class ActivityDto
     public int Week { get; set; }
 
     public TimeSpan TimeEstimation { get; set; }
+
+    public TimeSpan UserAverageTime { get; set; }
+
+    public int UserCompletedCount { get; set; }
 }

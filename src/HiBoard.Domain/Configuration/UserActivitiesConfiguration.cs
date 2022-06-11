@@ -53,6 +53,11 @@ public class UserActivitiesConfiguration : IEntityTypeConfiguration<UserActivity
         builder.Property(_ => _.Status)
             .HasColumnName("status");
 
+        builder
+            .Property(_ => _.TimeTookToComplete)
+            .HasColumnName("time_took_to_complete_in_ticks")
+            .HasColumnType("bigint");
+
         #endregion
 
         #region Releationship Configuration
@@ -72,7 +77,11 @@ public class UserActivitiesConfiguration : IEntityTypeConfiguration<UserActivity
         #endregion
 
         #region Convertion Configuration
-        
+
+        builder.Property(userActivity => userActivity.TimeTookToComplete).HasConversion(
+            time => time.Ticks,
+            time => TimeSpan.FromTicks(time));
+
         #endregion
     }
 }

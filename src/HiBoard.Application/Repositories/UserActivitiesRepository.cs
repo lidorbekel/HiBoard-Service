@@ -19,7 +19,8 @@ public class UserActivitiesRepository
         _mapper = mapper;
     }
 
-    public async Task<IReadOnlyCollection<UserActivityDto>> GetListAsync(int userId, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<UserActivityDto>> GetListAsync(int userId,
+        CancellationToken cancellationToken)
     {
         var activities = await _context.UserActivities
             .Include(x => x.Activity)
@@ -27,8 +28,8 @@ public class UserActivitiesRepository
             .ToListAsync(cancellationToken);
 
         var userActivitiesDto = _mapper.Map<List<UserActivityDto>>(activities);
-        
-        foreach (var userActivity in userActivitiesDto.Where(x=> x.Status is Status.InProgress))
+
+        foreach (var userActivity in userActivitiesDto.Where(x => x.Status is Status.InProgress))
         {
             var dateTimeNow = DateTime.Now;
             var activity = activities.Find(x => x.Id == userActivity.Id);
@@ -64,17 +65,48 @@ public class UserActivitiesRepository
         {
             userActivity.StartedWorkedOn = DateTime.Now;
         }
-        
+
         if (userActivity.Status == Status.InProgress && userActivityDto.Status == Status.Done)
         {
             var dateTimeNow = DateTime.Now;
-            userActivityDto.IsOnTime = dateTimeNow < userActivity.StartedWorkedOn + userActivity.Activity!.TimeEstimation;
+            userActivityDto.IsOnTime =
+                dateTimeNow < userActivity.StartedWorkedOn + userActivity.Activity!.TimeEstimation;
+            
+            var timeTookToComplete = ((DateTime.Now - userActivity.StartedWorkedOn));
+            if (timeTookToComplete is not null)
+            {
+                userActivity.TimeTookToComplete = timeTookToComplete.Value;
+            }
+
+            var activity = await _context.Activities.FindAsync(userActivity.ActivityId, cancellationToken);
+            if (activity is not null)
+            {
+                if (activity.UserCompletedCount == 0)
+                {
+                    activity.UserCompletedCount++;
+                    if (timeTookToComplete is not null)
+                    {
+                        activity.UserAverageTime = timeTookToComplete.Value;
+                    }
+                }
+                else
+                {
+                    activity.UserCompletedCount++;
+                    var nextPointFactor = (double) 1 / activity.UserCompletedCount;
+                    var averagePointFactor = 1 - nextPointFactor;
+                    activity.UserAverageTime =
+                        activity.UserAverageTime * averagePointFactor + timeTookToComplete!.Value * nextPointFactor;
+                }
+
+                _context.Activities.Update(activity);
+            }
         }
 
         userActivity.Status = userActivityDto.Status;
         userActivity.UpdatedAt = DateTime.UtcNow;
 
         _context.UserActivities.Update(userActivity);
+        
         await _context.SaveChangesAsync(cancellationToken);
 
         return _mapper.Map<UserActivityDto>(userActivity);
@@ -85,6 +117,7 @@ public class UserActivitiesRepository
     {
         var userActivity = _mapper.Map<UserActivity>(userActivityDto);
         userActivity.UserId = userId;
+        userActivity.TimeTookToComplete = new TimeSpan();
         await _context.UserActivities.AddAsync(userActivity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 

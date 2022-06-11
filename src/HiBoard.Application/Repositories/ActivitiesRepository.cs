@@ -39,7 +39,8 @@ public class ActivitiesRepository
     public async Task<ActivityDto> CreateAsync(ActivityDto activityDto, CancellationToken cancellationToken)
     {
         var activity = _mapper.Map<Activity>(activityDto);
-
+        activity.UserCompletedCount = 0;
+        activity.UserAverageTime = new TimeSpan(0, 0, 0);
         await _context.Activities.AddAsync(activity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
