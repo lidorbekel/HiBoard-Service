@@ -30,7 +30,20 @@ public class UsersRepository
         var users = await _context.Users.Where(x => x.ManagerId == userId).AsNoTracking()
             .ToListAsync(cancellationToken);
 
-        return _mapper.Map<List<UserDto>>(users);
+        var usersDto = _mapper.Map<List<UserDto>>(users);
+        
+        foreach (var userDto in usersDto)
+        {
+            userDto.TotalActivities = await _context.UserActivities
+                .Where(x => x.UserId == userId)
+                .CountAsync(cancellationToken);
+            
+            userDto.CompletedActivities = await _context.UserActivities
+                .Where(x => x.UserId == userId && x.Status == Status.Done)
+                .CountAsync(cancellationToken);
+        }
+
+        return usersDto;
     }
 
     public async Task<UserDto> GetByIdAsync(int userId, CancellationToken cancellationToken)
