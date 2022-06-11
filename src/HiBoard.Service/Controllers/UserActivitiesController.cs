@@ -10,7 +10,6 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace HiBoard.Service.Controllers;
 
 [ApiController]
-[AllowAnonymous]
 [Route("api/{userId}/activities")]
 public class UserActivitiesController : ControllerBase
 {
