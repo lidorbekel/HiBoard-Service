@@ -8,7 +8,6 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace HiBoard.Service.Controllers;
 
 [ApiController]
-[AllowAnonymous]
 [Route("api/companies")]
 public class CompaniesController : ControllerBase
 {
