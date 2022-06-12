@@ -26,6 +26,8 @@ public class UserActivity : ModelBase<UserActivity,int>
     public Status Status { get; set; }
     
     public DateTime? StartedWorkedOn { get; set; }
+    
+    public bool? IsOnTime { get; set; }
 
     public TimeSpan TimeTookToComplete { get; set; }
 

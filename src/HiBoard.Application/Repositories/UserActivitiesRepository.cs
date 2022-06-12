@@ -69,8 +69,7 @@ public class UserActivitiesRepository
         if (userActivity.Status == Status.InProgress && userActivityDto.Status == Status.Done)
         {
             var dateTimeNow = DateTime.Now;
-            userActivityDto.IsOnTime =
-                dateTimeNow < userActivity.StartedWorkedOn + userActivity.Activity!.TimeEstimation;
+            userActivity.IsOnTime = dateTimeNow < userActivity.StartedWorkedOn + userActivity.Activity!.TimeEstimation;
 
             await CalculateUserAverageTime(cancellationToken, userActivity);
         }

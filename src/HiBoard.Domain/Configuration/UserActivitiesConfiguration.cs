@@ -43,6 +43,10 @@ public class UserActivitiesConfiguration : IEntityTypeConfiguration<UserActivity
         builder.Property(x => x.IsDeleted)
             .HasColumnName("is_deleted")
             .HasColumnType("tinyint");
+        
+        builder.Property(x => x.IsOnTime)
+            .HasColumnName("is_on_time")
+            .HasColumnType("tinyint");
 
         builder.Property(_ => _.ActivityId)
             .HasColumnName("activity_id");
