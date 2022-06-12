@@ -33,11 +33,11 @@ public class UsersRepository
         foreach (var userDto in usersDto)
         {
             userDto.TotalActivities = await _context.UserActivities
-                .Where(x => x.UserId == userId)
+                .Where(x => x.UserId == userDto.Id)
                 .CountAsync(cancellationToken);
             
             userDto.CompletedActivities = await _context.UserActivities
-                .Where(x => x.UserId == userId && x.Status == Status.Done)
+                .Where(x => x.UserId == userDto.Id && x.Status == Status.Done)
                 .CountAsync(cancellationToken);
         }
 

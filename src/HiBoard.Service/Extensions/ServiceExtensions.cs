@@ -53,7 +53,7 @@ public static class ServiceExtensions
 
     public static void AddMyCors(this IServiceCollection services, IConfiguration configuration)
     {
-        var cors = configuration?.GetSection("Cors")?.GetChildren()?.Select(cors => cors.Value).ToArray();
+        var cors = configuration.GetSection("Cors")?.GetChildren()?.Select(cors => cors.Value).ToArray();
 
         services.AddCors(options =>
             options.AddPolicy("CorsPolicy", policy =>
@@ -61,7 +61,7 @@ public static class ServiceExtensions
                 if (cors != null)
                     policy.AllowAnyMethod()
                         .AllowAnyHeader()
-                        .WithOrigins(cors);
+                        .AllowAnyOrigin();
             }));
     }
 
