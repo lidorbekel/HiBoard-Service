@@ -61,7 +61,7 @@ public static class ServiceExtensions
                 if (cors != null)
                     policy.AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowAnyOrigin();
+                        .WithOrigins(cors);
             }));
     }
 
