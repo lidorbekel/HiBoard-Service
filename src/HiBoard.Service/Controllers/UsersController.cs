@@ -1,6 +1,7 @@
 ﻿using HiBoard.Application.Services;
 using HiBoard.Domain.DTOs;
 using HiBoard.Domain.Responses;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -52,6 +53,7 @@ public class UsersController : ControllerBase
     }
 
     [SwaggerOperation("Create User")]
+    [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> CreateUser([FromBody] UserDto userDto,[FromQuery] int managerId, CancellationToken cancellationToken)
     {

@@ -8,6 +8,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace HiBoard.Service.Controllers;
 
 [ApiController]
+[AllowAnonymous]
 [Route("api/companies")]
 public class CompaniesController : ControllerBase
 {
@@ -19,6 +20,7 @@ public class CompaniesController : ControllerBase
     }
 
     [SwaggerOperation("Create Company")]
+    [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> CreateCompanyAsync([FromBody] CompanyDto companyDto, CancellationToken cancellationToken)
     {
