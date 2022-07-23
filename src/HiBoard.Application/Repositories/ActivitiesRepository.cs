@@ -27,11 +27,16 @@ public class ActivitiesRepository : IActivitiesRepository
 
     public async Task<ActivityDto> GetByIdAsync(int activityId, CancellationToken cancellationToken)
     {
-        var activity = await _context.Activities.FindAsync(new object?[] {activityId}, cancellationToken);
-        if (activity == null)
+        Activity? activity;
+        try
+        {
+            activity = await _context.Activities.FindAsync(new object?[] {activityId}, cancellationToken);
+        }
+        catch
         {
             throw new ActivityNotFoundException(activityId);
         }
+
 
         return _mapper.Map<ActivityDto>(activity);
     }

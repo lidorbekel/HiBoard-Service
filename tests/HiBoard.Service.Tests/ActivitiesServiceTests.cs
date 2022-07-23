@@ -77,20 +77,6 @@ namespace HiBoard.Service.Tests
         }
 
         [Test]
-        public async Task GetById_ActivityNotFound_ShouldReturnNull()
-        {
-            //Given
-            _activitiesRepositoryMock.Setup(repository => repository.GetByIdAsync(2, It.IsAny<CancellationToken>()))
-                .ThrowsAsync(new ActivityNotFoundException(2));
-
-            //When
-            var activityResult = await _activitiesService.GetActivityAsync(2, CancellationToken.None);
-
-            //Then
-            Assert.AreEqual(null, activityResult);
-        }
-
-        [Test]
         public async Task CreateActivity_HappyFlow()
         {
             //Given
