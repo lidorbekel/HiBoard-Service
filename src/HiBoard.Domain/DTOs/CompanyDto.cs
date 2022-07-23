@@ -5,7 +5,7 @@ namespace HiBoard.Domain.DTOs;
 
 public  class CompanyDto
 {
-    public int Id { get; protected set; }
+    public int Id { get; set; }
         
     public string Name { get; set; } = string.Empty;
 

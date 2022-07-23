@@ -5,9 +5,9 @@ namespace HiBoard.Application.Services;
 
 public class CompaniesService
 {
-    private readonly CompaniesRepository _repository;
+    private readonly ICompaniesRepository _repository;
 
-    public CompaniesService(CompaniesRepository repository)
+    public CompaniesService(ICompaniesRepository repository)
     {
         _repository = repository;
     }
