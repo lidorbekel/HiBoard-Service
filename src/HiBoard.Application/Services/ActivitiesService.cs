@@ -5,9 +5,9 @@ namespace HiBoard.Application.Services;
 
 public class ActivitiesService
 {
-    private readonly ActivitiesRepository _repository;
+    private readonly IActivitiesRepository _repository;
 
-    public ActivitiesService(ActivitiesRepository repository)
+    public ActivitiesService(IActivitiesRepository repository)
     {
         _repository = repository;
     }

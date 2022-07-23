@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HiBoard.Application.Repositories;
 
-public class CompaniesRepository
+public class CompaniesRepository : ICompaniesRepository
 {
     private readonly HiBoardDbContext _context;
     private readonly IMapper _mapper;
