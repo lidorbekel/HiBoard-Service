@@ -9,8 +9,11 @@
 
     <ItemGroup>
       <Compile Remove="CompaniesEndpointsTests\**" />
+      <Compile Remove="UsersEndpointsTests\**" />
       <EmbeddedResource Remove="CompaniesEndpointsTests\**" />
+      <EmbeddedResource Remove="UsersEndpointsTests\**" />
       <None Remove="CompaniesEndpointsTests\**" />
+      <None Remove="UsersEndpointsTests\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -25,7 +28,6 @@
     <ItemGroup>
       <Folder Include="TemplatesEndpointsTests" />
       <Folder Include="UserActivitiesEndpointsTests" />
-      <Folder Include="UsersEndpointsTests" />
     </ItemGroup>
 
     <ItemGroup>

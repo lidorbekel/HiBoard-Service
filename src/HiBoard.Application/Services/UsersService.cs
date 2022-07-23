@@ -10,11 +10,11 @@ namespace HiBoard.Application.Services;
 
 public class UsersService
 {
-    private readonly UsersRepository _repository;
+    private readonly IUsersRepository _repository;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IMapper _mapper;
 
-    public UsersService(UsersRepository repository, IHttpContextAccessor httpContextAccessor,  IMapper mapper)
+    public UsersService(IUsersRepository repository, IHttpContextAccessor httpContextAccessor,  IMapper mapper)
     {
         _repository = repository;
         _httpContextAccessor = httpContextAccessor;

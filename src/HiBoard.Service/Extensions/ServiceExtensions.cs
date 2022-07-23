@@ -28,7 +28,7 @@ public static class ServiceExtensions
     public static void AddMyRepositories(this IServiceCollection services)
     {
         services.AddHttpContextAccessor();
-        services.AddScoped<UsersRepository>();
+        services.AddScoped<IUsersRepository, UsersRepository>();
         services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
         services.AddScoped<ICompaniesRepository, CompaniesRepository>();
         services.AddScoped<UserActivitiesRepository>();

@@ -7,7 +7,7 @@ using HiBoard.Domain.DTOs;
 
 namespace HiBoard.Application.Repositories
 {
-    internal interface IUsersRepository
+    public interface IUsersRepository
     {
         Task<IReadOnlyCollection<UserDto>> GetUserEmployeesAsync(int userId, CancellationToken cancellationToken);
         Task<UserDto> GetByIdAsync(int userId, CancellationToken cancellationToken);

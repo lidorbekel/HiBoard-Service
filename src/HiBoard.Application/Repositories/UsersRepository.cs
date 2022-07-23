@@ -11,7 +11,7 @@ using RestSharp;
 
 namespace HiBoard.Application.Repositories;
 
-public class UsersRepository
+public class UsersRepository : IUsersRepository
 {
     private readonly HiBoardDbContext _context;
     private readonly IMapper _mapper;
