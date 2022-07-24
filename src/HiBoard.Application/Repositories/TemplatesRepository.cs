@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HiBoard.Application.Repositories;
 
-public class TemplatesRepository
+public class TemplatesRepository : ITemplatesRepository
 {
     private readonly HiBoardDbContext _context;
     private readonly IMapper _mapper;

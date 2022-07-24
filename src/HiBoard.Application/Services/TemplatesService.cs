@@ -7,9 +7,9 @@ namespace HiBoard.Application.Services;
 
 public class TemplatesService
 {
-    private readonly TemplatesRepository _repository;
+    private readonly ITemplatesRepository _repository;
 
-    public TemplatesService(IMapper mapper, TemplatesRepository repository)
+    public TemplatesService(ITemplatesRepository repository)
     {
         _repository = repository;
     }

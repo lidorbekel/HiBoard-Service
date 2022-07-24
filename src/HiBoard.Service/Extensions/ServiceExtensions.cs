@@ -32,7 +32,7 @@ public static class ServiceExtensions
         services.AddScoped<IActivitiesRepository, ActivitiesRepository>();
         services.AddScoped<ICompaniesRepository, CompaniesRepository>();
         services.AddScoped<UserActivitiesRepository>();
-        services.AddScoped<TemplatesRepository>();
+        services.AddScoped<ITemplatesRepository, TemplatesRepository>();
     }
 
     public static void AddMyDb(this IServiceCollection services, IConfiguration configuration)
